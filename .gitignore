@@ -1,0 +1,21 @@
+# Environment and secrets
+.env
+.env.*
+*.key
+*.pem
+*.secret
+credentials.*
+**/secrets/
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+*.suo
+*.user
+*.sln.docstates
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
