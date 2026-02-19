@@ -3,7 +3,24 @@
     "allow": [
       "WebFetch(domain:www.longgameproject.org)",
       "WebFetch(domain:morkborg.com)",
-      "WebFetch(domain:www.awwwards.com)"
+      "WebFetch(domain:www.awwwards.com)",
+      "Bash(npx create-next-app:*)",
+      "Bash(npx create-next-app@latest:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(node -e:*)",
+      "Bash(npx next build:*)",
+      "Bash(node:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)",
+      "mcp__97d85bce-f3d5-4516-9f4b-22e5058a3070__deploy_to_vercel",
+      "Bash(where:*)",
+      "Bash(npx vercel:*)",
+      "mcp__97d85bce-f3d5-4516-9f4b-22e5058a3070__list_teams",
+      "mcp__97d85bce-f3d5-4516-9f4b-22e5058a3070__list_projects",
+      "Bash(gh auth:*)"
     ]
   }
 }

@@ -1,21 +1,27 @@
-# Environment and secrets
 .env
+.env.*
+*.pem
+*.key
+*.pfx
+secrets/
+config/credentials*
+.aws/
+.ssh/
+*_rsa
+*_dsa
+*.p12.env
 .env.*
 *.key
 *.pem
 *.secret
 credentials.*
 **/secrets/
-
-# IDE
 .vscode/
 .idea/
 *.code-workspace
 *.suo
 *.user
 *.sln.docstates
-
-# OS
 .DS_Store
 Thumbs.db
 desktop.ini
@@ -59,20 +65,10 @@ config/credentials*
 *.sqlite3
 *.db
 .env
-.env.*
-!.env.example
-*.key
-*.pem
-*.pfx
-*.p12
 *.secret
-*_rsa
-*_dsa
 credentials.*
 **/secrets/
-config/credentials*
-.aws/
-.ssh/
+
 .vscode/
 .idea/
 *.code-workspace
@@ -82,6 +78,8 @@ config/credentials*
 .DS_Store
 Thumbs.db
 desktop.ini
+!.env.example
+*.p12
 *.png
 *.jpg
 *.jpeg
