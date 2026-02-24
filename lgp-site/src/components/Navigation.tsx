@@ -7,14 +7,11 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const linksRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
 
-    // Animate nav in
     gsap.fromTo(
       navRef.current,
       { y: -100, opacity: 0 },
@@ -25,10 +22,10 @@ export default function Navigation() {
   }, []);
 
   const navLinks = [
-    { label: "THE PROBLEM", href: "#problem" },
-    { label: "HOW WE PLAY", href: "#method" },
-    { label: "OPERATIONS", href: "#offerings" },
-    { label: "PROOF", href: "#proof" },
+    { label: "Why", href: "#problem" },
+    { label: "How", href: "#method" },
+    { label: "What We Offer", href: "#offerings" },
+    { label: "Results", href: "#proof" },
   ];
 
   return (
@@ -37,44 +34,38 @@ export default function Navigation() {
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-deep/90 backdrop-blur-md border-b border-blue/10"
+            ? "bg-deep/90 backdrop-blur-md border-b border-white/5"
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-[60px] md:h-[70px]">
           {/* Logo */}
-          <div ref={logoRef} className="flex items-center gap-3">
-            <div className="w-8 h-8 relative">
-              {/* Geometric logo mark — abstract game piece */}
-              <div className="absolute inset-0 border-2 border-blue rotate-45 scale-75" />
-              <div className="absolute inset-0 border-2 border-white/30 rotate-[22.5deg] scale-50" />
-              <div className="absolute inset-[35%] bg-blue rounded-full" />
+          <a href="#" className="flex items-center gap-3 group">
+            <div className="w-7 h-7 relative">
+              <div className="absolute inset-0 border-2 border-blue rotate-45 scale-75 transition-transform duration-300 group-hover:rotate-[55deg]" />
+              <div className="absolute inset-[30%] bg-blue rounded-full" />
             </div>
-            <span className="font-[family-name:var(--font-bebas-neue)] text-xl md:text-2xl tracking-[0.15em] text-white">
+            <span className="font-[family-name:var(--font-bebas-neue)] text-lg md:text-xl tracking-[0.15em] text-white">
               THE LONG GAME
             </span>
-          </div>
+          </a>
 
           {/* Desktop Links */}
-          <div
-            ref={linksRef}
-            className="hidden md:flex items-center gap-8"
-          >
+          <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="font-[family-name:var(--font-space-mono)] text-[11px] tracking-[0.2em] text-ghost hover:text-white transition-colors duration-300 relative group"
+                className="font-[family-name:var(--font-outfit)] text-[13px] text-ghost hover:text-white transition-colors duration-300"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-blue group-hover:w-full transition-all duration-300" />
               </a>
             ))}
             <a
               href="#contact"
-              className="font-[family-name:var(--font-bebas-neue)] text-sm tracking-[0.15em] bg-blue hover:bg-blue-light text-white px-5 py-2 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,128,255,0.3)]"
+              className="font-[family-name:var(--font-outfit)] text-sm font-medium bg-blue hover:bg-blue-light text-white px-6 py-2.5 rounded-sm transition-all duration-300"
             >
-              YOUR MOVE
+              Let&apos;s Talk
             </a>
           </div>
 
@@ -90,7 +81,7 @@ export default function Navigation() {
               }`}
             />
             <span
-              className={`w-6 h-[2px] bg-blue transition-all duration-300 ${
+              className={`w-4 h-[2px] bg-white transition-all duration-300 ${
                 menuOpen ? "opacity-0" : ""
               }`}
             />
@@ -103,32 +94,34 @@ export default function Navigation() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — Full Screen Takeover */}
       <div
-        className={`fixed inset-0 z-40 bg-deep/98 backdrop-blur-lg flex flex-col items-center justify-center gap-8 transition-all duration-500 ${
+        className={`fixed inset-0 z-40 bg-deep flex flex-col items-center justify-center transition-all duration-500 ${
           menuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
         }`}
       >
-        {navLinks.map((link, i) => (
+        <div className="flex flex-col items-center gap-10">
+          {navLinks.map((link, i) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="font-[family-name:var(--font-bebas-neue)] text-5xl tracking-[0.1em] text-white hover:text-blue transition-colors"
+              style={{ transitionDelay: `${i * 50}ms` }}
+            >
+              {link.label}
+            </a>
+          ))}
           <a
-            key={link.href}
-            href={link.href}
+            href="#contact"
             onClick={() => setMenuOpen(false)}
-            className="font-[family-name:var(--font-bebas-neue)] text-4xl tracking-[0.2em] text-white hover:text-blue transition-colors"
-            style={{ transitionDelay: `${i * 50}ms` }}
+            className="mt-6 font-[family-name:var(--font-outfit)] text-base font-medium bg-blue text-white px-10 py-4 rounded-sm"
           >
-            {link.label}
+            Let&apos;s Talk
           </a>
-        ))}
-        <a
-          href="#contact"
-          onClick={() => setMenuOpen(false)}
-          className="mt-4 font-[family-name:var(--font-bebas-neue)] text-xl tracking-[0.15em] bg-blue text-white px-8 py-3"
-        >
-          YOUR MOVE
-        </a>
+        </div>
       </div>
     </>
   );

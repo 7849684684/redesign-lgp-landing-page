@@ -9,63 +9,31 @@ gsap.registerPlugin(ScrollTrigger);
 const methods = [
   {
     number: "01",
-    title: "TABLETOP\nEXERCISES",
+    title: "Tabletop Exercises",
     description:
-      "Simulated scenarios where your team faces strategic crises, competitive threats, and market shifts — in real time, around a table. No PowerPoints. No theory. Just pressure-tested decisions.",
+      "Your team faces simulated strategic crises, competitive threats, and market shifts in real time. No slides. No theory. Just the kind of pressure that reveals how your team actually thinks and decides.",
     accent: "bg-blue",
-    icon: (
-      <svg viewBox="0 0 80 80" className="w-16 h-16 opacity-20">
-        <rect x="10" y="10" width="60" height="60" fill="none" stroke="#0080FF" strokeWidth="1" />
-        <rect x="20" y="20" width="40" height="40" fill="none" stroke="#0080FF" strokeWidth="1" />
-        <circle cx="40" cy="40" r="8" fill="#0080FF" fillOpacity="0.3" />
-        <circle cx="25" cy="25" r="3" fill="#0080FF" fillOpacity="0.5" />
-        <circle cx="55" cy="55" r="3" fill="#0080FF" fillOpacity="0.5" />
-      </svg>
-    ),
   },
   {
     number: "02",
-    title: "RED TEAM\nTHINKING",
+    title: "Red Team Thinking",
     description:
-      "We assign dedicated adversaries to systematically dismantle your strategy. Every assumption gets challenged. Every blind spot gets exposed. You'll hate it — then you'll thank us.",
+      "We assign dedicated adversaries to systematically challenge your strategy. Every assumption gets questioned. Every blind spot gets surfaced. It's uncomfortable, and that's the point.",
     accent: "bg-lime",
-    icon: (
-      <svg viewBox="0 0 80 80" className="w-16 h-16 opacity-20">
-        <line x1="10" y1="10" x2="70" y2="70" stroke="#CCFF00" strokeWidth="2" />
-        <line x1="70" y1="10" x2="10" y2="70" stroke="#CCFF00" strokeWidth="2" />
-        <circle cx="40" cy="40" r="20" fill="none" stroke="#CCFF00" strokeWidth="1" />
-        <circle cx="40" cy="40" r="4" fill="#CCFF00" fillOpacity="0.5" />
-      </svg>
-    ),
   },
   {
     number: "03",
-    title: "STRATEGIC\nWARGAMING",
+    title: "Strategic Wargaming",
     description:
-      "Multi-team competitive simulations where you play out market scenarios against thinking opponents. Not chess against yourself — chess against someone trying to beat you.",
+      "Multi-team competitive simulations where you play out market scenarios against thinking opponents. You don't get better at strategy by practising alone -- you get better by facing someone trying to outmanoeuvre you.",
     accent: "bg-blue",
-    icon: (
-      <svg viewBox="0 0 80 80" className="w-16 h-16 opacity-20">
-        <polygon points="40,5 75,60 5,60" fill="none" stroke="#0080FF" strokeWidth="1" />
-        <polygon points="40,20 60,55 20,55" fill="none" stroke="#0080FF" strokeWidth="1" />
-        <circle cx="40" cy="45" r="5" fill="#0080FF" fillOpacity="0.3" />
-      </svg>
-    ),
   },
   {
     number: "04",
-    title: "SCENARIO\nPLANNING",
+    title: "Scenario Planning",
     description:
-      "We build divergent futures and make you navigate each one. Not prediction — preparation. When the unexpected hits, you've already rehearsed your response.",
+      "We build divergent futures and have your team navigate each one. It's not about predicting what will happen. It's about being prepared no matter what does.",
     accent: "bg-lime",
-    icon: (
-      <svg viewBox="0 0 80 80" className="w-16 h-16 opacity-20">
-        <path d="M10 70 Q 40 10, 70 70" fill="none" stroke="#CCFF00" strokeWidth="1" />
-        <path d="M10 70 Q 25 30, 70 70" fill="none" stroke="#CCFF00" strokeWidth="1" strokeOpacity="0.5" />
-        <path d="M10 70 Q 55 30, 70 70" fill="none" stroke="#CCFF00" strokeWidth="1" strokeOpacity="0.5" />
-        <circle cx="10" cy="70" r="4" fill="#CCFF00" fillOpacity="0.4" />
-      </svg>
-    ),
   },
 ];
 
@@ -77,16 +45,16 @@ export default function Method() {
     const ctx = gsap.context(() => {
       // Heading reveal
       gsap.fromTo(
-        ".method-heading",
-        { y: 60, opacity: 0 },
+        ".method-line",
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 1,
-          stagger: 0.15,
-          ease: "power4.out",
+          stagger: 0.12,
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: ".method-heading-container",
+            trigger: ".method-heading",
             start: "top 80%",
           },
         }
@@ -119,13 +87,13 @@ export default function Method() {
       // Card reveals for mobile
       mm.add("(max-width: 767px)", () => {
         gsap.fromTo(
-          ".method-card",
-          { y: 60, opacity: 0 },
+          ".method-card-mobile",
+          { y: 40, opacity: 0 },
           {
             y: 0,
             opacity: 1,
             duration: 0.8,
-            stagger: 0.2,
+            stagger: 0.15,
             ease: "power3.out",
             scrollTrigger: {
               trigger: ".method-cards-mobile",
@@ -141,27 +109,22 @@ export default function Method() {
 
   return (
     <section ref={sectionRef} id="method" className="relative bg-deep overflow-hidden">
-      {/* Top Divider */}
-      <div className="section-divider" />
-
       <div className="relative z-10">
-        {/* Header — always visible */}
-        <div className="method-heading-container max-w-[1400px] mx-auto px-6 md:px-10 pt-24 md:pt-32 pb-12 md:pb-16">
-          <div className="mb-8 flex items-center gap-4">
-            <div className="w-12 h-[1px] bg-blue" />
-            <span className="font-[family-name:var(--font-space-mono)] text-[10px] tracking-[0.3em] text-blue uppercase">
-              02 — How We Play
-            </span>
-          </div>
-          <h2 className="method-heading font-[family-name:var(--font-bebas-neue)] text-[clamp(2.5rem,8vw,7rem)] leading-[0.9] text-white">
-            WE DON&apos;T DO
+        {/* Header */}
+        <div className="method-heading max-w-[1100px] mx-auto px-6 md:px-10 pt-32 md:pt-40 pb-16 md:pb-20">
+          <span className="method-line block font-[family-name:var(--font-outfit)] text-sm text-blue font-medium tracking-wide mb-6">
+            Our Approach
+          </span>
+          <h2 className="method-line font-[family-name:var(--font-bebas-neue)] text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] text-white">
+            WE DON&apos;T GIVE ADVICE
           </h2>
-          <h2 className="method-heading font-[family-name:var(--font-bebas-neue)] text-[clamp(2.5rem,8vw,7rem)] leading-[0.9] text-blue">
-            CONSULTING
+          <h2 className="method-line font-[family-name:var(--font-bebas-neue)] text-[clamp(2.5rem,7vw,5.5rem)] leading-[0.95] text-white/30">
+            WE RUN GAMES
           </h2>
-          <p className="method-heading mt-6 font-[family-name:var(--font-outfit)] text-lg text-ghost max-w-xl">
-            We run strategic games. Every tool in our kit is designed to create
-            the pressure, competition, and surprise that real strategy demands.
+          <p className="method-line mt-6 font-[family-name:var(--font-outfit)] text-lg text-ghost max-w-xl leading-relaxed">
+            Every tool we use is designed to create the pressure, competition,
+            and surprise that real strategy demands. Your team walks out thinking
+            differently.
           </p>
         </div>
 
@@ -169,80 +132,60 @@ export default function Method() {
         <div className="hidden md:block">
           <div
             ref={scrollContainerRef}
-            className="horizontal-scroll-container gap-8 px-10 pb-32"
+            className="horizontal-scroll-container gap-8 px-10 pb-40"
           >
+            {/* Initial spacer */}
+            <div className="flex-shrink-0 w-[80px]" />
+
             {methods.map((method, i) => (
               <div
                 key={i}
-                className="method-card flex-shrink-0 w-[500px] relative group"
+                className="method-card flex-shrink-0 w-[480px]"
               >
-                <div className="relative border border-white/5 bg-white/[0.015] p-10 h-[420px] flex flex-col justify-between hover:border-blue/30 transition-all duration-500 hover:bg-blue/[0.03] card-tilt overflow-hidden">
-                  {/* Top */}
+                <div className="relative border border-white/[0.06] bg-white/[0.02] p-10 md:p-12 h-[440px] flex flex-col justify-between rounded-sm hover:border-white/10 transition-all duration-500 group">
+                  {/* Number */}
                   <div>
-                    {/* Number & Icon */}
-                    <div className="flex items-start justify-between mb-8">
-                      <span className="font-[family-name:var(--font-bebas-neue)] text-6xl text-white/10">
-                        {method.number}
-                      </span>
-                      {method.icon}
-                    </div>
+                    <span className="font-[family-name:var(--font-bebas-neue)] text-7xl text-white/[0.06] block mb-8">
+                      {method.number}
+                    </span>
 
                     {/* Title */}
-                    <h3 className="font-[family-name:var(--font-bebas-neue)] text-4xl leading-[1] text-white whitespace-pre-line mb-6">
+                    <h3 className="font-[family-name:var(--font-bebas-neue)] text-4xl leading-[1.05] text-white mb-6">
                       {method.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="font-[family-name:var(--font-outfit)] text-sm text-ghost leading-relaxed">
+                    <p className="font-[family-name:var(--font-outfit)] text-[15px] text-ghost leading-relaxed">
                       {method.description}
                     </p>
                   </div>
 
                   {/* Bottom accent */}
-                  <div className="flex items-center gap-3">
-                    <div className={`w-8 h-[2px] ${method.accent}`} />
-                    <span className="font-[family-name:var(--font-space-mono)] text-[10px] tracking-[0.2em] text-ghost group-hover:text-white transition-colors">
-                      LEARN MORE →
-                    </span>
-                  </div>
-
-                  {/* Hover border glow */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                    <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-blue/50 to-transparent" />
-                    <div className="absolute bottom-0 right-0 w-full h-[1px] bg-gradient-to-l from-blue/50 to-transparent" />
-                  </div>
+                  <div className={`w-12 h-[2px] ${method.accent} mt-8`} />
                 </div>
               </div>
             ))}
 
-            {/* End spacer for scroll */}
+            {/* End spacer */}
             <div className="flex-shrink-0 w-[200px]" />
           </div>
         </div>
 
         {/* Stacked Cards — Mobile */}
-        <div className="method-cards-mobile md:hidden px-6 pb-24 flex flex-col gap-6">
+        <div className="method-cards-mobile md:hidden px-6 pb-32 flex flex-col gap-6">
           {methods.map((method, i) => (
-            <div key={i} className="method-card">
-              <div className="relative border border-white/5 bg-white/[0.015] p-8 hover:border-blue/30 transition-all duration-500">
-                <div className="flex items-start justify-between mb-6">
-                  <span className="font-[family-name:var(--font-bebas-neue)] text-4xl text-white/10">
-                    {method.number}
-                  </span>
-                  {method.icon}
-                </div>
-                <h3 className="font-[family-name:var(--font-bebas-neue)] text-3xl leading-[1] text-white whitespace-pre-line mb-4">
+            <div key={i} className="method-card-mobile">
+              <div className="relative border border-white/[0.06] bg-white/[0.02] p-8 rounded-sm">
+                <span className="font-[family-name:var(--font-bebas-neue)] text-5xl text-white/[0.06] block mb-4">
+                  {method.number}
+                </span>
+                <h3 className="font-[family-name:var(--font-bebas-neue)] text-3xl leading-[1.05] text-white mb-4">
                   {method.title}
                 </h3>
-                <p className="font-[family-name:var(--font-outfit)] text-sm text-ghost leading-relaxed mb-4">
+                <p className="font-[family-name:var(--font-outfit)] text-[15px] text-ghost leading-relaxed mb-6">
                   {method.description}
                 </p>
-                <div className="flex items-center gap-3">
-                  <div className={`w-8 h-[2px] ${method.accent}`} />
-                  <span className="font-[family-name:var(--font-space-mono)] text-[10px] tracking-[0.2em] text-ghost">
-                    LEARN MORE →
-                  </span>
-                </div>
+                <div className={`w-10 h-[2px] ${method.accent}`} />
               </div>
             </div>
           ))}
