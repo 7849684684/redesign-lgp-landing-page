@@ -20,7 +20,20 @@
       "Bash(npx vercel:*)",
       "mcp__97d85bce-f3d5-4516-9f4b-22e5058a3070__list_teams",
       "mcp__97d85bce-f3d5-4516-9f4b-22e5058a3070__list_projects",
-      "Bash(gh auth:*)"
+      "Bash(gh auth:*)",
+      "Bash(npx tsc:*)",
+      "Bash(git checkout:*)",
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)",
+      "Bash(curl -s -X POST -H \"Authorization: token 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\" -H \"Accept: application/vnd.github.v3+json\" https://api.github.com/repos/7849684684/redesign-lgp-landing-page/pulls -d '{:*)",
+      "Bash(python3 -c \":*)",
+      "Bash(git branch:*)",
+      "Bash(git revert:*)",
+      "Bash(+1 ~10 -0 files\":*)",
+      "Bash(cmd //c \"del .git\\\\index.lock\")",
+      "Bash(git reset:*)",
+      "Bash(npx next dev --help:*)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }
