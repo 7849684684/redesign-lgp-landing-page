@@ -111,3 +111,14 @@ desktop.ini
 *.sqlite
 *.sqlite3
 *.db
+.claude/settings.local.json
+.claude/launch.json
+*.db-shm
+*.db-wal
+*.sql
+@eaDir/
+*.ldb
+*.lock
+*.tmp
+~$*
+.~lock.*

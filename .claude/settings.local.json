@@ -33,7 +33,31 @@
       "Bash(cmd //c \"del .git\\\\index.lock\")",
       "Bash(git reset:*)",
       "Bash(npx next dev --help:*)",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch .claude/settings.local.json' --prune-empty -- --all)",
+      "Bash(source \"S:/daniel.eppa/Personal/code projects/.env\")",
+      "Bash(git log --all --diff-filter=A --name-only --format=\"\")",
+      "Bash(export TMPDIR=\"C:/temp\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -H \"Authorization: token $GITHUB_TOKEN\" https://api.github.com/user)",
+      "Bash(curl -s -I -H \"Authorization: token $GITHUB_TOKEN\" https://api.github.com/user)",
+      "Bash(curl -si -H \"Authorization: token $GITHUB_TOKEN\" https://api.github.com/user)",
+      "Bash(curl -s -w \"\\\\nHTTP_STATUS: %{http_code}\" -H \"Authorization: token $GITHUB_TOKEN\" \"https://api.github.com/repos/7849684684/redesign-lgp-landing-page\")",
+      "Bash(npx --yes vercel --version)",
+      "Bash(vercel --version)",
+      "Bash(vercel whoami)",
+      "Bash(vercel project ls)",
+      "Bash(vercel env ls)",
+      "Bash(vercel link --yes --project lgp-deploy)",
+      "Bash(vercel env add DEV_PASSWORD preview --force)",
+      "Bash(curl -s https://lgp-deploy.vercel.app/)",
+      "Bash(curl -s -X POST -H \"Content-Type: application/json\" -d '{\"\"password\"\":\"\"lgp-preview-2026\"\"}' https://lgp-deploy.vercel.app/api/dev-login -c -)",
+      "Bash(vercel env rm DEV_PASSWORD production --yes)",
+      "Bash(printf \"lgp-preview-2026\")",
+      "Bash(vercel env add DEV_PASSWORD production --force)",
+      "Bash(vercel --prod --yes)",
+      "Bash(curl -s -X POST -H \"Content-Type: application/json\" -d '{\"\"password\"\":\"\"lgp-preview-2026\"\"}' https://lgp-deploy.vercel.app/api/dev-login -w \"\\\\nHTTP: %{http_code}\")",
+      "Bash(curl -s -X POST -H \"Content-Type: application/json\" -d '{\"\"password\"\":\"\"lgp-preview-2026\"\"}' https://lgp-deploy.vercel.app/api/dev-login -c /tmp/lgp-cookies.txt)",
+      "Bash(curl -s -b /tmp/lgp-cookies.txt https://lgp-deploy.vercel.app/)"
     ]
   }
 }
