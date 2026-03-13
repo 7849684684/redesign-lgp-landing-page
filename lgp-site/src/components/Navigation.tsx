@@ -25,10 +25,10 @@ export default function Navigation() {
   }, []);
 
   const navLinks = [
-    { label: "THE PROBLEM", href: "#problem" },
-    { label: "HOW WE PLAY", href: "#method" },
-    { label: "OPERATIONS", href: "#offerings" },
-    { label: "PROOF", href: "#proof" },
+    { label: "The Problem", href: "#problem" },
+    { label: "Our Method", href: "#method" },
+    { label: "Services", href: "#offerings" },
+    { label: "Results", href: "#proof" },
   ];
 
   return (
@@ -37,20 +37,15 @@ export default function Navigation() {
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-deep/90 backdrop-blur-md border-b border-blue/10"
+            ? "bg-bg/95 backdrop-blur-sm border-b border-border"
             : "bg-transparent"
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <div ref={logoRef} className="flex items-center gap-3">
-            <div className="w-8 h-8 relative">
-              {/* Geometric logo mark — abstract game piece */}
-              <div className="absolute inset-0 border-2 border-blue rotate-45 scale-75" />
-              <div className="absolute inset-0 border-2 border-white/30 rotate-[22.5deg] scale-50" />
-              <div className="absolute inset-[35%] bg-blue rounded-full" />
-            </div>
-            <span className="font-[family-name:var(--font-bebas-neue)] text-xl md:text-2xl tracking-[0.15em] text-white">
+          <div ref={logoRef} className="flex items-center gap-2.5">
+            <div className="w-2.5 h-2.5 bg-accent" />
+            <span className="font-display text-lg md:text-xl tracking-[0.08em] text-text">
               THE LONG GAME
             </span>
           </div>
@@ -58,23 +53,23 @@ export default function Navigation() {
           {/* Desktop Links */}
           <div
             ref={linksRef}
-            className="hidden md:flex items-center gap-8"
+            className="hidden md:flex items-center gap-10"
           >
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="font-[family-name:var(--font-space-mono)] text-[11px] tracking-[0.2em] text-ghost hover:text-white transition-colors duration-300 relative group"
+                className="font-label text-[11px] tracking-[0.12em] uppercase text-muted hover:text-text transition-colors duration-300 relative group"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-blue group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent group-hover:w-full transition-all duration-300" />
               </a>
             ))}
             <a
               href="#contact"
-              className="font-[family-name:var(--font-bebas-neue)] text-sm tracking-[0.15em] bg-blue hover:bg-blue-light text-white px-5 py-2 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,128,255,0.3)]"
+              className="font-label text-[11px] tracking-[0.1em] uppercase bg-accent hover:bg-accent/90 text-white px-5 py-2.5 rounded-none transition-all duration-300"
             >
-              YOUR MOVE
+              Get in Touch
             </a>
           </div>
 
@@ -85,17 +80,17 @@ export default function Navigation() {
             aria-label="Toggle menu"
           >
             <span
-              className={`w-6 h-[2px] bg-white transition-all duration-300 ${
+              className={`w-6 h-[2px] bg-text transition-all duration-300 ${
                 menuOpen ? "rotate-45 translate-y-[5px]" : ""
               }`}
             />
             <span
-              className={`w-6 h-[2px] bg-blue transition-all duration-300 ${
+              className={`w-6 h-[2px] bg-text transition-all duration-300 ${
                 menuOpen ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`w-6 h-[2px] bg-white transition-all duration-300 ${
+              className={`w-6 h-[2px] bg-text transition-all duration-300 ${
                 menuOpen ? "-rotate-45 -translate-y-[5px]" : ""
               }`}
             />
@@ -105,7 +100,7 @@ export default function Navigation() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-40 bg-deep/98 backdrop-blur-lg flex flex-col items-center justify-center gap-8 transition-all duration-500 ${
+        className={`fixed inset-0 z-40 bg-bg flex flex-col items-center justify-center gap-10 transition-all duration-500 ${
           menuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -116,7 +111,7 @@ export default function Navigation() {
             key={link.href}
             href={link.href}
             onClick={() => setMenuOpen(false)}
-            className="font-[family-name:var(--font-bebas-neue)] text-4xl tracking-[0.2em] text-white hover:text-blue transition-colors"
+            className="font-display text-3xl tracking-[0.06em] text-text hover:text-accent transition-colors"
             style={{ transitionDelay: `${i * 50}ms` }}
           >
             {link.label}
@@ -125,9 +120,9 @@ export default function Navigation() {
         <a
           href="#contact"
           onClick={() => setMenuOpen(false)}
-          className="mt-4 font-[family-name:var(--font-bebas-neue)] text-xl tracking-[0.15em] bg-blue text-white px-8 py-3"
+          className="mt-4 font-label text-xs tracking-[0.1em] uppercase bg-accent text-white px-8 py-3 rounded-none"
         >
-          YOUR MOVE
+          Get in Touch
         </a>
       </div>
     </>

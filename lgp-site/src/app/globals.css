@@ -1,31 +1,28 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════
-   THE LONG GAME PROJECT — Strategic Game Brutalism
+   THE LONG GAME PROJECT - The Strategy Journal
    ═══════════════════════════════════════════════ */
 
 @theme inline {
-  --color-deep: #0A1628;
-  --color-midnight: #0D1F3C;
-  --color-blue: #0080FF;
-  --color-blue-light: #3DA0FF;
-  --color-blue-glow: #0080FF33;
-  --color-lime: #CCFF00;
-  --color-coral: #FF4D4D;
+  --color-bg: #FAF8F5;
+  --color-text: #1A1A1A;
+  --color-muted: #6B6560;
+  --color-accent: #0080FF;
+  --color-accent-hover: #0066CC;
+  --color-surface: #F0EDE8;
+  --color-border: #E0DBD4;
+  --color-dark: #1A1A1A;
+  --color-highlight: #FFF3E0;
   --color-white: #FFFFFF;
-  --color-ghost: #94A3B8;
-  --color-slate: #1E293B;
-  --color-grid: #0080FF12;
 
-  --font-display: var(--font-bebas-neue);
-  --font-body: var(--font-space-mono);
-  --font-sans: var(--font-outfit);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-mono), "JetBrains Mono", monospace;
 }
 
-/* ── Base Reset ── */
+/* -- Base -- */
 :root {
-  --background: #0A1628;
-  --foreground: #FFFFFF;
   scroll-behavior: smooth;
 }
 
@@ -37,158 +34,102 @@
 
 html {
   overflow-x: hidden;
-  background: #0A1628;
+  background: var(--color-bg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-body), monospace;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: #0080FF;
+  background: var(--color-accent);
   color: #FFFFFF;
 }
 
-/* ── Scrollbar ── */
+/* -- Scrollbar -- */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A1628;
+  background: var(--color-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #0080FF44;
+  background: var(--color-border);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0080FF88;
+  background: var(--color-muted);
 }
 
-/* ── Grid Overlay Pattern ── */
-.grid-overlay {
-  background-image:
-    linear-gradient(rgba(0, 128, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 128, 255, 0.06) 1px, transparent 1px);
-  background-size: 60px 60px;
+/* -- Typography Utilities -- */
+.font-display {
+  font-family: var(--font-display);
 }
 
-.grid-overlay-dense {
-  background-image:
-    linear-gradient(rgba(0, 128, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 128, 255, 0.04) 1px, transparent 1px);
-  background-size: 30px 30px;
+.font-body {
+  font-family: var(--font-body);
 }
 
-/* ── Diagonal Hatching ── */
-.hatch-pattern {
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 10px,
-    rgba(0, 128, 255, 0.03) 10px,
-    rgba(0, 128, 255, 0.03) 11px
-  );
+.font-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-muted);
 }
 
-/* ── Game Board Dots ── */
-.dot-grid {
-  background-image: radial-gradient(circle, rgba(0, 128, 255, 0.15) 1px, transparent 1px);
-  background-size: 40px 40px;
+/* -- Section Label (the "01 - The Problem" style) -- */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
 }
 
-/* ── Noise Texture Overlay ── */
-.noise::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-  pointer-events: none;
-  z-index: 1;
+/* -- Section Divider -- */
+.section-divider {
+  height: 1px;
+  background: var(--color-border);
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* ── Glitch Effect ── */
-@keyframes glitch-1 {
-  0%, 100% { clip-path: inset(0 0 95% 0); transform: translate(0); }
-  20% { clip-path: inset(15% 0 60% 0); transform: translate(-3px, 1px); }
-  40% { clip-path: inset(60% 0 5% 0); transform: translate(3px, -1px); }
-  60% { clip-path: inset(30% 0 40% 0); transform: translate(-2px, 2px); }
-  80% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -2px); }
+/* -- Pull Quote -- */
+.pull-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--color-text);
 }
 
-@keyframes glitch-2 {
-  0%, 100% { clip-path: inset(95% 0 0 0); transform: translate(0); }
-  20% { clip-path: inset(40% 0 30% 0); transform: translate(3px, -1px); }
-  40% { clip-path: inset(10% 0 70% 0); transform: translate(-3px, 1px); }
-  60% { clip-path: inset(50% 0 20% 0); transform: translate(2px, -2px); }
-  80% { clip-path: inset(5% 0 80% 0); transform: translate(-2px, 2px); }
-}
-
-.glitch-hover:hover .glitch-layer-1 {
-  animation: glitch-1 0.3s linear infinite;
-}
-
-.glitch-hover:hover .glitch-layer-2 {
-  animation: glitch-2 0.3s linear infinite;
-}
-
-/* ── Reveal Animation Base ── */
-.reveal-up {
-  opacity: 0;
-  transform: translateY(60px);
-}
-
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-60px);
-}
-
-.reveal-right {
-  opacity: 0;
-  transform: translateX(60px);
-}
-
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.9);
-}
-
-/* ── Horizontal Scroll Section ── */
-.horizontal-scroll-container {
-  display: flex;
-  flex-wrap: nowrap;
-  will-change: transform;
-}
-
-/* ── Text Masking / Redacted ── */
-.text-redacted {
-  background: #0080FF;
-  color: transparent;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.text-redacted.revealed {
-  background: transparent;
-  color: #FFFFFF;
-}
-
-/* ── Marquee ── */
+/* -- Marquee -- */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 
 .animate-marquee {
-  animation: marquee 25s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 
-/* ── Pulsing Dot ── */
+/* -- Horizontal Scroll Container -- */
+.horizontal-scroll-container {
+  display: flex;
+  flex-wrap: nowrap;
+  will-change: transform;
+}
+
+/* -- Pulsing Dot -- */
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.5; transform: scale(1.5); }
@@ -198,45 +139,49 @@ body {
   animation: pulse-dot 2s ease-in-out infinite;
 }
 
-/* ── Custom Cursor ── */
-.cursor-crosshair {
-  cursor: crosshair;
+/* -- Reveal Animation Base -- */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
 }
 
-/* ── Card Hover Tilt ── */
-.card-tilt {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.card-tilt:hover {
-  transform: perspective(1000px) rotateY(-3deg) rotateX(2deg) scale(1.02);
-}
-
-/* ── Stroke Text ── */
-.text-stroke {
-  -webkit-text-stroke: 2px #0080FF;
-  color: transparent;
+/* -- Accent underline link style -- */
+.link-accent {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
 }
 
-.text-stroke-white {
-  -webkit-text-stroke: 1.5px #FFFFFF;
-  color: transparent;
+.link-accent:hover {
+  border-bottom-color: var(--color-accent);
 }
 
-/* ── Border Animations ── */
-@keyframes border-flow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* -- Card Hover -- */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.border-animated {
-  background: linear-gradient(90deg, #0080FF, #CCFF00, #0080FF);
-  background-size: 200% 200%;
-  animation: border-flow 3s ease infinite;
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
 }
 
-/* ── Section Divider ── */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #0080FF44, transparent);
+/* -- Zine-style rotated label -- */
+.label-rotated {
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+/* -- Large background numbers (zine style) -- */
+.bg-number {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(6rem, 15vw, 12rem);
+  line-height: 1;
+  color: var(--color-border);
+  opacity: 0.3;
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
 }

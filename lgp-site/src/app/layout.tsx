@@ -1,34 +1,27 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Space_Mono, Outfit } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
-  variable: "--font-bebas-neue",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
-const spaceMono = Space_Mono({
-  weight: ["400", "700"],
-  variable: "--font-space-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
-});
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  display: "swap",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
-  title: "The Long Game Project — Strategic Thinking. Redefined.",
+  title: "The Long Game Project - Strategic Thinking, Pressure-Tested",
   description:
-    "Workshops, masterminds and coaching that use tabletop exercises, red teaming and strategic games to make you a radically better strategic thinker.",
+    "Workshops, masterminds and coaching that use tabletop exercises, red teaming and strategic wargaming to build real strategic capability.",
   openGraph: {
     title: "The Long Game Project",
-    description: "Strategic Thinking. Redefined.",
+    description: "Strategic Thinking, Pressure-Tested.",
     type: "website",
   },
 };
@@ -39,9 +32,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
-        className={`${bebasNeue.variable} ${spaceMono.variable} ${outfit.variable} antialiased bg-deep text-white`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >
         {children}
       </body>
