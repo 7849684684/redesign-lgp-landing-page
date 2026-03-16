@@ -45,11 +45,27 @@ const offerings = [
 
 export default function Offerings() {
   const sectionRef = useRef<HTMLElement>(null);
+  const topRuleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
+      // Blue top rule draws in on scroll
+      gsap.fromTo(
+        topRuleRef.current,
+        { scaleX: 0, transformOrigin: "left center" },
+        {
+          scaleX: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+          },
+        }
+      );
+
       gsap.fromTo(
         ".offering-block",
         { y: 30, opacity: 0 },
@@ -74,14 +90,21 @@ export default function Offerings() {
     <section
       ref={sectionRef}
       id="services"
-      className="bg-cream py-24 md:py-32"
+      className="bg-ink grid-texture py-24 md:py-32"
     >
+      {/* 4px blue top rule that draws in on scroll */}
+      <div
+        ref={topRuleRef}
+        className="h-1 bg-blue w-full"
+        style={{ marginBottom: 0 }}
+      />
+
       <div className="max-w-[900px] mx-auto px-6 md:px-10">
-        {/* Top rule */}
-        <div className="h-0.5 bg-ink" />
+        {/* Section divider rule */}
+        <div className="h-0.5 bg-blue" />
 
         {/* Section marker */}
-        <p className="font-[family-name:var(--font-mono)] text-xs tracking-[0.2em] uppercase text-muted mt-16 mb-16">
+        <p className="font-[family-name:var(--font-mono)] text-xs tracking-[0.2em] uppercase text-cream/40 mt-16 mb-16">
           03
         </p>
 
@@ -90,7 +113,7 @@ export default function Offerings() {
           {offerings.map((item, i) => (
             <div key={i} className="offering-block">
               <h3
-                className="font-[family-name:var(--font-display)] font-bold text-ink"
+                className="font-[family-name:var(--font-display)] font-bold text-cream"
                 style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}
               >
                 {item.headline}
@@ -100,7 +123,7 @@ export default function Offerings() {
                 {item.subtitle}
               </p>
 
-              <p className="font-[family-name:var(--font-body)] text-muted leading-relaxed mt-4 max-w-2xl">
+              <p className="font-[family-name:var(--font-body)] text-cream/60 leading-relaxed mt-4 max-w-2xl">
                 {item.description}
               </p>
 
@@ -108,9 +131,9 @@ export default function Offerings() {
                 {item.features.map((feat, j) => (
                   <p
                     key={j}
-                    className="font-[family-name:var(--font-body)] text-muted text-sm leading-relaxed"
+                    className="font-[family-name:var(--font-body)] text-cream/50 text-sm leading-relaxed"
                   >
-                    <span className="text-rule mr-3">&mdash;</span>
+                    <span className="text-blue mr-3">&mdash;</span>
                     {feat}
                   </p>
                 ))}
@@ -118,12 +141,12 @@ export default function Offerings() {
 
               <a
                 href="#contact"
-                className="inline-block mt-6 font-[family-name:var(--font-body)] text-ink hover:text-blue transition-colors text-sm font-medium"
+                className="inline-block mt-6 font-[family-name:var(--font-body)] text-blue hover:text-cream transition-colors text-sm font-medium"
               >
                 Enquire &rarr;
               </a>
 
-              {item.showRule && <div className="h-0.5 bg-ink mt-16" />}
+              {item.showRule && <div className="h-0.5 bg-cream/10 mt-16" />}
             </div>
           ))}
         </div>

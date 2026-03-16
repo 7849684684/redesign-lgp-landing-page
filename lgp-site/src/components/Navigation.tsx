@@ -14,6 +14,7 @@ const NAV_LINKS = [
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -35,6 +36,31 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Track active section via IntersectionObserver
+  useEffect(() => {
+    const sectionIds = NAV_LINKS.map((link) => link.href.replace("#", ""));
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        },
+        { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((obs) => obs.disconnect());
+  }, []);
+
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (menuOpen) {
@@ -53,7 +79,7 @@ export default function Navigation() {
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/95 backdrop-blur-sm border-b border-rule"
+            ? "bg-ink/95 backdrop-blur-sm border-b border-cream/10"
             : "bg-transparent"
         }`}
         style={{ opacity: 0 }}
@@ -61,23 +87,39 @@ export default function Navigation() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
           <a
             href="#"
-            className="font-[family-name:var(--font-display)] font-bold text-lg tracking-tight text-ink"
+            className="font-[family-name:var(--font-display)] font-bold text-lg tracking-tight text-cream"
           >
             THE LONG GAME
           </a>
 
           {/* Desktop links */}
           <div className="hidden lg:flex items-center gap-8">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="font-[family-name:var(--font-body)] text-sm text-muted hover:text-ink transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = activeSection === link.href.replace("#", "");
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="relative font-[family-name:var(--font-body)] text-sm text-cream/60 hover:text-cream transition-colors duration-200 group"
+                >
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-[2px] bg-blue transition-all duration-300 ${
+                      isActive ? "w-full translate-y-0 opacity-100" : "w-0 opacity-0"
+                    }`}
+                  />
+                </a>
+              );
+            })}
           </div>
+
+          {/* Desktop CTA */}
+          <a
+            href="#contact"
+            className="hidden lg:inline-block bg-blue text-white text-xs tracking-[0.15em] uppercase px-5 py-2.5 hover:bg-blue-hover transition-colors duration-200"
+          >
+            Get in Touch
+          </a>
 
           {/* Mobile hamburger */}
           <button
@@ -85,16 +127,16 @@ export default function Navigation() {
             className="lg:hidden flex flex-col justify-center gap-[6px] p-2"
             aria-label="Open menu"
           >
-            <span className="block w-6 h-[2px] bg-ink" />
-            <span className="block w-6 h-[2px] bg-ink" />
-            <span className="block w-6 h-[2px] bg-ink" />
+            <span className="block w-6 h-[2px] bg-cream" />
+            <span className="block w-6 h-[2px] bg-cream" />
+            <span className="block w-6 h-[2px] bg-cream" />
           </button>
         </div>
       </nav>
 
       {/* Mobile menu overlay */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-cream flex flex-col items-center justify-center">
+        <div className="fixed inset-0 z-40 bg-ink flex flex-col items-center justify-center">
           {/* Close button */}
           <button
             onClick={() => setMenuOpen(false)}
@@ -108,7 +150,7 @@ export default function Navigation() {
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="text-ink"
+              className="text-cream"
             >
               <line x1="4" y1="4" x2="20" y2="20" />
               <line x1="20" y1="4" x2="4" y2="20" />
@@ -121,11 +163,18 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="font-[family-name:var(--font-display)] text-3xl text-ink hover:text-muted transition-colors duration-200"
+                className="font-[family-name:var(--font-display)] text-3xl text-cream hover:text-cream/60 transition-colors duration-200"
               >
                 {link.label}
               </a>
             ))}
+            <a
+              href="#contact"
+              onClick={() => setMenuOpen(false)}
+              className="mt-4 bg-blue text-white text-xs tracking-[0.15em] uppercase px-6 py-3 hover:bg-blue-hover transition-colors duration-200"
+            >
+              Get in Touch
+            </a>
           </nav>
         </div>
       )}
