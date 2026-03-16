@@ -3,128 +3,132 @@
 import { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
 
+const NAV_LINKS = [
+  { label: "About", href: "#about" },
+  { label: "Method", href: "#method" },
+  { label: "Services", href: "#services" },
+  { label: "Results", href: "#results" },
+  { label: "Contact", href: "#contact" },
+];
+
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const linksRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
 
-    // Animate nav in
-    gsap.fromTo(
-      navRef.current,
-      { y: -100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, delay: 0.5, ease: "power3.out" }
-    );
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    if (navRef.current) {
+      gsap.fromTo(
+        navRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.6, ease: "power2.out" }
+      );
+    }
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: "The Problem", href: "#problem" },
-    { label: "Our Method", href: "#method" },
-    { label: "Services", href: "#offerings" },
-    { label: "Results", href: "#proof" },
-  ];
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-bg/95 backdrop-blur-sm border-b border-border"
+            ? "bg-white/95 backdrop-blur-sm border-b border-rule"
             : "bg-transparent"
         }`}
+        style={{ opacity: 0 }}
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <div ref={logoRef} className="flex items-center gap-2.5">
-            <div className="w-2.5 h-2.5 bg-accent" />
-            <span className="font-display text-lg md:text-xl tracking-[0.08em] text-text">
-              THE LONG GAME
-            </span>
-          </div>
-
-          {/* Desktop Links */}
-          <div
-            ref={linksRef}
-            className="hidden md:flex items-center gap-10"
+          <a
+            href="#"
+            className="font-[family-name:var(--font-display)] font-bold text-lg tracking-tight text-ink"
           >
-            {navLinks.map((link) => (
+            THE LONG GAME
+          </a>
+
+          {/* Desktop links */}
+          <div className="hidden lg:flex items-center gap-8">
+            {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="font-label text-[11px] tracking-[0.12em] uppercase text-muted hover:text-text transition-colors duration-300 relative group"
+                className="font-[family-name:var(--font-body)] text-sm text-muted hover:text-ink transition-colors duration-200"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent group-hover:w-full transition-all duration-300" />
               </a>
             ))}
-            <a
-              href="#contact"
-              className="font-label text-[11px] tracking-[0.1em] uppercase bg-accent hover:bg-accent/90 text-white px-5 py-2.5 rounded-none transition-all duration-300"
-            >
-              Get in Touch
-            </a>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile hamburger */}
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2"
-            aria-label="Toggle menu"
+            onClick={() => setMenuOpen(true)}
+            className="lg:hidden flex flex-col justify-center gap-[6px] p-2"
+            aria-label="Open menu"
           >
-            <span
-              className={`w-6 h-[2px] bg-text transition-all duration-300 ${
-                menuOpen ? "rotate-45 translate-y-[5px]" : ""
-              }`}
-            />
-            <span
-              className={`w-6 h-[2px] bg-text transition-all duration-300 ${
-                menuOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`w-6 h-[2px] bg-text transition-all duration-300 ${
-                menuOpen ? "-rotate-45 -translate-y-[5px]" : ""
-              }`}
-            />
+            <span className="block w-6 h-[2px] bg-ink" />
+            <span className="block w-6 h-[2px] bg-ink" />
+            <span className="block w-6 h-[2px] bg-ink" />
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      <div
-        className={`fixed inset-0 z-40 bg-bg flex flex-col items-center justify-center gap-10 transition-all duration-500 ${
-          menuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-      >
-        {navLinks.map((link, i) => (
-          <a
-            key={link.href}
-            href={link.href}
+      {/* Mobile menu overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 bg-cream flex flex-col items-center justify-center">
+          {/* Close button */}
+          <button
             onClick={() => setMenuOpen(false)}
-            className="font-display text-3xl tracking-[0.06em] text-text hover:text-accent transition-colors"
-            style={{ transitionDelay: `${i * 50}ms` }}
+            className="absolute top-5 right-6 p-2"
+            aria-label="Close menu"
           >
-            {link.label}
-          </a>
-        ))}
-        <a
-          href="#contact"
-          onClick={() => setMenuOpen(false)}
-          className="mt-4 font-label text-xs tracking-[0.1em] uppercase bg-accent text-white px-8 py-3 rounded-none"
-        >
-          Get in Touch
-        </a>
-      </div>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="text-ink"
+            >
+              <line x1="4" y1="4" x2="20" y2="20" />
+              <line x1="20" y1="4" x2="4" y2="20" />
+            </svg>
+          </button>
+
+          <nav className="flex flex-col items-center gap-8">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="font-[family-name:var(--font-display)] text-3xl text-ink hover:text-muted transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
     </>
   );
 }

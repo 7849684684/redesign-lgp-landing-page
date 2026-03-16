@@ -4,32 +4,42 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const offerings = [
   {
-    tag: "Immersive",
-    title: "Workshops",
-    subtitle: "Half-day to multi-day strategic exercises",
+    headline: "Workshops",
+    subtitle: "Tabletop Exercises for Leadership Teams",
     description:
-      "Facilitated tabletop exercises and wargames for your leadership team. We design custom scenarios around your actual strategic challenges, then run them in high-intensity sessions that expose blind spots and build strategic muscle.",
-    features: ["Custom scenario design", "Facilitated sessions", "Post-game debrief & action plan", "4–40 participants"],
+      "Half-day and full-day sessions that put your strategy through simulated pressure. Your team faces the crisis, the competitor move, or the market shift\u2009-\u2009before it happens.",
+    features: [
+      "Custom scenarios built from your actual strategic challenges",
+      "Facilitated decision-making under realistic constraints",
+      "Immediate debrief with actionable insights",
+    ],
+    showRule: true,
   },
   {
-    tag: "Ongoing",
-    title: "Masterminds",
-    subtitle: "Peer-driven strategic thinking groups",
+    headline: "Masterminds",
+    subtitle: "Peer Cohorts for Strategic Leaders",
     description:
-      "Small cohorts of strategic leaders who meet regularly to challenge each other's thinking through structured exercises. Think of it as a dojo for strategic thinking - you get sharper by sparring with peers who think differently.",
-    features: ["8–12 person cohorts", "Monthly sessions", "Cross-industry perspectives", "Structured challenges"],
+      "Small-group programmes that pair you with peers facing similar challenges. Structured strategic thinking exercises, accountability, and the kind of honest feedback you can\u2019t get inside your own organisation.",
+    features: [
+      "Curated cohorts of 6\u20138 senior leaders",
+      "Monthly sessions with between-session challenges",
+      "Confidential peer advisory with facilitated structure",
+    ],
+    showRule: true,
   },
   {
-    tag: "Personal",
-    title: "Coaching",
-    subtitle: "1:1 strategic thinking development",
+    headline: "Coaching",
+    subtitle: "1:1 Strategic Thinking Partnership",
     description:
-      "For senior leaders who want to fundamentally upgrade how they think about strategy. We work with you individually using exercises, frameworks, and deliberate practice to build the cognitive skills that separate good strategists from great ones.",
-    features: ["1:1 engagement", "Personalised exercises", "Real-time strategy sparring", "Flexible cadence"],
+      "For founders and executives who need a thinking partner, not a consultant. We challenge your assumptions, stress-test your plans, and build your capacity for strategic thinking under pressure.",
+    features: [
+      "Tailored to your specific strategic challenges",
+      "Combines red teaming with structured reflection",
+      "Flexible cadence\u2009-\u2009weekly, fortnightly, or intensive sprints",
+    ],
+    showRule: false,
   },
 ];
 
@@ -37,30 +47,22 @@ export default function Offerings() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".offerings-heading",
-        { y: 60, opacity: 0 },
+        ".offering-block",
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1,
-          stagger: 0.12,
-          ease: "power4.out",
-          scrollTrigger: { trigger: ".offerings-heading-wrap", start: "top 80%" },
-        }
-      );
-
-      gsap.fromTo(
-        ".offering-card",
-        { y: 80, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.9,
+          duration: 0.8,
           stagger: 0.2,
           ease: "power3.out",
-          scrollTrigger: { trigger: ".offerings-grid", start: "top 75%" },
+          scrollTrigger: {
+            trigger: ".offering-blocks-wrap",
+            start: "top 80%",
+          },
         }
       );
     }, sectionRef);
@@ -69,77 +71,59 @@ export default function Offerings() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="offerings" className="relative bg-bg py-24 md:py-32">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        {/* Section label */}
-        <div className="offerings-heading-wrap mb-16">
-          <span className="section-label offerings-heading">03 — Services</span>
+    <section
+      ref={sectionRef}
+      id="services"
+      className="bg-cream py-24 md:py-32"
+    >
+      <div className="max-w-[900px] mx-auto px-6 md:px-10">
+        {/* Top rule */}
+        <div className="h-0.5 bg-ink" />
 
-          <h2 className="offerings-heading font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.05] text-text mt-6">
-            Choose your format
-          </h2>
-          <p className="offerings-heading font-display text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.1] text-accent mt-1">
-            Three paths to sharper thinking
-          </p>
-        </div>
+        {/* Section marker */}
+        <p className="font-[family-name:var(--font-mono)] text-xs tracking-[0.2em] uppercase text-muted mt-16 mb-16">
+          03
+        </p>
 
-        {/* Offerings Grid */}
-        <div className="offerings-grid grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* Offering blocks */}
+        <div className="offering-blocks-wrap">
           {offerings.map((item, i) => (
-            <div
-              key={i}
-              className="offering-card card-hover bg-white border border-border rounded-none p-8 md:p-10 flex flex-col min-h-[480px]"
-            >
-              {/* Tag */}
-              <div className="mb-6">
-                <span className="font-label text-xs tracking-wide text-muted bg-surface px-3 py-1 inline-block rounded-full">
-                  {item.tag}
-                </span>
-              </div>
-
-              {/* Title */}
-              <h3 className="font-display text-4xl font-bold text-text leading-tight mb-2">
-                {item.title}
+            <div key={i} className="offering-block">
+              <h3
+                className="font-[family-name:var(--font-display)] font-bold text-ink"
+                style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}
+              >
+                {item.headline}
               </h3>
 
-              {/* Subtitle */}
-              <p className="font-body text-sm text-accent mb-6">
+              <p className="font-[family-name:var(--font-body)] text-blue text-base mt-2">
                 {item.subtitle}
               </p>
 
-              {/* Description */}
-              <p className="font-body text-sm text-muted leading-relaxed mb-8 flex-grow">
+              <p className="font-[family-name:var(--font-body)] text-muted leading-relaxed mt-4 max-w-2xl">
                 {item.description}
               </p>
 
-              {/* Features */}
-              <div className="mb-8 space-y-2.5">
+              <div className="mt-6 space-y-1.5">
                 {item.features.map((feat, j) => (
-                  <div key={j} className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 bg-accent rotate-45 flex-shrink-0" />
-                    <span className="font-body text-sm text-muted">
-                      {feat}
-                    </span>
-                  </div>
+                  <p
+                    key={j}
+                    className="font-[family-name:var(--font-body)] text-muted text-sm leading-relaxed"
+                  >
+                    <span className="text-rule mr-3">&mdash;</span>
+                    {feat}
+                  </p>
                 ))}
               </div>
 
-              {/* CTA */}
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 font-body text-sm text-accent hover:underline transition-colors duration-300 mt-auto"
+                className="inline-block mt-6 font-[family-name:var(--font-body)] text-ink hover:text-blue transition-colors text-sm font-medium"
               >
-                <span>Enquire now</span>
-                <svg
-                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                Enquire &rarr;
               </a>
+
+              {item.showRule && <div className="h-0.5 bg-ink mt-16" />}
             </div>
           ))}
         </div>

@@ -1,19 +1,14 @@
 @import "tailwindcss";
 
-/* ═══════════════════════════════════════════════
-   THE LONG GAME PROJECT - The Strategy Journal
-   ═══════════════════════════════════════════════ */
-
 @theme inline {
-  --color-bg: #FAF8F5;
-  --color-text: #1A1A1A;
+  --color-cream: #FAF8F5;
+  --color-ink: #1A1A1A;
   --color-muted: #6B6560;
-  --color-accent: #0080FF;
-  --color-accent-hover: #0066CC;
+  --color-blue: #0080FF;
+  --color-blue-hover: #0066CC;
+  --color-terracotta: #C45A3C;
   --color-surface: #F0EDE8;
-  --color-border: #E0DBD4;
-  --color-dark: #1A1A1A;
-  --color-highlight: #FFF3E0;
+  --color-rule: #E0DBD4;
   --color-white: #FFFFFF;
 
   --font-display: "Fraunces", Georgia, serif;
@@ -21,25 +16,18 @@
   --font-mono: var(--font-mono), "JetBrains Mono", monospace;
 }
 
-/* -- Base -- */
 :root {
   scroll-behavior: smooth;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html {
   overflow-x: hidden;
-  background: var(--color-bg);
+  background: var(--color-cream);
 }
 
 body {
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--color-cream);
+  color: var(--color-ink);
   font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.7;
@@ -49,139 +37,11 @@ body {
 }
 
 ::selection {
-  background: var(--color-accent);
-  color: #FFFFFF;
+  background: var(--color-blue);
+  color: #fff;
 }
 
-/* -- Scrollbar -- */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-bg);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-muted);
-}
-
-/* -- Typography Utilities -- */
-.font-display {
-  font-family: var(--font-display);
-}
-
-.font-body {
-  font-family: var(--font-body);
-}
-
-.font-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-muted);
-}
-
-/* -- Section Label (the "01 - The Problem" style) -- */
-.section-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-}
-
-/* -- Section Divider -- */
-.section-divider {
-  height: 1px;
-  background: var(--color-border);
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-/* -- Pull Quote -- */
-.pull-quote {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.4;
-  color: var(--color-text);
-}
-
-/* -- Marquee -- */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
-/* -- Horizontal Scroll Container -- */
-.horizontal-scroll-container {
-  display: flex;
-  flex-wrap: nowrap;
-  will-change: transform;
-}
-
-/* -- Pulsing Dot -- */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.5); }
-}
-
-.pulse-dot {
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
-/* -- Reveal Animation Base -- */
-.reveal-up {
-  opacity: 0;
-  transform: translateY(40px);
-}
-
-/* -- Accent underline link style -- */
-.link-accent {
-  color: var(--color-accent);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.3s ease;
-}
-
-.link-accent:hover {
-  border-bottom-color: var(--color-accent);
-}
-
-/* -- Card Hover -- */
-.card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
-}
-
-/* -- Zine-style rotated label -- */
-.label-rotated {
-  transform: rotate(-2deg);
-  display: inline-block;
-}
-
-/* -- Large background numbers (zine style) -- */
-.bg-number {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(6rem, 15vw, 12rem);
-  line-height: 1;
-  color: var(--color-border);
-  opacity: 0.3;
-  position: absolute;
-  pointer-events: none;
-  user-select: none;
-}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb { background: var(--color-rule); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
