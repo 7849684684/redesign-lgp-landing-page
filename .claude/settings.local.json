@@ -57,7 +57,8 @@
       "Bash(vercel --prod --yes)",
       "Bash(curl -s -X POST -H \"Content-Type: application/json\" -d '{\"\"password\"\":\"\"lgp-preview-2026\"\"}' https://lgp-deploy.vercel.app/api/dev-login -w \"\\\\nHTTP: %{http_code}\")",
       "Bash(curl -s -X POST -H \"Content-Type: application/json\" -d '{\"\"password\"\":\"\"lgp-preview-2026\"\"}' https://lgp-deploy.vercel.app/api/dev-login -c /tmp/lgp-cookies.txt)",
-      "Bash(curl -s -b /tmp/lgp-cookies.txt https://lgp-deploy.vercel.app/)"
+      "Bash(curl -s -b /tmp/lgp-cookies.txt https://lgp-deploy.vercel.app/)",
+      "mcp__97d85bce-f3d5-4516-9f4b-22e5058a3070__list_deployments"
     ]
   }
 }

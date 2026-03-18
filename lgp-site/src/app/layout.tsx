@@ -9,17 +9,17 @@ const inter = Inter({
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
+  variable: "--font-jetbrains",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500"],
 });
 
 const caveat = Caveat({
-  variable: "--font-hand",
+  variable: "--font-caveat",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -53,7 +53,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${caveat.variable} antialiased page-fold page-vignette`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${caveat.variable} antialiased`}
       >
         {children}
       </body>
