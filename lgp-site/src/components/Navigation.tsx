@@ -53,31 +53,32 @@ export default function Navigation() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-cream/90 backdrop-blur-md border-b border-ink/5"
+            ? "bg-cream/85 backdrop-blur-md border-b border-pencil/5"
             : "bg-transparent"
         }`}
       >
         <div className="max-w-6xl mx-auto px-8 md:px-12 flex items-center justify-between h-14">
-          {/* Wordmark */}
+          {/* Wordmark - handwritten style */}
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="font-mono text-[10px] tracking-[0.2em] uppercase text-ink/70 hover:text-ink transition-colors"
+            className="font-hand text-[20px] text-ink/70 hover:text-ink transition-colors"
+            style={{ transform: "rotate(-0.5deg)" }}
           >
             The Long Game Project
           </a>
 
-          {/* Desktop links */}
+          {/* Desktop links - handwritten */}
           <div className="hidden lg:flex items-center gap-7">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className="font-body text-[13px] text-ink/40 hover:text-ink transition-colors"
+                className="font-hand text-[17px] text-ink/35 hover:text-ink transition-colors"
               >
                 {link.label}
               </a>
@@ -87,7 +88,8 @@ export default function Navigation() {
             <a
               href="#contact"
               onClick={(e) => handleLinkClick(e, "#contact")}
-              className="bg-blue text-white text-[10px] tracking-[0.15em] uppercase px-4 py-2 hover:bg-blue-hover transition-colors ml-7"
+              className="bg-blue text-white font-hand text-[16px] px-5 py-2 hover:bg-blue-hover transition-colors ml-5"
+              style={{ transform: "rotate(-0.5deg)" }}
             >
               Book a Call
             </a>
@@ -106,13 +108,12 @@ export default function Navigation() {
         </div>
       </nav>
 
-      {/* Mobile menu - full screen overlay */}
+      {/* Mobile menu - paper overlay */}
       <div
         className={`fixed inset-0 z-40 bg-cream transition-transform duration-300 ease-in-out ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Close button */}
         <div className="flex justify-end px-8 md:px-12 h-14 items-center">
           <button
             onClick={() => setMenuOpen(false)}
@@ -134,13 +135,13 @@ export default function Navigation() {
           </button>
         </div>
 
-        <nav className="flex flex-col items-center justify-center gap-6 pt-24">
+        <nav className="flex flex-col items-center justify-center gap-8 pt-24">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={(e) => handleLinkClick(e, link.href)}
-              className="font-body text-[18px] text-ink/60 hover:text-ink transition-colors"
+              className="font-hand text-[28px] text-ink/50 hover:text-ink transition-colors"
             >
               {link.label}
             </a>
@@ -148,7 +149,8 @@ export default function Navigation() {
           <a
             href="#contact"
             onClick={(e) => handleLinkClick(e, "#contact")}
-            className="mt-8 bg-blue text-white text-[10px] tracking-[0.15em] uppercase px-4 py-2 hover:bg-blue-hover transition-colors"
+            className="mt-6 bg-blue text-white font-hand text-[20px] px-6 py-3 hover:bg-blue-hover transition-colors"
+            style={{ transform: "rotate(-0.5deg)" }}
           >
             Book a Call
           </a>

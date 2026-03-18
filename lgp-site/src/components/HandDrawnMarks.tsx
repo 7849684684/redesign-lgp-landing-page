@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import rough from "roughjs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,11 +17,12 @@ interface MarkProps {
 
 const colorMap = {
   blue: "#0066FF",
-  ink: "#1A1A1A",
-  cream: "#FAF8F5",
+  ink: "#1C1714",
+  cream: "#F5F0E6",
   pencil: "#3A3632",
 };
 
+// Hook to animate SVG path draw-in
 function useDrawIn(
   ref: React.RefObject<SVGPathElement | null>,
   containerRef: React.RefObject<SVGSVGElement | null>,
@@ -56,8 +58,139 @@ function useDrawIn(
   }, [ref, containerRef, trigger, delay, duration]);
 }
 
+// Generate rough.js paths on client side
+function useRoughRect(
+  svgRef: React.RefObject<SVGSVGElement | null>,
+  width: number,
+  height: number,
+  color: string,
+  options?: { roughness?: number; strokeWidth?: number; bowing?: number }
+) {
+  const [paths, setPaths] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (!svgRef.current) return;
+    const rc = rough.svg(svgRef.current);
+    const node = rc.rectangle(2, 2, width - 4, height - 4, {
+      stroke: color,
+      strokeWidth: options?.strokeWidth ?? 1.5,
+      roughness: options?.roughness ?? 1.8,
+      bowing: options?.bowing ?? 2,
+      fill: "none",
+    });
+    // Extract all path d attributes
+    const pathEls = node.querySelectorAll("path");
+    const ds: string[] = [];
+    pathEls.forEach((p) => {
+      const d = p.getAttribute("d");
+      if (d) ds.push(d);
+    });
+    setPaths(ds);
+  }, [svgRef, width, height, color, options?.roughness, options?.strokeWidth, options?.bowing]);
+
+  return paths;
+}
+
+// Rough.js hand-drawn rectangle border
+export function RoughBox({
+  className = "",
+  width = 200,
+  height = 60,
+  color = "pencil" as keyof typeof colorMap,
+  roughness = 1.8,
+  strokeWidth = 1.5,
+  bowing = 2,
+  children,
+}: {
+  className?: string;
+  width?: number;
+  height?: number;
+  color?: keyof typeof colorMap;
+  roughness?: number;
+  strokeWidth?: number;
+  bowing?: number;
+  children?: React.ReactNode;
+}) {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const paths = useRoughRect(svgRef, width, height, colorMap[color], {
+    roughness,
+    strokeWidth,
+    bowing,
+  });
+
+  return (
+    <div className={`relative ${className}`} style={{ width, height }}>
+      <svg
+        ref={svgRef}
+        className="absolute inset-0 pointer-events-none"
+        width={width}
+        height={height}
+        style={{ overflow: "visible" }}
+      >
+        {paths.map((d, i) => (
+          <path key={i} d={d} fill="none" stroke={colorMap[color]} strokeWidth={strokeWidth} opacity={0.6} />
+        ))}
+      </svg>
+      {children && (
+        <div className="relative z-10 w-full h-full flex items-center justify-center">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Rough.js hand-drawn line
+export function RoughLine({
+  className = "",
+  width = 200,
+  color = "pencil" as keyof typeof colorMap,
+  roughness = 1.5,
+  strokeWidth = 1.2,
+}: {
+  className?: string;
+  width?: number;
+  color?: keyof typeof colorMap;
+  roughness?: number;
+  strokeWidth?: number;
+}) {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [paths, setPaths] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (!svgRef.current) return;
+    const rc = rough.svg(svgRef.current);
+    const node = rc.line(0, 6, width, 6, {
+      stroke: colorMap[color],
+      strokeWidth,
+      roughness,
+      bowing: 1,
+    });
+    const pathEls = node.querySelectorAll("path");
+    const ds: string[] = [];
+    pathEls.forEach((p) => {
+      const d = p.getAttribute("d");
+      if (d) ds.push(d);
+    });
+    setPaths(ds);
+  }, [width, color, roughness, strokeWidth]);
+
+  return (
+    <svg
+      ref={svgRef}
+      className={`pointer-events-none ${className}`}
+      width={width}
+      height={12}
+      style={{ overflow: "visible" }}
+    >
+      {paths.map((d, i) => (
+        <path key={i} d={d} fill="none" stroke={colorMap[color]} strokeWidth={strokeWidth} opacity={0.5} />
+      ))}
+    </svg>
+  );
+}
+
 // Rough, organic circle - like someone drew it quickly with a pen
-// Multiple path variants for variety
 export function DrawnCircle({
   className = "",
   color = "blue",
@@ -72,13 +205,9 @@ export function DrawnCircle({
   const svgRef = useRef<SVGSVGElement>(null);
   useDrawIn(pathRef, svgRef, trigger, delay, 0.9);
 
-  // Different organic circle shapes - none are symmetric
   const paths = [
-    // Loose, slightly tilted oval that doesn't quite close
     `M 18 ${height * 0.6} C 12 ${height * 0.18}, ${width * 0.35} ${-height * 0.05}, ${width * 0.62} ${height * 0.15} C ${width * 0.88} ${height * 0.32}, ${width - 8} ${height * 0.72}, ${width * 0.7} ${height * 0.88} C ${width * 0.42} ${height * 1.02}, 8 ${height * 0.85}, 14 ${height * 0.55}`,
-    // Rounder, more energetic, overshoots slightly
     `M 22 ${height * 0.5} C 28 ${height * 0.08}, ${width * 0.55} ${-height * 0.08}, ${width * 0.78} ${height * 0.22} C ${width + 5} ${height * 0.55}, ${width * 0.82} ${height * 0.95}, ${width * 0.48} ${height + 2} C ${width * 0.15} ${height * 0.95}, 6 ${height * 0.6}, 20 ${height * 0.42}`,
-    // Tighter, more deliberate
     `M 15 ${height * 0.55} C 10 ${height * 0.15}, ${width * 0.4} ${height * 0.02}, ${width * 0.65} ${height * 0.12} C ${width * 0.92} ${height * 0.25}, ${width - 5} ${height * 0.68}, ${width * 0.72} ${height * 0.85} C ${width * 0.45} ${height}, 12 ${height * 0.78}, 18 ${height * 0.5}`,
   ];
 
@@ -98,13 +227,13 @@ export function DrawnCircle({
         stroke={colorMap[color]}
         strokeWidth={strokeWidth}
         className="hand-mark"
-        opacity={0.8}
+        opacity={0.7}
       />
     </svg>
   );
 }
 
-// Quick, confident arrow - like a coach's "look here" gesture
+// Quick, confident arrow
 export function DrawnArrow({
   className = "",
   color = "pencil",
@@ -134,13 +263,13 @@ export function DrawnArrow({
         stroke={colorMap[color]}
         strokeWidth={strokeWidth}
         className="hand-mark"
-        opacity={0.65}
+        opacity={0.55}
       />
     </svg>
   );
 }
 
-// Wobbly underline - like quickly underlining with a pen
+// Wobbly underline
 export function DrawnUnderline({
   className = "",
   color = "blue",
@@ -169,13 +298,13 @@ export function DrawnUnderline({
         stroke={colorMap[color]}
         strokeWidth={strokeWidth}
         className="hand-mark"
-        opacity={0.7}
+        opacity={0.6}
       />
     </svg>
   );
 }
 
-// Strikethrough - decisive single line
+// Strikethrough
 export function DrawnCrossout({
   className = "",
   color = "pencil",
@@ -204,13 +333,13 @@ export function DrawnCrossout({
         stroke={colorMap[color]}
         strokeWidth={strokeWidth}
         className="hand-mark"
-        opacity={0.6}
+        opacity={0.5}
       />
     </svg>
   );
 }
 
-// Tactical X - two quick strokes
+// Tactical X
 export function DrawnX({
   className = "",
   color = "blue",
@@ -235,13 +364,13 @@ export function DrawnX({
       fill="none"
       style={{ overflow: "visible" }}
     >
-      <path ref={p1} d={`M 3 4 L ${size - 5} ${size - 3}`} stroke={colorMap[color]} strokeWidth={strokeWidth} className="hand-mark" opacity={0.75} />
-      <path ref={p2} d={`M ${size - 4} 3 L 4 ${size - 4}`} stroke={colorMap[color]} strokeWidth={strokeWidth} className="hand-mark" opacity={0.75} />
+      <path ref={p1} d={`M 3 4 L ${size - 5} ${size - 3}`} stroke={colorMap[color]} strokeWidth={strokeWidth} className="hand-mark" opacity={0.65} />
+      <path ref={p2} d={`M ${size - 4} 3 L 4 ${size - 4}`} stroke={colorMap[color]} strokeWidth={strokeWidth} className="hand-mark" opacity={0.65} />
     </svg>
   );
 }
 
-// Tactical O - quick circle
+// Tactical O
 export function DrawnO({
   className = "",
   color = "blue",
@@ -274,13 +403,13 @@ export function DrawnO({
         stroke={colorMap[color]}
         strokeWidth={strokeWidth}
         className="hand-mark"
-        opacity={0.75}
+        opacity={0.65}
       />
     </svg>
   );
 }
 
-// Hand-drawn quotation mark - big, confident
+// Hand-drawn quotation mark
 export function DrawnQuote({
   className = "",
   color = "blue",
@@ -307,13 +436,13 @@ export function DrawnQuote({
         stroke={colorMap[color]}
         strokeWidth={2.5}
         className="hand-mark"
-        opacity={0.6}
+        opacity={0.5}
       />
     </svg>
   );
 }
 
-// Blue rule that draws in between sections
+// Section rule with hand-drawn feel
 export function SectionRule({
   className = "",
   trigger,
@@ -342,8 +471,42 @@ export function SectionRule({
   return (
     <div
       ref={lineRef}
-      className={`h-[2px] bg-blue w-full ${className}`}
+      className={`scratchy-rule w-full ${className}`}
       style={{ transform: "scaleX(0)", transformOrigin: "left center" }}
     />
+  );
+}
+
+// Ink splatter decoration
+export function InkSplatter({
+  className = "",
+  size = "sm",
+}: {
+  className?: string;
+  size?: "sm" | "md" | "lg";
+}) {
+  const dims = { sm: 20, md: 35, lg: 50 }[size];
+
+  return (
+    <svg
+      className={`pointer-events-none ${className}`}
+      width={dims}
+      height={dims}
+      viewBox={`0 0 ${dims} ${dims}`}
+      style={{ overflow: "visible" }}
+    >
+      {/* Main dot */}
+      <circle
+        cx={dims / 2}
+        cy={dims / 2}
+        r={dims * 0.15}
+        fill="var(--color-ink)"
+        opacity={0.06}
+      />
+      {/* Smaller satellite dots */}
+      <circle cx={dims * 0.3} cy={dims * 0.25} r={dims * 0.04} fill="var(--color-ink)" opacity={0.04} />
+      <circle cx={dims * 0.72} cy={dims * 0.68} r={dims * 0.06} fill="var(--color-ink)" opacity={0.03} />
+      <circle cx={dims * 0.2} cy={dims * 0.7} r={dims * 0.03} fill="var(--color-ink)" opacity={0.05} />
+    </svg>
   );
 }

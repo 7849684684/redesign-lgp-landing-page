@@ -43,7 +43,6 @@ export default function Proof() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Counter animations
       statRefs.current.forEach((el, i) => {
         if (!el) return;
         const stat = stats[i];
@@ -64,7 +63,6 @@ export default function Proof() {
         });
       });
 
-      // Testimonial stagger
       gsap.fromTo(
         ".proof-quote",
         { y: 25, opacity: 0 },
@@ -92,29 +90,44 @@ export default function Proof() {
       id="proof"
       className="card-stock pt-20 pb-28 md:pt-28 md:pb-40 relative"
     >
+      {/* Dark paper grain overlay */}
+      <div className="absolute inset-0 pointer-events-none z-[1]"
+        style={{
+          backgroundImage: `repeating-linear-gradient(
+            transparent,
+            transparent 31px,
+            rgba(245, 240, 230, 0.02) 31px,
+            rgba(245, 240, 230, 0.02) 32px
+          )`,
+          backgroundPosition: "0 8px",
+        }}
+      />
+
       <div className="max-w-6xl mx-auto px-8 md:px-12">
         <div className="relative z-10">
           <SectionRule />
 
-          {/* Section marker */}
-          <p className="mt-10 font-mono text-[11px] tracking-[0.2em] uppercase text-cream/30">
-            05 / The Proof
+          {/* Handwritten section number - chalk/white ink on dark */}
+          <p
+            className="mt-10 font-hand text-[18px] text-cream/30"
+            style={{ transform: "rotate(-0.5deg)" }}
+          >
+            05 &mdash; the proof
           </p>
 
-          {/* Stats - editorial flex layout, not uniform grid */}
+          {/* Stats - written large like numbers on a chalkboard */}
           <div className="mt-14 flex flex-wrap gap-x-16 gap-y-10">
             {stats.map((stat, i) => (
               <div key={stat.label} className="relative">
                 <div className="relative inline-block">
                   <span
                     ref={(el) => { statRefs.current[i] = el; }}
-                    className="font-display text-blue font-light leading-none block"
+                    className="font-display text-blue font-light leading-none block ink-blue"
                     style={{ fontSize: "clamp(2.8rem, 6vw, 4.5rem)" }}
                   >
                     {formatValue(stat.value, stat.decimal, stat.prefix, stat.suffix)}
                   </span>
 
-                  {/* Single drawn circle on NPS only */}
                   {stat.label === "NPS" && (
                     <DrawnCircle
                       color="blue"
@@ -126,33 +139,40 @@ export default function Proof() {
                     />
                   )}
                 </div>
-                <span className="font-mono text-cream/35 text-[10px] tracking-[0.2em] uppercase mt-3 block">
+                {/* Handwritten label under stat */}
+                <span
+                  className="font-hand text-cream/30 text-[15px] mt-3 block"
+                  style={{ transform: "rotate(-0.5deg)" }}
+                >
                   {stat.label}
                 </span>
               </div>
             ))}
           </div>
 
-          {/* Divider */}
-          <div className="mt-20 mb-16 h-px bg-cream/8 w-full" />
+          {/* Divider - scratchy line */}
+          <div className="mt-20 mb-16 scratchy-rule w-full" style={{ background: "rgba(245, 240, 230, 0.08)" }} />
 
-          {/* Testimonials - asymmetric layout */}
+          {/* Testimonials - like handwritten notes pinned to a board */}
           <div className="proof-quotes">
-            {/* Hero quote - full width, larger */}
+            {/* Hero quote */}
             <blockquote className="proof-quote relative pl-12">
               <DrawnQuote
                 color="blue"
                 className="absolute -left-1 -top-2"
               />
-              <p className="text-cream/80 text-xl md:text-2xl font-display font-light leading-relaxed">
+              <p className="text-cream/75 text-xl md:text-2xl font-display font-light leading-relaxed italic">
                 {testimonials[0].quote}
               </p>
-              <footer className="mt-4 font-mono text-cream/25 text-[10px] tracking-[0.2em] uppercase">
-                {testimonials[0].attribution}
+              <footer
+                className="mt-4 font-hand text-cream/30 text-[17px]"
+                style={{ transform: "rotate(-0.5deg)" }}
+              >
+                &mdash; {testimonials[0].attribution}
               </footer>
             </blockquote>
 
-            {/* Secondary quotes - 2-column grid on desktop */}
+            {/* Secondary quotes */}
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
               {testimonials.slice(1).map((t, i) => (
                 <blockquote key={i} className="proof-quote relative pl-12">
@@ -161,20 +181,23 @@ export default function Proof() {
                     delay={(i + 1) * 0.2}
                     className="absolute -left-1 -top-2"
                   />
-                  <p className="text-cream/60 text-[16px] font-body leading-relaxed">
+                  <p className="text-cream/55 text-[16px] font-body leading-relaxed italic">
                     {t.quote}
                   </p>
-                  <footer className="mt-4 font-mono text-cream/25 text-[10px] tracking-[0.2em] uppercase">
-                    {t.attribution}
+                  <footer
+                    className="mt-4 font-hand text-cream/25 text-[16px]"
+                    style={{ transform: "rotate(-0.5deg)" }}
+                  >
+                    &mdash; {t.attribution}
                   </footer>
                 </blockquote>
               ))}
             </div>
           </div>
 
-          {/* Margin annotation */}
+          {/* Margin annotation - chalk style */}
           <span
-            className="font-hand text-cream/20 text-[18px] absolute right-8 md:right-12 bottom-16"
+            className="font-hand text-cream/15 text-[20px] absolute right-8 md:right-12 bottom-16"
             style={{ transform: "rotate(-3deg)" }}
           >
             the record speaks

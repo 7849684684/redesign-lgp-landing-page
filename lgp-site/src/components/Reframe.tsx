@@ -4,21 +4,40 @@ import {
   SectionRule,
   DrawnCrossout,
   DrawnUnderline,
+  InkSplatter,
 } from "@/components/HandDrawnMarks";
 
 export default function Reframe() {
   return (
-    <section id="reframe" className="bg-cream pt-20 pb-32 md:pt-28 md:pb-40">
+    <section id="reframe" className="relative pt-20 pb-32 md:pt-28 md:pb-40">
+      {/* Continued ruled lines */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.03]"
+        style={{
+          backgroundImage: `repeating-linear-gradient(
+            transparent,
+            transparent 31px,
+            #0066FF 31px,
+            #0066FF 32px
+          )`,
+          backgroundPosition: "0 8px",
+        }}
+      />
+
       <div className="max-w-6xl mx-auto px-8 md:px-12">
         <SectionRule />
 
         <div className="relative z-10">
-          <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-muted/60 mt-10">
-            02 / The Reframe
+          {/* Handwritten section number */}
+          <p
+            className="font-hand text-[18px] text-pencil/40 mt-10"
+            style={{ transform: "rotate(-0.5deg)" }}
+          >
+            02 &mdash; the reframe
           </p>
 
           <h2
-            className="font-display text-ink max-w-2xl mt-6"
+            className="font-display text-ink max-w-2xl mt-6 ink-heavy"
             style={{
               fontSize: "clamp(1.6rem, 3.5vw, 2.5rem)",
               fontWeight: 400,
@@ -28,7 +47,7 @@ export default function Reframe() {
             The strategy was fine. Your team just never got to practise it.
           </h2>
 
-          <div className="font-body text-ink/75 text-[17px] md:text-lg leading-[1.8] max-w-xl mt-10 space-y-6">
+          <div className="font-body text-ink/70 text-[17px] md:text-lg leading-[1.8] max-w-xl mt-10 space-y-6 ink-text">
             <p>
               Every high-performance discipline builds skill through deliberate
               practice. Athletes rehearse. Surgeons simulate. Military planners
@@ -39,7 +58,7 @@ export default function Reframe() {
               Business strategy skips straight from{" "}
               <span className="relative inline-block">
                 <span
-                  className="font-hand text-blue text-xl absolute -top-7 left-0"
+                  className="font-hand text-blue text-xl absolute -top-7 left-0 ink-blue"
                   style={{ transform: "rotate(-3deg)" }}
                 >
                   practice
@@ -64,13 +83,16 @@ export default function Reframe() {
             </p>
           </div>
 
-          {/* Right margin annotation */}
+          {/* Margin note - like a pencil scribble */}
           <span
-            className="hidden md:block font-hand text-[18px] text-pencil/40 absolute right-0 top-1/2"
+            className="hidden md:block font-hand text-[19px] text-pencil/30 absolute right-0 top-1/2"
             style={{ transform: "rotate(90deg) translateX(-50%)" }}
           >
-            this is the gap
+            &larr; this is the gap
           </span>
+
+          {/* Ink splatter near the text */}
+          <InkSplatter className="absolute right-[20%] bottom-8" size="sm" />
         </div>
       </div>
     </section>
