@@ -2,13 +2,12 @@
 
 import { SectionRule, DrawnO, DrawnX, DrawnArrow } from "@/components/HandDrawnMarks";
 
-const cards = [
+const entries = [
   {
     id: "exercise",
     title: "Exercise",
     description:
       "Rehearse decisions before they're real. Tabletop exercises for teams - work through realistic scenarios, make calls under pressure, see consequences play out.",
-    link: "#contact",
     marker: "o" as const,
   },
   {
@@ -16,7 +15,6 @@ const cards = [
     title: "Advisory",
     description:
       "Strategy that survives first contact. We work alongside you to shape strategy, stress-test plans, and build frameworks that hold up when it matters.",
-    link: "#contact",
     marker: "x" as const,
   },
   {
@@ -24,7 +22,6 @@ const cards = [
     title: "Tools",
     description:
       "Better decisions, daily. Digital and analogue tools that bring strategic thinking into everyday work. Things your team actually reaches for.",
-    link: "#contact",
     marker: "arrow" as const,
   },
   {
@@ -32,66 +29,75 @@ const cards = [
     title: "Products",
     description:
       "Strategy you can pick up. Cards, kits, and guides designed to make practice a habit. Physical and digital products your team will actually use.",
-    link: "#contact",
     marker: "o-small" as const,
   },
 ];
 
-function CardMarker({ type }: { type: "o" | "x" | "arrow" | "o-small" }) {
+function EntryMarker({ type }: { type: "o" | "x" | "arrow" | "o-small" }) {
   switch (type) {
     case "o":
-      return <DrawnO color="blue" width={32} height={32} />;
+      return <DrawnO color="blue" size={36} />;
     case "x":
-      return <DrawnX color="blue" width={32} height={32} />;
+      return <DrawnX color="blue" size={36} />;
     case "arrow":
       return (
-        <div className="relative w-[40px] h-[30px]">
-          <DrawnArrow color="blue" width={40} height={30} />
+        <div className="relative w-[40px] h-[28px]">
+          <DrawnArrow color="blue" width={40} height={28} />
         </div>
       );
     case "o-small":
-      return <DrawnO color="blue" width={28} height={28} />;
+      return <DrawnO color="blue" size={32} />;
   }
 }
 
 export default function WhatWeBuild() {
   return (
-    <section id="services" className="bg-cream py-24 md:py-32">
-      <div className="max-w-5xl mx-auto px-6">
+    <section id="services" className="bg-cream pt-16 pb-28 md:pt-20 md:pb-36">
+      <div className="max-w-6xl mx-auto px-8 md:px-12">
         <div className="relative z-10">
           <SectionRule />
 
-          <p className="font-mono text-xs tracking-[0.15em] uppercase text-muted mt-12">
-            04 / WHAT WE BUILD
+          <p className="mt-10 font-mono text-[11px] tracking-[0.2em] uppercase text-muted/60">
+            04 / What We Build
           </p>
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {cards.map((card) => (
+          {/* Playbook entries */}
+          <div className="relative mt-12">
+            {entries.map((entry, i) => (
               <div
-                key={card.id}
-                id={card.id}
-                className="bg-white border border-rule p-8 md:p-10 relative hover:border-blue/30 transition-colors duration-300"
+                key={entry.id}
+                id={entry.id}
+                className={`flex flex-col md:flex-row md:items-start gap-4 md:gap-12 py-10 ${
+                  i < entries.length - 1 ? "border-b border-rule/40" : ""
+                }`}
               >
-                <div className="relative w-fit h-fit">
-                  <CardMarker type={card.marker} />
+                {/* Left column - marker + title */}
+                <div className="md:w-[120px] flex-shrink-0">
+                  <EntryMarker type={entry.marker} />
+                  <h3 className="font-display text-lg md:text-xl text-ink font-medium mt-3">
+                    {entry.title}
+                  </h3>
                 </div>
 
-                <h3 className="font-display text-xl md:text-2xl text-ink mt-4">
-                  {card.title}
-                </h3>
-
-                <p className="font-body text-muted mt-3 leading-relaxed">
-                  {card.description}
-                </p>
-
-                <a
-                  href={card.link}
-                  className="font-body text-blue text-sm mt-4 inline-block hover:underline"
-                >
-                  Learn more &rarr;
-                </a>
+                {/* Right column - description + link */}
+                <div className="flex-1">
+                  <p className="font-body text-ink/65 text-[16px] leading-relaxed max-w-md">
+                    {entry.description}
+                  </p>
+                  <a
+                    href="#contact"
+                    className="font-body text-blue text-[13px] mt-3 inline-block hover:underline tracking-wide"
+                  >
+                    Learn more &rarr;
+                  </a>
+                </div>
               </div>
             ))}
+
+            {/* Margin annotation */}
+            <span className="font-hand text-pencil/35 text-[17px] hidden md:block absolute right-8 top-[28%] rotate-[-3deg]">
+              the plays
+            </span>
           </div>
         </div>
       </div>

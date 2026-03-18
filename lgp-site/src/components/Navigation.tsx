@@ -8,7 +8,6 @@ const NAV_LINKS = [
   { label: "Tools", href: "#tools" },
   { label: "Products", href: "#products" },
   { label: "Proof", href: "#proof" },
-  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navigation() {
@@ -26,7 +25,6 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = "hidden";
@@ -38,7 +36,10 @@ export default function Navigation() {
     };
   }, [menuOpen]);
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     e.preventDefault();
     setMenuOpen(false);
     const target = document.querySelector(href);
@@ -52,90 +53,94 @@ export default function Navigation() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-cream/95 backdrop-blur-sm border-b border-rule/50"
+            ? "bg-cream/90 backdrop-blur-md border-b border-ink/5"
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-          {/* Logo */}
+        <div className="max-w-6xl mx-auto px-8 md:px-12 flex items-center justify-between h-14">
+          {/* Wordmark */}
           <a
             href="#"
-            className="font-mono text-xs tracking-[0.15em] uppercase text-ink"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="font-mono text-[10px] tracking-[0.2em] uppercase text-ink/70 hover:text-ink transition-colors"
           >
-            THE LONG GAME PROJECT
+            The Long Game Project
           </a>
 
           {/* Desktop links */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-7">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className="font-body text-sm text-ink hover:text-blue transition-colors"
+                className="font-body text-[13px] text-ink/40 hover:text-ink transition-colors"
               >
                 {link.label}
               </a>
             ))}
-          </div>
 
-          {/* Desktop CTA */}
-          <a
-            href="#contact"
-            onClick={(e) => handleLinkClick(e, "#contact")}
-            className="hidden lg:inline-block bg-blue text-white text-xs tracking-[0.15em] uppercase px-5 py-2.5 hover:bg-blue-hover transition-colors"
-          >
-            Book a Call
-          </a>
+            {/* Desktop CTA */}
+            <a
+              href="#contact"
+              onClick={(e) => handleLinkClick(e, "#contact")}
+              className="bg-blue text-white text-[10px] tracking-[0.15em] uppercase px-4 py-2 hover:bg-blue-hover transition-colors ml-7"
+            >
+              Book a Call
+            </a>
+          </div>
 
           {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden flex flex-col justify-center gap-[6px] p-2"
+            className="lg:hidden flex flex-col justify-center gap-[5px] p-2"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
-            <span className="block w-6 h-[2px] bg-ink" />
-            <span className="block w-6 h-[2px] bg-ink" />
-            <span className="block w-6 h-[2px] bg-ink" />
+            <span className="block w-5 h-px bg-ink/60" />
+            <span className="block w-5 h-px bg-ink/60" />
+            <span className="block w-5 h-px bg-ink/60" />
           </button>
         </div>
       </nav>
 
-      {/* Mobile menu panel */}
+      {/* Mobile menu - full screen overlay */}
       <div
         className={`fixed inset-0 z-40 bg-cream transition-transform duration-300 ease-in-out ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Close button */}
-        <div className="flex justify-end p-6">
+        <div className="flex justify-end px-8 md:px-12 h-14 items-center">
           <button
             onClick={() => setMenuOpen(false)}
             className="p-2"
             aria-label="Close menu"
           >
             <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2"
-              className="text-ink"
+              strokeWidth="1.5"
+              className="text-ink/60"
             >
-              <line x1="4" y1="4" x2="20" y2="20" />
-              <line x1="20" y1="4" x2="4" y2="20" />
+              <line x1="4" y1="4" x2="16" y2="16" />
+              <line x1="16" y1="4" x2="4" y2="16" />
             </svg>
           </button>
         </div>
 
-        <nav className="flex flex-col items-center gap-8 pt-12">
+        <nav className="flex flex-col items-center justify-center gap-6 pt-24">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={(e) => handleLinkClick(e, link.href)}
-              className="font-body text-lg text-ink hover:text-blue transition-colors"
+              className="font-body text-[18px] text-ink/60 hover:text-ink transition-colors"
             >
               {link.label}
             </a>
@@ -143,7 +148,7 @@ export default function Navigation() {
           <a
             href="#contact"
             onClick={(e) => handleLinkClick(e, "#contact")}
-            className="mt-4 bg-blue text-white text-xs tracking-[0.15em] uppercase px-6 py-3 hover:bg-blue-hover transition-colors"
+            className="mt-8 bg-blue text-white text-[10px] tracking-[0.15em] uppercase px-4 py-2 hover:bg-blue-hover transition-colors"
           >
             Book a Call
           </a>

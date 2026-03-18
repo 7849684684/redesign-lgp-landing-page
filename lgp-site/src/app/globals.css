@@ -3,18 +3,19 @@
 @theme inline {
   --color-cream: #FAF8F5;
   --color-ink: #1A1A1A;
+  --color-ink-light: #2C2C2C;
   --color-muted: #6B6560;
-  --color-blue: #0080FF;
-  --color-blue-hover: #0066CC;
-  --color-terracotta: #C45A3C;
+  --color-blue: #0066FF;
+  --color-blue-hover: #0052CC;
   --color-surface: #F0EDE8;
-  --color-rule: #E0DBD4;
-  --color-white: #FFFFFF;
+  --color-rule: #D8D3CC;
+  --color-white: #FEFEFE;
+  --color-pencil: #3A3632;
 
   --font-display: "Fraunces", Georgia, serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-mono), "JetBrains Mono", monospace;
-  --font-hand: "Caveat", cursive;
+  --font-hand: var(--font-hand), "Caveat", cursive;
 }
 
 :root {
@@ -37,32 +38,43 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Real paper grain - layered for depth */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.35;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Warm vignette - like looking at a lit desk */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 40%,
+    transparent 0%,
+    rgba(180, 170, 155, 0.08) 70%,
+    rgba(140, 130, 115, 0.15) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
 ::selection {
   background: var(--color-blue);
   color: #fff;
 }
 
-::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--color-cream); }
-::-webkit-scrollbar-thumb { background: var(--color-rule); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
+::-webkit-scrollbar-thumb { background: var(--color-rule); border-radius: 2px; }
 
-/* Paper grain texture - subtle noise on cream */
-.paper-texture {
-  position: relative;
-}
-.paper-texture::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.4;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Dark card stock texture for proof section */
+/* Dark section - card stock insert */
 .card-stock {
   position: relative;
   background-color: var(--color-ink);
@@ -71,74 +83,31 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0.3;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 0;
-}
-
-/* Subtle page fold line */
-.page-fold::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 50%;
-  width: 1px;
-  height: 100vh;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0,0,0,0.02) 20%,
-    rgba(0,0,0,0.03) 50%,
-    rgba(0,0,0,0.02) 80%,
-    transparent 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Subtle vignette on the page */
-.page-vignette::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 60%,
-    rgba(0,0,0,0.03) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
 }
 
 /* Pulsing status dot */
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.3); }
+  50% { opacity: 0.5; transform: scale(1.4); }
 }
 .pulse-dot {
-  animation: pulse-dot 2s ease-in-out infinite;
+  animation: pulse-dot 2.5s ease-in-out infinite;
 }
 
-/* Hand-drawn mark base styles */
+/* Hand-drawn mark base */
 .hand-mark {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-/* Section marker style */
-.section-marker {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-muted);
-}
-
-/* Handwriting annotation style */
+/* Handwriting style */
 .annotation {
   font-family: var(--font-hand);
-  color: var(--color-muted);
+  color: var(--color-pencil);
+  opacity: 0.55;
 }

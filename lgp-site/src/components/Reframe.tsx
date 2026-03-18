@@ -1,30 +1,34 @@
 "use client";
 
-import { SectionRule, DrawnCrossout, DrawnUnderline } from "@/components/HandDrawnMarks";
+import {
+  SectionRule,
+  DrawnCrossout,
+  DrawnUnderline,
+} from "@/components/HandDrawnMarks";
 
 export default function Reframe() {
   return (
-    <section id="reframe" className="bg-cream py-24 md:py-32">
-      <div className="max-w-5xl mx-auto px-6">
+    <section id="reframe" className="bg-cream pt-20 pb-32 md:pt-28 md:pb-40">
+      <div className="max-w-6xl mx-auto px-8 md:px-12">
         <SectionRule />
 
         <div className="relative z-10">
-          <p className="font-mono text-xs tracking-[0.15em] uppercase text-muted mt-12">
+          <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-muted/60 mt-10">
             02 / The Reframe
           </p>
 
           <h2
-            className="font-display text-ink max-w-3xl mt-8"
+            className="font-display text-ink max-w-2xl mt-6"
             style={{
-              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+              fontSize: "clamp(1.6rem, 3.5vw, 2.5rem)",
               fontWeight: 400,
-              lineHeight: 1.2,
+              lineHeight: 1.25,
             }}
           >
             The strategy was fine. Your team just never got to practise it.
           </h2>
 
-          <div className="font-body text-ink/80 text-lg leading-relaxed max-w-2xl mt-8 space-y-4">
+          <div className="font-body text-ink/75 text-[17px] md:text-lg leading-[1.8] max-w-xl mt-10 space-y-6">
             <p>
               Every high-performance discipline builds skill through deliberate
               practice. Athletes rehearse. Surgeons simulate. Military planners
@@ -32,32 +36,41 @@ export default function Reframe() {
             </p>
 
             <p>
-              <span className="relative">
-                Business strategy skips straight from{" "}
-                <span className="relative inline-block">
-                  <span className="font-hand text-blue text-xl absolute -top-6 left-0" style={{ transform: "rotate(-2deg)" }}>
-                    practice
-                  </span>
-                  planning
-                  <DrawnCrossout
-                    className="top-1/2 left-0 -translate-y-1/2"
-                    width={80}
-                    color="ink"
-                  />
-                </span>{" "}
-                to live-fire.{" "}
-                <span className="relative inline-block">
-                  No reps. No rehearsal.
-                  <DrawnUnderline
-                    className="left-0 -bottom-1"
-                    width={195}
-                    color="blue"
-                    delay={0.3}
-                  />
+              Business strategy skips straight from{" "}
+              <span className="relative inline-block">
+                <span
+                  className="font-hand text-blue text-xl absolute -top-7 left-0"
+                  style={{ transform: "rotate(-3deg)" }}
+                >
+                  practice
                 </span>
+                planning
+                <DrawnCrossout
+                  className="top-1/2 left-0 -translate-y-1/2"
+                  width={75}
+                  color="pencil"
+                />
+              </span>{" "}
+              to live-fire.{" "}
+              <span className="relative inline-block">
+                No reps. No rehearsal.
+                <DrawnUnderline
+                  className="left-0 -bottom-2"
+                  width={200}
+                  color="blue"
+                  delay={0.4}
+                />
               </span>
             </p>
           </div>
+
+          {/* Right margin annotation */}
+          <span
+            className="hidden md:block font-hand text-[18px] text-pencil/40 absolute right-0 top-1/2"
+            style={{ transform: "rotate(90deg) translateX(-50%)" }}
+          >
+            this is the gap
+          </span>
         </div>
       </div>
     </section>

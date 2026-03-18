@@ -13,13 +13,13 @@ const clientNames = [
 
 export default function Practice() {
   return (
-    <section id="practice" className="bg-cream py-24 md:py-32">
-      <div className="max-w-5xl mx-auto px-6">
+    <section id="practice" className="bg-cream pt-16 pb-28 md:pt-20 md:pb-36">
+      <div className="max-w-6xl mx-auto px-8 md:px-12">
         <div className="relative z-10">
           <SectionRule />
 
           {/* Section marker */}
-          <p className="mt-12 font-mono text-xs tracking-[0.15em] uppercase text-muted">
+          <p className="mt-10 font-mono text-[11px] tracking-[0.2em] uppercase text-muted/60">
             03 / The Practice
           </p>
 
@@ -27,9 +27,9 @@ export default function Practice() {
           <h2
             className="mt-6 font-display text-ink max-w-3xl"
             style={{
-              fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+              fontSize: "clamp(1.6rem, 3.5vw, 2.5rem)",
               fontWeight: 400,
-              lineHeight: 1.2,
+              lineHeight: 1.25,
             }}
           >
             We built The Long Game Project around a single idea: strategy is a
@@ -38,35 +38,38 @@ export default function Practice() {
               skills need practice
               <DrawnCircle
                 className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                color="ink"
-                width={340}
-                height={60}
+                color="pencil"
+                variant={2}
+                width={320}
+                height={55}
               />
             </span>
             .
           </h2>
 
           {/* Who this is for */}
-          <p className="mt-8 font-body text-muted text-lg max-w-xl">
+          <p className="mt-8 font-body text-ink/60 text-[17px] max-w-lg leading-relaxed">
             We work with leadership teams, founders, and decision-makers who are
             done with strategy that lives in a slide deck.
           </p>
 
-          {/* Client logos bar */}
-          <div className="mt-16">
+          {/* Client logos - footnote, not a feature */}
+          <div className="mt-20">
             <p
-              className="font-hand text-muted text-base mb-4"
+              className="font-hand text-pencil/40 text-[16px] mb-3"
               style={{ transform: "rotate(-1deg)" }}
             >
               some of the teams we&apos;ve worked with
             </p>
-            <div className="flex flex-wrap items-center gap-8 md:gap-12">
-              {clientNames.map((name) => (
-                <span
-                  key={name}
-                  className="font-mono text-xs tracking-wider uppercase text-muted/50"
-                >
-                  {name}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              {clientNames.map((name, i) => (
+                <span key={name} className="flex items-center gap-x-6">
+                  {i > 0 && (
+                    <span className="text-ink/15 select-none">&middot;</span>
+                  )}
+                  <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/25">
+                    {name}
+                  </span>
                 </span>
               ))}
             </div>
