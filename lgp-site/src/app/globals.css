@@ -14,6 +14,7 @@
   --font-display: "Fraunces", Georgia, serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-mono), "JetBrains Mono", monospace;
+  --font-hand: "Caveat", cursive;
 }
 
 :root {
@@ -22,11 +23,11 @@
 
 html {
   overflow-x: hidden;
-  background: var(--color-ink);
+  background: var(--color-cream);
 }
 
 body {
-  background: var(--color-ink);
+  background: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-body);
   font-size: 17px;
@@ -42,16 +43,73 @@ body {
 }
 
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--color-ink); }
-::-webkit-scrollbar-thumb { background: var(--color-muted); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-cream); }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb { background: var(--color-rule); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
 
-/* Grid texture for dark sections */
-.grid-texture {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+/* Paper grain texture - subtle noise on cream */
+.paper-texture {
+  position: relative;
+}
+.paper-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dark card stock texture for proof section */
+.card-stock {
+  position: relative;
+  background-color: var(--color-ink);
+}
+.card-stock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Subtle page fold line */
+.page-fold::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0,0,0,0.02) 20%,
+    rgba(0,0,0,0.03) 50%,
+    rgba(0,0,0,0.02) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Subtle vignette on the page */
+.page-vignette::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(0,0,0,0.03) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Pulsing status dot */
@@ -59,7 +117,28 @@ body {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.6; transform: scale(1.3); }
 }
-
 .pulse-dot {
   animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* Hand-drawn mark base styles */
+.hand-mark {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Section marker style */
+.section-marker {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* Handwriting annotation style */
+.annotation {
+  font-family: var(--font-hand);
+  color: var(--color-muted);
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Caveat } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -15,10 +15,17 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
+const caveat = Caveat({
+  variable: "--font-hand",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600"],
+});
+
 export const metadata: Metadata = {
-  title: "The Long Game Project - Strategic Thinking, Pressure-Tested",
+  title: "The Long Game Project - Strategy Practice for Teams That Take Decisions Seriously",
   description:
-    "Workshops, masterminds and coaching that use tabletop exercises, red teaming and strategic wargaming to build real strategic capability.",
+    "Tabletop exercises, advisory, tools and products that help teams practise strategy and make better decisions. Not another offsite.",
   openGraph: {
     title: "The Long Game Project",
     description: "Strategic Thinking, Pressure-Tested.",
@@ -46,7 +53,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${caveat.variable} antialiased page-fold page-vignette`}
       >
         {children}
       </body>

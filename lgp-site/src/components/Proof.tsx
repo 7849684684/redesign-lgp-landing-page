@@ -3,85 +3,68 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SectionRule, DrawnCircle, DrawnQuote } from "@/components/HandDrawnMarks";
 
-const metrics = [
-  { value: 200, suffix: "+", label: "Leaders trained" },
-  { value: 50, suffix: "+", label: "Organisations" },
-  { value: 9.3, suffix: "", label: "Average rating" },
-  { value: 94, suffix: "%", label: "Return for more" },
+gsap.registerPlugin(ScrollTrigger);
+
+const stats = [
+  { value: 134, prefix: "+", suffix: "", label: "Scenarios Designed", decimal: false },
+  { value: 10, prefix: "+", suffix: "", label: "Years Experience", decimal: false },
+  { value: 3.4, prefix: "$", suffix: "B", label: "Client Marketcap", decimal: true },
+  { value: 74.9, prefix: "", suffix: "", label: "NPS", decimal: true },
 ];
 
 const testimonials = [
   {
     quote:
-      "This wasn\u2019t another strategy away-day. Our team left with genuine clarity about what to do next\u2009\u2014\u2009and what to stop doing.",
-    author: "Sarah Chen",
-    role: "CEO, Meridian Health",
+      "The tabletop exercise was a ton of fun and incredibly engaging. What I didn\u2019t expect was how much the simulation helped our organisation plan for future risks. The value for time is off the charts.",
+    attribution: "Director, Consulting Firm",
   },
   {
     quote:
-      "The tabletop exercise exposed blind spots we\u2019d been carrying for years. Uncomfortable at the time. Invaluable in retrospect.",
-    author: "James Whitfield",
-    role: "Managing Director, Alderley Partners",
+      "We were able to leave behind our day-to-day and really immerse in a fun and eye-opening exercise. It helped change the way we think about our business.",
+    attribution: "Team Lead, Global CPG",
+  },
+  {
+    quote:
+      "I was impressed by the level of communication and directness. The amount of nuance captured in the game design was surprising. I\u2019d recommend LGP if you\u2019re looking for an engaging and bespoke exercise.",
+    attribution: "COO, Research",
   },
 ];
 
+function formatValue(val: number, decimal: boolean, prefix: string, suffix: string): string {
+  const num = decimal ? val.toFixed(1) : Math.round(val).toString();
+  return `${prefix}${num}${suffix}`;
+}
+
 export default function Proof() {
   const sectionRef = useRef<HTMLElement>(null);
-  const ruleRef = useRef<HTMLDivElement>(null);
+  const statRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     const ctx = gsap.context(() => {
-      // Top rule draws in on scroll
-      if (ruleRef.current) {
-        gsap.fromTo(
-          ruleRef.current,
-          { scaleX: 0, transformOrigin: "left center" },
-          {
-            scaleX: 1,
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: { trigger: ruleRef.current, start: "top 90%" },
-          }
-        );
-      }
-
-      // Counter animations per metric
-      const metricEls = document.querySelectorAll<HTMLElement>(".metric-number");
-      metricEls.forEach((el) => {
-        const target = parseFloat(el.dataset.target ?? "0");
-        const suffix = el.dataset.suffix ?? "";
-        const isDecimal = el.dataset.decimal === "true";
+      // Counter animations for each stat
+      statRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const stat = stats[i];
         const proxy = { val: 0 };
 
         gsap.to(proxy, {
-          val: target,
+          val: stat.value,
           duration: 1.5,
           ease: "power2.out",
-          scrollTrigger: { trigger: el, start: "top 80%" },
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            once: true,
+          },
           onUpdate: () => {
-            el.textContent = (isDecimal ? proxy.val.toFixed(1) : Math.round(proxy.val).toString()) + suffix;
+            el.textContent = formatValue(proxy.val, stat.decimal, stat.prefix, stat.suffix);
           },
         });
       });
 
-      // Metric item fade in
-      gsap.fromTo(
-        ".metric-item",
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: { trigger: ".metrics-row", start: "top 80%" },
-        }
-      );
-
-      // Testimonial fade in
+      // Testimonial stagger
       gsap.fromTo(
         ".proof-quote",
         { y: 30, opacity: 0 },
@@ -89,9 +72,13 @@ export default function Proof() {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          stagger: 0.3,
+          stagger: 0.25,
           ease: "power3.out",
-          scrollTrigger: { trigger: ".proof-quotes", start: "top 80%" },
+          scrollTrigger: {
+            trigger: ".proof-quotes",
+            start: "top 80%",
+            once: true,
+          },
         }
       );
     }, sectionRef);
@@ -102,78 +89,73 @@ export default function Proof() {
   return (
     <section
       ref={sectionRef}
-      id="results"
-      className="bg-cream py-20 md:py-28 relative"
+      id="proof"
+      className="card-stock py-24 md:py-32 relative"
     >
-      {/* 4px blue top rule that draws in on scroll */}
-      <div
-        ref={ruleRef}
-        className="absolute top-0 left-0 w-full h-[4px] bg-blue"
-        style={{ transformOrigin: "left center" }}
-      />
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="relative z-10">
+          {/* Blue rule at top */}
+          <SectionRule />
 
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10">
-        {/* Section marker */}
-        <p className="font-[family-name:var(--font-mono)] text-xs tracking-[0.2em] uppercase text-muted mb-12">
-          04
-        </p>
+          {/* Section marker */}
+          <p className="font-mono text-xs tracking-[0.15em] uppercase text-cream/40 mt-12">
+            05 / The Proof
+          </p>
 
-        {/* Metrics row */}
-        <div className="metrics-row grid grid-cols-2 gap-8 md:flex md:items-baseline md:justify-between">
-          {metrics.map((m, i) => (
-            <div key={i} className="contents">
-              <div className="metric-item">
-                <div
-                  className="metric-number font-[family-name:var(--font-display)] font-black text-blue"
-                  style={{ fontSize: "clamp(3rem, 6vw, 5rem)" }}
-                  data-target={m.value}
-                  data-suffix={m.suffix}
-                  data-decimal={m.value % 1 !== 0 ? "true" : "false"}
-                >
-                  {m.value % 1 !== 0 ? m.value.toFixed(1) : m.value.toString()}{m.suffix}
+          {/* Stats row */}
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            {stats.map((stat, i) => (
+              <div key={stat.label}>
+                {/* Number with drawn circle */}
+                <div className="relative inline-block">
+                  <span
+                    ref={(el) => { statRefs.current[i] = el; }}
+                    className="font-display text-blue font-light block"
+                    style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
+                  >
+                    {formatValue(stat.value, stat.decimal, stat.prefix, stat.suffix)}
+                  </span>
+                  <DrawnCircle
+                    color="blue"
+                    width={140}
+                    height={60}
+                    delay={1.5}
+                    className="-left-3 top-1/2 -translate-y-1/2"
+                  />
                 </div>
-                <div className="font-[family-name:var(--font-body)] text-sm text-muted mt-1">
-                  {m.label}
-                </div>
+                <p className="font-mono text-cream/50 text-xs tracking-wider uppercase mt-2">
+                  {stat.label}
+                </p>
               </div>
-              {i < metrics.length - 1 && (
-                <div className="hidden md:block w-px h-12 bg-ink/10 self-center" />
-              )}
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Testimonials */}
-        <div className="proof-quotes mt-20">
-          {/* First quote - left aligned */}
-          <blockquote className="proof-quote max-w-lg bg-white p-8 md:p-10 border border-rule border-t-[3px] border-t-blue">
-            <p className="font-[family-name:var(--font-display)] font-normal italic text-ink text-lg md:text-xl leading-relaxed">
-              &ldquo;{testimonials[0].quote}&rdquo;
-            </p>
-            <footer className="mt-4">
-              <div className="font-[family-name:var(--font-body)] text-sm font-medium text-ink">
-                {testimonials[0].author}
-              </div>
-              <div className="font-[family-name:var(--font-mono)] text-xs tracking-[0.1em] uppercase text-muted mt-1">
-                {testimonials[0].role}
-              </div>
-            </footer>
-          </blockquote>
+          {/* Testimonials */}
+          <div className="proof-quotes mt-20 space-y-8">
+            {testimonials.map((t, i) => (
+              <blockquote key={i} className="proof-quote relative pl-12">
+                <DrawnQuote
+                  color="blue"
+                  delay={i * 0.2}
+                  className="absolute left-0 top-0"
+                />
+                <p className="font-body text-cream/80 text-lg leading-relaxed">
+                  {t.quote}
+                </p>
+                <footer className="mt-4 font-mono text-cream/40 text-xs tracking-wider uppercase">
+                  {t.attribution}
+                </footer>
+              </blockquote>
+            ))}
+          </div>
 
-          {/* Second quote - right aligned */}
-          <blockquote className="proof-quote max-w-lg ml-auto mt-12 bg-white p-8 md:p-10 border border-rule border-t-[3px] border-t-blue">
-            <p className="font-[family-name:var(--font-display)] font-normal italic text-ink text-lg md:text-xl leading-relaxed">
-              &ldquo;{testimonials[1].quote}&rdquo;
-            </p>
-            <footer className="mt-4">
-              <div className="font-[family-name:var(--font-body)] text-sm font-medium text-ink">
-                {testimonials[1].author}
-              </div>
-              <div className="font-[family-name:var(--font-mono)] text-xs tracking-[0.1em] uppercase text-muted mt-1">
-                {testimonials[1].role}
-              </div>
-            </footer>
-          </blockquote>
+          {/* Margin annotation */}
+          <span
+            className="font-hand text-cream/30 text-lg absolute right-6 bottom-12"
+            style={{ transform: "rotate(-3deg)" }}
+          >
+            the record speaks
+          </span>
         </div>
       </div>
     </section>

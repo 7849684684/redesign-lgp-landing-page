@@ -1,22 +1,22 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import Problem from "@/components/Problem";
-import Method from "@/components/Method";
-import Offerings from "@/components/Offerings";
+import Reframe from "@/components/Reframe";
+import Practice from "@/components/Practice";
+import WhatWeBuild from "@/components/WhatWeBuild";
 import Proof from "@/components/Proof";
-import Contact from "@/components/Contact";
+import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main className="relative paper-texture">
       <Navigation />
       <Hero />
-      <Problem />
-      <Method />
-      <Offerings />
+      <Reframe />
+      <Practice />
+      <WhatWeBuild />
       <Proof />
-      <Contact />
+      <CTA />
       <Footer />
     </main>
   );

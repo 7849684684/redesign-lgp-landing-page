@@ -3,16 +3,16 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { DrawnCircle, DrawnArrow } from "@/components/HandDrawnMarks";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const accentLineRef = useRef<HTMLDivElement>(null);
+  const markerRef = useRef<HTMLSpanElement>(null);
   const line1Ref = useRef<HTMLSpanElement>(null);
   const line2Ref = useRef<HTMLSpanElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLAnchorElement>(null);
-  const ruleRef = useRef<HTMLDivElement>(null);
-  const watermarkRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLButtonElement>(null);
+  const annotationRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -20,11 +20,11 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.3 });
 
-      // Blue accent line draws first
+      // Section marker fades in
       tl.fromTo(
-        accentLineRef.current,
-        { scaleX: 0, transformOrigin: "left" },
-        { scaleX: 1, duration: 0.6, ease: "power3.out" }
+        markerRef.current,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }
       );
 
       // Headline lines stagger up
@@ -57,98 +57,104 @@ export default function Hero() {
         "-=0.2"
       );
 
-      // Bottom rule draws in
+      // Margin annotation fades in
       tl.fromTo(
-        ruleRef.current,
-        { scaleX: 0, transformOrigin: "left" },
-        { scaleX: 1, duration: 0.8, ease: "power3.out" },
+        annotationRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.6, ease: "power3.out" },
         "-=0.3"
-      );
-
-      // Watermark parallax on scroll
-      gsap.fromTo(
-        watermarkRef.current,
-        { y: 0 },
-        {
-          y: -80,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
-        }
       );
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
+  const handleScrollToCTA = () => {
+    const target = document.querySelector("#reframe");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center bg-ink grid-texture"
+      className="relative min-h-screen bg-cream flex flex-col"
     >
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 w-full">
-        {/* Watermark */}
-        <div
-          ref={watermarkRef}
-          className="absolute top-12 right-6 md:right-10 font-[family-name:var(--font-display)] font-black text-cream/5 text-[12rem] md:text-[16rem] leading-none pointer-events-none select-none"
-          aria-hidden="true"
+      <div className="relative z-10 max-w-5xl mx-auto px-6 w-full pt-[20vh] pb-16">
+        {/* Section marker */}
+        <span
+          ref={markerRef}
+          className="block font-mono text-xs tracking-[0.15em] uppercase text-muted mb-10 opacity-0"
         >
-          00
-        </div>
+          01 / The Problem
+        </span>
 
-        {/* Content block - left-aligned */}
-        <div className="max-w-[700px]">
-          {/* Blue accent line above headline */}
-          <div
-            ref={accentLineRef}
-            className="w-16 h-[4px] bg-blue mb-6"
-          />
-
-          {/* Headline */}
-          <h1 className="leading-[1.1]" style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}>
-            <span
-              ref={line1Ref}
-              className="block font-[family-name:var(--font-display)] font-light text-cream opacity-0"
-            >
-              Your strategy is
+        {/* Headline */}
+        <h1
+          className="font-display text-ink font-normal leading-[1.15]"
+          style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
+        >
+          <span ref={line1Ref} className="block opacity-0">
+            Another offsite. Another strategy.
+          </span>
+          <span ref={line2Ref} className="relative inline-block opacity-0">
+            <span className="relative inline-block">
+              Nothing changes.
+              <DrawnCircle
+                className="-top-3 -left-4"
+                color="blue"
+                trigger="load"
+                delay={1}
+                width={420}
+                height={70}
+              />
             </span>
-            <span
-              ref={line2Ref}
-              className="block font-[family-name:var(--font-display)] font-black text-cream opacity-0"
-            >
-              just a guess.
-            </span>
-          </h1>
+          </span>
+        </h1>
 
-          {/* Subtitle */}
+        {/* Subtitle + annotation wrapper */}
+        <div className="relative">
           <p
             ref={subRef}
-            className="font-[family-name:var(--font-body)] text-cream/60 text-lg leading-relaxed max-w-lg mt-6 opacity-0"
+            className="font-body text-muted max-w-xl mt-8 text-lg leading-relaxed opacity-0"
           >
-            We use tabletop exercises, red teaming, and strategic games to
-            stress-test your thinking before reality does.
+            The Long Game Project is a strategy practice. We help teams and
+            leaders get better at the decisions that matter most.
           </p>
 
-          {/* CTA */}
-          <a
-            ref={ctaRef}
-            href="#contact"
-            className="bg-blue text-white font-[family-name:var(--font-body)] text-sm tracking-wide px-8 py-4 hover:bg-blue-hover transition-colors inline-block mt-8 opacity-0"
+          {/* Margin annotation */}
+          <span
+            ref={annotationRef}
+            className="absolute right-0 top-2 font-hand text-muted text-lg opacity-0 hidden md:block"
+            style={{ transform: "rotate(-3deg)" }}
+            aria-hidden="true"
           >
-            Book a Strategy Call
-          </a>
+            sound familiar?
+          </span>
         </div>
-      </div>
 
-      {/* Bottom rule */}
-      <div
-        ref={ruleRef}
-        className="w-full bg-blue h-[2px] absolute bottom-0 left-0"
-      />
+        {/* Arrow between subtitle and CTA */}
+        <div className="relative mt-4">
+          <DrawnArrow
+            className="left-2 top-0"
+            color="ink"
+            trigger="load"
+            delay={1.5}
+            width={60}
+            height={40}
+          />
+        </div>
+
+        {/* CTA */}
+        <button
+          ref={ctaRef}
+          onClick={handleScrollToCTA}
+          className="mt-8 bg-blue text-white px-8 py-4 text-sm tracking-wide uppercase hover:bg-blue-hover transition-colors font-body opacity-0 cursor-pointer"
+        >
+          Find out how
+        </button>
+      </div>
     </section>
   );
 }
