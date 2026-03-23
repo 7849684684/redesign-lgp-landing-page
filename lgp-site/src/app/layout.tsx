@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Caveat } from "next/font/google";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 import "./globals.css";
 
 const inter = Inter({
@@ -23,12 +25,15 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "The Long Game Project - Strategy Practice for Teams That Take Decisions Seriously",
+  title: {
+    default: "The Long Game Project - Strategy Practice",
+    template: "%s | The Long Game Project",
+  },
   description:
-    "Tabletop exercises, advisory, tools and products that help teams practise strategy and make better decisions. Not another offsite.",
+    "Strategy practice for teams and leaders who take decisions seriously. Tabletop exercises, advisory, tools and products.",
   openGraph: {
     title: "The Long Game Project",
-    description: "Strategic Thinking, Pressure-Tested.",
+    description: "Strategy practice for teams and leaders who take decisions seriously.",
     type: "website",
   },
 };
@@ -55,7 +60,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${caveat.variable} antialiased`}
       >
-        {children}
+        <SiteHeader />
+        <main className="min-h-screen">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );
