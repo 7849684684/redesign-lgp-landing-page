@@ -353,6 +353,75 @@ body::after {
   filter: blur(0.5px);
 }
 
+/* ========================================
+   COLLAGE ELEMENTS
+   Sticky notes, torn paper, highlights
+   ======================================== */
+
+/* Sticky note - realistic post-it */
+.sticky-note {
+  position: relative;
+  box-shadow:
+    2px 3px 6px rgba(0, 0, 0, 0.1),
+    0 0 1px rgba(0, 0, 0, 0.08);
+  width: fit-content;
+}
+.sticky-note::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.02));
+  pointer-events: none;
+}
+
+/* Torn paper edge on images */
+.torn-paper-clip {
+  clip-path: polygon(
+    0% 2%, 3% 0%, 7% 3%, 12% 1%, 18% 4%, 23% 0%, 28% 3%,
+    35% 1%, 40% 3%, 46% 0%, 52% 2%, 58% 0%, 63% 3%, 70% 1%,
+    75% 4%, 82% 1%, 88% 3%, 93% 0%, 97% 2%, 100% 0%,
+    100% 97%, 97% 100%, 93% 97%, 88% 100%, 82% 98%, 75% 100%,
+    70% 97%, 63% 100%, 58% 98%, 52% 100%, 46% 97%, 40% 100%,
+    35% 98%, 28% 100%, 23% 97%, 18% 100%, 12% 98%, 7% 100%,
+    3% 97%, 0% 100%
+  );
+}
+
+/* Torn paper with shadow beneath */
+.torn-paper-image {
+  filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.12));
+}
+
+/* Scribble overlay container */
+.scribble-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Collage grid - overlapping layout */
+.collage-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+/* Responsive collage - tighter on mobile */
+@media (max-width: 768px) {
+  .collage-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
 /* Scratchy horizontal rule */
 .scratchy-rule {
   height: 1.5px;
