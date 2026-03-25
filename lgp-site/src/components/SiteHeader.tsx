@@ -29,11 +29,16 @@ export default function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm tracking-wide transition-colors duration-150 ${
+              className={`text-sm tracking-wide transition-all duration-200 px-3 py-1 ${
                 pathname === link.href
-                  ? "text-blue font-medium"
-                  : "text-muted hover:text-ink"
-              }`}
+                  ? "text-ink-blue font-medium border border-ink-blue"
+                  : "text-muted hover:text-ink-blue hover:border hover:border-ink-blue/40"
+              } border-transparent`}
+              style={{
+                borderRadius: pathname === link.href
+                  ? "50% 45% 52% 48% / 48% 52% 45% 50%"
+                  : "50% 45% 52% 48% / 48% 52% 45% 50%",
+              }}
             >
               {link.label}
             </Link>

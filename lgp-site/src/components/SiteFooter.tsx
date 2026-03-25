@@ -10,7 +10,7 @@ const navLinks = [
 
 export default function SiteFooter() {
   return (
-    <footer className="bg-ink text-cream/80">
+    <footer className="bg-ink text-cream/80 relative">
       <div className="mx-auto max-w-5xl px-6 md:px-8 py-16 md:py-20">
         <div className="grid md:grid-cols-3 gap-12 md:gap-8">
           {/* Brand */}
@@ -69,7 +69,10 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 pt-6 border-t border-cream/10 text-xs text-cream/30">
+        <div className="mt-16 pt-6 text-xs text-cream/30" style={{
+          borderTop: "1.5px solid rgba(245, 240, 230, 0.1)",
+          borderImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='3'%3E%3Cpath d='M0,1.5 C20,0.5 40,2.5 60,1.5 C80,0.5 100,2.5 120,1.5 C140,0.5 160,2.5 180,1.5 C200,0.5 220,2.5 240,1.5 C260,0.5 280,2.5 300,1.5 C320,0.5 340,2.5 360,1.5 C380,0.5 400,2.5 400,1.5' fill='none' stroke='rgba(245,240,230,0.15)' stroke-width='1.5'/%3E%3C/svg%3E\") 1 stretch",
+        }}>
           &copy; {new Date().getFullYear()} The Long Game Project. All rights reserved.
         </div>
       </div>

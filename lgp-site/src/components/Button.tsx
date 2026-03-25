@@ -3,7 +3,7 @@ import Link from "next/link";
 interface ButtonProps {
   href: string;
   children: React.ReactNode;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "sketch";
   external?: boolean;
   className?: string;
 }
@@ -19,6 +19,7 @@ export default function Button({
   const variants = {
     primary: "bg-blue text-white hover:bg-blue-hover",
     secondary: "border border-rule text-ink hover:border-ink hover:bg-surface",
+    sketch: "border-2 border-ink-blue text-ink-blue hover:bg-ink-blue/5",
   };
 
   const classes = `${base} ${variants[variant]} ${className}`;
