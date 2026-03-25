@@ -1,0 +1,6 @@
+{
+  "buildCommand": "npm run build --prefix lgp-site",
+  "outputDirectory": "lgp-site/.next",
+  "installCommand": "npm install --prefix lgp-site",
+  "framework": "nextjs"
+}
