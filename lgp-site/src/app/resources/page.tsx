@@ -7,7 +7,7 @@ import { getAllDownloads } from "@/lib/downloads";
 
 export const metadata: Metadata = {
   title: "Resources",
-  description: "Articles, frameworks, and tools from The Long Game Project. Free resources on strategy, decision-making, and leadership.",
+  description: "Articles, frameworks, and tools from The Long Game Project on strategy, decision-making, and leadership.",
 };
 
 export default function ResourcesPage() {
@@ -17,23 +17,20 @@ export default function ResourcesPage() {
   return (
     <>
       <Section>
-        <div className="pt-32 pb-12 md:pt-40 md:pb-16">
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-ink leading-tight">
+        <div className="pt-12 pb-12 md:pt-16 md:pb-16">
+          <h1 className="font-editorial text-4xl md:text-5xl font-normal text-text-primary leading-tight mb-4">
             Resources
           </h1>
-          <p className="mt-4 text-lg md:text-xl text-muted max-w-2xl leading-relaxed">
+          <p className="text-lg text-text-secondary max-w-2xl leading-relaxed">
             Articles, frameworks, and tools on strategy, decision-making, and
             building teams that think well under pressure.
           </p>
         </div>
       </Section>
 
-      {/* Articles */}
       {resources.length > 0 && (
         <Section className="pb-16 md:pb-24">
-          <p className="text-xs font-mono uppercase tracking-widest text-muted mb-6">
-            Articles
-          </p>
+          <p className="label text-text-tertiary mb-6">Articles</p>
           <div className="grid md:grid-cols-2 gap-4">
             {resources.map((resource) => (
               <ResourceCard key={resource.slug} {...resource} />
@@ -42,12 +39,9 @@ export default function ResourcesPage() {
         </Section>
       )}
 
-      {/* Downloads */}
       {downloads.length > 0 && (
-        <Section className="pb-24 border-t border-rule/40 pt-16 md:pt-24">
-          <p className="text-xs font-mono uppercase tracking-widest text-muted mb-6">
-            Downloads
-          </p>
+        <Section className="pb-24 border-t border-surface-2 pt-16 md:pt-24">
+          <p className="label text-text-tertiary mb-6">Downloads</p>
           <div className="grid md:grid-cols-2 gap-4">
             {downloads.map((download) => (
               <DownloadCard key={download.filename} {...download} />
@@ -56,10 +50,9 @@ export default function ResourcesPage() {
         </Section>
       )}
 
-      {/* Empty state fallback */}
       {resources.length === 0 && downloads.length === 0 && (
         <Section className="pb-24">
-          <p className="text-muted">More resources coming soon.</p>
+          <p className="text-text-tertiary">More resources coming soon.</p>
         </Section>
       )}
     </>

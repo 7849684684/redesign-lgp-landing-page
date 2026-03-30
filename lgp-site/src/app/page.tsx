@@ -1,375 +1,228 @@
-import Image from "next/image";
 import Section from "@/components/Section";
 import Button from "@/components/Button";
-import StickyNote from "@/components/StickyNote";
-import TextHighlight from "@/components/TextHighlight";
-import TornEdge from "@/components/TornEdge";
-import HandwrittenNote from "@/components/HandwrittenNote";
-import NotebookPaper from "@/components/NotebookPaper";
-import SystemsMap from "@/components/SystemsMap";
-import { CrayonScribble, SketchCircle, SketchUnderline } from "@/components/sketch";
-import { SWIRLY_ARROW_DOWN } from "@/lib/sketch-paths";
+import ProductCard from "@/components/ProductCard";
+
+const products = [
+  {
+    name: "Shortlist",
+    tagline: "Strategy games that teach while you play.",
+    audience: "Teams, facilitators, educators",
+    href: "https://shortlist.games",
+    accentColor: "#4A7C59",
+    tier: "Free",
+  },
+  {
+    name: "InsightRPG",
+    tagline: "Role-play your way to better decisions.",
+    audience: "Teams running tabletop strategy exercises",
+    href: "https://insightrpg.org",
+    accentColor: "#B45309",
+    tier: "Free",
+  },
+  {
+    name: "Courses",
+    tagline: "Self-paced strategic thinking fundamentals.",
+    audience: "Individual learners, emerging leaders",
+    href: "https://courses.longgameproject.org",
+    accentColor: "#1A3A3A",
+    tier: "Free",
+  },
+  {
+    name: "PRISM",
+    tagline: "Reframe problems from every angle.",
+    audience: "Facilitators, coaches, consultants",
+    href: "https://prism.cards",
+    accentColor: "#A0522D",
+    tier: "Purchase",
+  },
+  {
+    name: "Strategy Soup",
+    tagline: "Interrogate your strategy. Argue with it.",
+    audience: "Founders, strategy leads, leadership teams",
+    href: "https://strategysoup.com",
+    accentColor: "#3D4F5F",
+    tier: "SaaS",
+  },
+  {
+    name: "Masterminds",
+    tagline: "Peer cohorts for strategic leaders.",
+    audience: "Senior leaders, founders, CEOs",
+    href: "/mastermind",
+    accentColor: "#B8860B",
+    tier: "Subscription",
+  },
+];
 
 const stats = [
-  { value: "134+", label: "Scenarios designed" },
-  { value: "10+", label: "Years experience" },
-  { value: "$3.4B", label: "Client marketcap" },
+  { value: "130+", label: "Scenarios designed" },
+  { value: "$3.4B", label: "Client market cap" },
   { value: "74.9", label: "NPS score" },
 ];
 
 export default function Home() {
   return (
     <>
-      {/* ===== HERO ===== */}
-      <Section className="relative pt-28 pb-20 md:pt-40 md:pb-32 overflow-visible">
-        {/* Crayon scribbles - top decoration */}
-        <div className="hidden md:block absolute top-8 right-0 w-80 h-16 opacity-50">
-          <CrayonScribble />
-        </div>
-
-        {/* Sticky notes - floating */}
-        <div className="hidden lg:block absolute top-36 right-8 z-10">
-          <StickyNote rotation={-3}>Systems Thinking</StickyNote>
-        </div>
-        <div className="hidden lg:block absolute top-64 right-24 z-10">
-          <StickyNote color="pink" rotation={2}>Future Vision</StickyNote>
-        </div>
-
-        <div className="max-w-3xl relative">
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-ink leading-[1.05] tracking-tighter">
-            THE LONG GAME
+      {/* ── HERO ── */}
+      <Section className="pt-16 pb-20 md:pt-24 md:pb-32">
+        <div className="max-w-3xl">
+          <h1 className="font-editorial text-4xl md:text-6xl lg:text-[3.8rem] font-light text-text-primary leading-[1.15] tracking-tight">
+            Strategic thinking is a skill.
             <br />
-            <span className="text-ink-blue">PROJECT</span>
+            Don&apos;t outsource it.{" "}
+            <span className="text-brand-amber">Practice it.</span>
           </h1>
-          <div className="mt-2 flex items-center gap-3 text-sm font-mono uppercase tracking-[0.15em] text-muted">
-            <span>Strategy Consulting</span>
-            <span className="text-rule">|</span>
-            <span>Creative Studio</span>
-          </div>
-
-          <div className="mt-10 md:mt-14 space-y-3">
-            <p className="font-display text-2xl md:text-3xl font-semibold text-ink leading-snug">
-              Don&apos;t just <TextHighlight color="pink">survive</TextHighlight>,
-              <br className="hidden md:block" />
-              <TextHighlight color="yellow">thrive</TextHighlight> through clarity.
-            </p>
-            <p className="font-display text-xl md:text-2xl text-muted leading-snug mt-4">
-              Craft <TextHighlight color="yellow">vision</TextHighlight>, execute with precision.
-            </p>
-          </div>
-
-          {/* Swirly arrow decoration */}
-          <div className="hidden md:block absolute -right-16 top-48 w-24 h-72 opacity-60">
-            <svg viewBox="0 0 200 300" className="w-full h-full" aria-hidden="true">
-              <path
-                d={SWIRLY_ARROW_DOWN}
-                fill="none"
-                stroke="var(--color-ink-blue)"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+          <p className="mt-6 text-lg md:text-xl text-text-secondary leading-relaxed max-w-xl">
+            We build the environments where better decision makers live.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Button href="#ecosystem" variant="amber">
+              Explore our tools
+            </Button>
+            <Button href="/contact" variant="outline">
+              Talk to us
+            </Button>
           </div>
         </div>
       </Section>
 
-      {/* ===== HERO PHOTO COLLAGE ===== */}
-      <Section className="relative pb-16 md:pb-24 overflow-visible">
-        <div className="relative max-w-4xl mx-auto">
-          {/* Main photo with torn edge and annotations */}
-          <div className="relative" style={{ transform: "rotate(-1deg)" }}>
-            <TornEdge>
-              <Image
-                src="/images/team-whiteboard.jpg"
-                alt="Strategy team collaborating around a whiteboard"
-                width={800}
-                height={500}
-                className="w-full h-auto object-cover"
-                priority
-              />
-            </TornEdge>
-            {/* Hand-drawn circle annotation on photo */}
-            <div className="absolute top-4 right-8">
-              <SketchCircle width={100} height={80} seed={42} />
-            </div>
-            {/* Handwritten caption */}
-            <div className="absolute -bottom-8 right-8 md:right-16">
-              <HandwrittenNote rotation={-2} size="md">
-                A consulting team and crew to show precision.
-              </HandwrittenNote>
-            </div>
-            <div className="absolute -bottom-6 left-8">
-              <HandwrittenNote rotation={1} size="lg">
-                Consulting team
-              </HandwrittenNote>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* ===== STATEMENT ===== */}
-      <Section className="py-12 md:py-20">
+      {/* ── THE PROBLEM ── */}
+      <Section className="py-16 md:py-24 border-t border-surface-2">
         <div className="max-w-2xl">
-          <p className="font-display text-2xl md:text-4xl font-semibold text-ink leading-snug">
-            Strategy is the <TextHighlight color="pink">art</TextHighlight>
-            <br />
-            of the long view.
+          <p className="label text-text-tertiary mb-6">The problem</p>
+          <p className="font-editorial text-2xl md:text-3xl font-semibold text-text-primary leading-snug mb-6">
+            Strategic thinking is atrophying.
           </p>
-          <p className="mt-6 text-muted leading-relaxed text-lg">
-            Most organisations treat strategy as an annual event - a two-day
-            offsite that produces a deck and changes nothing. We believe
-            strategic thinking is a capability that improves with deliberate
-            practice, pressure-testing, and honest feedback.
-          </p>
-          <p className="mt-8 font-display text-xl md:text-2xl font-semibold text-ink">
-            We are the architects of your <TextHighlight color="blue">legacy.</TextHighlight>
-          </p>
-        </div>
-      </Section>
-
-      {/* ===== SYSTEMS MAP ===== */}
-      <div className="relative py-12 md:py-20">
-        <TornEdge>
-          <div className="bg-cream-light py-12 md:py-20 px-6">
-            <div className="mx-auto max-w-5xl">
-              <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
-                {/* Map */}
-                <div className="flex-1 relative">
-                  {/* Sticky notes around the map */}
-                  <div className="hidden md:block absolute -top-6 -left-4 z-10">
-                    <StickyNote rotation={-4}>Systems Thinking</StickyNote>
-                  </div>
-                  <div className="hidden md:block absolute -top-4 left-36 z-10">
-                    <StickyNote rotation={2} color="blue">Future Vision</StickyNote>
-                  </div>
-
-                  <SystemsMap className="mt-12" />
-
-                  {/* Handwritten labels around the map */}
-                  <div className="hidden md:block">
-                    <div className="absolute top-24 right-0">
-                      <HandwrittenNote rotation={-3} size="sm">Collaborative Flow</HandwrittenNote>
-                    </div>
-                    <div className="absolute bottom-16 right-4">
-                      <HandwrittenNote rotation={2} size="sm">Focus Zones</HandwrittenNote>
-                    </div>
-                    <div className="absolute bottom-4 left-12">
-                      <HandwrittenNote rotation={-1} size="sm">Data-Driven Insights</HandwrittenNote>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Photo in the map section */}
-                <div className="w-full lg:w-72 flex-shrink-0 relative" style={{ transform: "rotate(2deg)" }}>
-                  <TornEdge>
-                    <Image
-                      src="/images/team-discussion.jpg"
-                      alt="Team in strategic discussion"
-                      width={600}
-                      height={400}
-                      className="w-full h-auto object-cover"
-                    />
-                  </TornEdge>
-                  <div className="absolute -top-2 -right-2">
-                    <SketchCircle width={60} height={50} seed={88} strokeWidth={1.5} />
-                  </div>
-                  <div className="absolute -bottom-6 left-4">
-                    <HandwrittenNote rotation={-2} size="sm">Uncover Value</HandwrittenNote>
-                  </div>
-                </div>
-              </div>
-
-              {/* Value proposition text */}
-              <p className="mt-12 font-display text-xl md:text-2xl font-medium text-ink leading-relaxed max-w-2xl">
-                We bridge the gap between raw creativity and structured strategy.
-                Our approach is a sophisticated collage of deep insights,
-                innovative thinking, and actionable plans.
-              </p>
-            </div>
-          </div>
-        </TornEdge>
-      </div>
-
-      {/* ===== STRATEGIC PRINCIPLES ===== */}
-      <Section className="py-16 md:py-24">
-        <p className="text-xs font-mono uppercase tracking-widest text-muted mb-8">
-          Strategic Principles in Action
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {/* Principle 1 */}
-          <div className="relative">
-            <div style={{ transform: "rotate(-1deg)" }}>
-              <TornEdge edge="bottom">
-                <Image
-                  src="/images/team-whiteboard.jpg"
-                  alt="Team workshop in action"
-                  width={400}
-                  height={250}
-                  className="w-full h-40 object-cover"
-                />
-              </TornEdge>
-            </div>
-            <div className="absolute -top-2 left-2">
-              <HandwrittenNote color="var(--color-crayon-orange)" rotation={-3} size="sm">
-                Exploration
-              </HandwrittenNote>
-            </div>
-            <p className="mt-4 text-sm text-muted leading-relaxed">
-              Tabletop exercises that let your team rehearse high-stakes
-              decisions before they are real. Pressure-test strategy in a safe
-              environment.
+          <div className="space-y-4 text-text-secondary leading-relaxed">
+            <p>
+              Organisations spend millions on strategy consultants, then wonder
+              why nothing changes. The answer is uncomfortable: you cannot
+              outsource thinking. When someone else does your strategic work,
+              your own capability withers.
             </p>
-          </div>
-
-          {/* Principle 2 */}
-          <div className="relative">
-            <div style={{ transform: "rotate(1deg)" }}>
-              <TornEdge edge="bottom">
-                <Image
-                  src="/images/team-discussion.jpg"
-                  alt="Strategic discussion session"
-                  width={400}
-                  height={250}
-                  className="w-full h-40 object-cover"
-                />
-              </TornEdge>
-            </div>
-            <div className="absolute -top-2 right-4">
-              <HandwrittenNote color="var(--color-ink-blue)" rotation={2} size="sm">
-                Action
-              </HandwrittenNote>
-            </div>
-            <p className="mt-4 text-sm text-muted leading-relaxed">
-              Strategic advisory for founders and leadership teams. Not a slide
-              deck - a thinking partner who challenges your assumptions.
+            <p>
+              AI is accelerating this. Every shortcut that removes the need to
+              think deeply is another rep you did not take. The organisations
+              that will thrive are the ones that treat strategic thinking as a
+              muscle - one that needs deliberate, repeated exercise.
             </p>
-          </div>
-
-          {/* Principle 3 */}
-          <div className="relative">
-            <div style={{ transform: "rotate(-0.5deg)" }}>
-              <TornEdge edge="bottom">
-                <Image
-                  src="/images/team-planning.jpg"
-                  alt="Planning and collaboration"
-                  width={400}
-                  height={250}
-                  className="w-full h-40 object-cover"
-                />
-              </TornEdge>
-            </div>
-            <div className="absolute -top-2 left-4">
-              <HandwrittenNote color="var(--color-crayon-purple)" rotation={-1} size="sm">
-                Embrace uncertainty
-              </HandwrittenNote>
-            </div>
-            <p className="mt-4 text-sm text-muted leading-relaxed">
-              Frameworks, decision tools, and products you can take back to your
-              team. Better decisions, daily.
+            <p>
+              That is what The Long Game Project builds: the tools, environments,
+              and communities where strategic thinkers get sharper.
             </p>
           </div>
         </div>
       </Section>
 
-      {/* ===== SOCIAL PROOF ===== */}
-      <section className="relative bg-ink text-cream py-16 md:py-24">
-        <div className="mx-auto max-w-5xl px-6 md:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-            {stats.map((stat) => (
-              <div key={stat.label} className="relative">
-                <p className="font-display text-3xl md:text-4xl font-bold text-cream">
-                  {stat.value}
-                </p>
-                <p className="text-sm text-cream/50 mt-1">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-
-          <blockquote className="max-w-2xl">
-            <p className="font-display text-xl md:text-2xl font-light text-cream/80 italic leading-relaxed">
-              &ldquo;This was the first time our leadership team actually
-              stress-tested a strategy before committing resources. The
-              exercise changed how we make decisions.&rdquo;
-            </p>
-            <cite className="block mt-4 text-sm text-cream/40 not-italic">
-              Director, Management Consulting Firm
-            </cite>
-          </blockquote>
+      {/* ── PRODUCT ECOSYSTEM ── */}
+      <Section
+        id="ecosystem"
+        className="py-16 md:py-24 border-t border-surface-2"
+        surface={1}
+      >
+        <div className="mb-10">
+          <p className="label text-text-tertiary mb-3">The ecosystem</p>
+          <h2 className="font-editorial text-3xl md:text-4xl font-normal text-text-primary mb-3">
+            Start anywhere. Go as deep as you need.
+          </h2>
+          <p className="text-text-secondary max-w-xl">
+            Free tools to get started. Products to go deeper. Services for the
+            highest stakes.
+          </p>
         </div>
-      </section>
 
-      {/* ===== NOTEBOOK CTA ===== */}
-      <Section className="py-16 md:py-24">
-        <div className="max-w-2xl mx-auto">
-          <NotebookPaper>
-            <div className="space-y-4">
-              <HandwrittenNote size="lg" rotation={-1}>
-                NOTES:
-              </HandwrittenNote>
-              <p className="font-hand text-xl md:text-2xl text-ink-blue leading-relaxed">
-                Focus on sustainable growth.
-              </p>
-              <p className="font-hand text-lg md:text-xl text-ink-blue leading-relaxed" style={{ transform: "rotate(-0.5deg)" }}>
-                Re-evaluate core competencies.
-              </p>
-              <p className="font-hand text-xl md:text-2xl text-ink-blue font-semibold leading-relaxed">
-                Prioritize long-term value creation
-                <br />
-                over short-term gains.
-              </p>
-              <p className="font-hand text-lg md:text-xl text-ink-blue leading-relaxed mt-2" style={{ transform: "rotate(0.5deg)" }}>
-                Embrace uncertainty
-              </p>
-              <div className="mt-8 pt-4">
-                <p className="font-hand text-xl text-ink-blue font-semibold">
-                  [Long Game Project Team]
-                </p>
-              </div>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Button href="/contact">Book a discovery call</Button>
-                <Button href="mailto:hello@longgameproject.org" variant="secondary" external>
-                  hello@longgameproject.org
-                </Button>
-              </div>
-            </div>
-          </NotebookPaper>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {products.map((product) => (
+            <ProductCard key={product.name} {...product} />
+          ))}
         </div>
       </Section>
 
-      {/* ===== SERVICES QUICK NAV ===== */}
-      <Section className="pb-16 md:pb-24">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-          <div>
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-ink mb-2">
-              Let&apos;s talk about what&apos;s not working.
-            </h2>
-            <p className="text-muted leading-relaxed max-w-md">
-              No pitch. Just a conversation about where your strategy process
-              falls short and whether we can help.
-            </p>
-          </div>
+      {/* ── SOCIAL PROOF ── */}
+      <Section className="py-16 md:py-24 border-t border-surface-2">
+        <div className="grid md:grid-cols-3 gap-12 mb-16">
+          {stats.map((stat) => (
+            <div key={stat.label}>
+              <p className="text-4xl md:text-5xl font-light tracking-tight text-brand-teal tabular-nums">
+                {stat.value}
+              </p>
+              <p className="text-sm text-text-tertiary mt-1">{stat.label}</p>
+            </div>
+          ))}
+        </div>
 
-          {/* Sketch-style nav pills (like Image 2 right side) */}
-          <div className="flex flex-col gap-3">
-            {[
-              { label: "Strategy", href: "/services" },
-              { label: "Process", href: "/services#exercise" },
-              { label: "Work", href: "/resources" },
-              { label: "Contact", href: "/contact" },
-            ].map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="relative inline-flex items-center justify-center px-8 py-2 font-mono text-xs uppercase tracking-widest text-ink-blue border-2 border-ink-blue hover:bg-ink-blue/5 transition-colors duration-150"
-                style={{
-                  borderRadius: "50% 45% 52% 48% / 48% 52% 45% 50%",
-                }}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
+        <blockquote className="max-w-2xl border-l-3 border-brand-amber pl-6">
+          <p className="font-editorial text-xl md:text-2xl font-light italic text-text-secondary leading-relaxed">
+            &ldquo;This was the first time our leadership team actually
+            stress-tested a strategy before committing resources. The exercise
+            changed how we make decisions.&rdquo;
+          </p>
+          <cite className="block mt-4 text-sm text-text-tertiary not-italic">
+            Director, Management Consulting Firm
+          </cite>
+        </blockquote>
+      </Section>
+
+      {/* ── HOW IT WORKS ── */}
+      <Section className="py-16 md:py-24 border-t border-surface-2" surface={1}>
+        <p className="label text-text-tertiary mb-3">How it works</p>
+        <h2 className="font-editorial text-3xl md:text-4xl font-normal text-text-primary mb-10">
+          A ladder, not a funnel.
+        </h2>
+
+        <div className="grid md:grid-cols-4 gap-6">
+          {[
+            {
+              step: "01",
+              title: "Explore",
+              desc: "Try free tools like Shortlist, InsightRPG, and our courses. No commitment.",
+            },
+            {
+              step: "02",
+              title: "Equip",
+              desc: "Get PRISM cards and Strategy Soup to bring strategic practice into your daily work.",
+            },
+            {
+              step: "03",
+              title: "Connect",
+              desc: "Join a Mastermind cohort of peers who challenge and sharpen your thinking.",
+            },
+            {
+              step: "04",
+              title: "Partner",
+              desc: "Engage our consulting team for bespoke strategy work at the highest stakes.",
+            },
+          ].map((item) => (
+            <div key={item.step}>
+              <p className="text-3xl font-light text-brand-amber tabular-nums mb-2">
+                {item.step}
+              </p>
+              <h3 className="font-editorial text-lg font-semibold text-text-primary mb-2">
+                {item.title}
+              </h3>
+              <p className="text-sm text-text-secondary leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ── CONSULTING PREVIEW ── */}
+      <Section className="py-16 md:py-24 border-t border-surface-2">
+        <div className="max-w-2xl">
+          <p className="label text-text-tertiary mb-3">Bespoke</p>
+          <h2 className="font-editorial text-3xl md:text-4xl font-normal text-text-primary mb-4">
+            When the stakes are highest.
+          </h2>
+          <p className="text-text-secondary leading-relaxed mb-6">
+            For organisations facing consequential strategic decisions, our
+            consulting practice brings tabletop exercises, structured advisory,
+            and honest challenge to the table. Not a slide deck factory - a
+            thinking partner.
+          </p>
+          <Button href="/consulting" variant="teal">
+            Learn about consulting
+          </Button>
         </div>
       </Section>
     </>

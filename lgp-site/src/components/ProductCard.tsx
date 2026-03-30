@@ -1,34 +1,47 @@
 interface ProductCardProps {
-  title: string;
-  description: string;
+  name: string;
+  tagline: string;
+  audience: string;
   href: string;
-  status?: string;
+  accentColor: string;
+  tier: string;
 }
 
-export default function ProductCard({ title, description, href, status }: ProductCardProps) {
+export default function ProductCard({
+  name,
+  tagline,
+  audience,
+  href,
+  accentColor,
+  tier,
+}: ProductCardProps) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block border border-rule/60 rounded-sm p-6 md:p-8 transition-colors duration-150 hover:border-ink/30 hover:bg-surface/40"
+      className="group block bg-surface-0 border border-surface-2 rounded-[var(--radius-md)] p-6 transition-all duration-200 hover:border-brand-teal hover:shadow-sm"
     >
-      {status && (
-        <span className="inline-block text-xs font-mono uppercase tracking-widest text-blue mb-3">
-          {status}
+      <div className="flex items-center justify-between mb-3">
+        <span
+          className="label text-xs px-2 py-0.5 rounded-full"
+          style={{
+            color: accentColor,
+            backgroundColor: `${accentColor}15`,
+          }}
+        >
+          {tier}
         </span>
-      )}
-      <h3 className="font-display text-xl md:text-2xl font-semibold text-ink mb-3 group-hover:text-blue transition-colors duration-150">
-        {title}
+      </div>
+      <h3 className="font-editorial text-xl font-normal text-text-primary mb-1 group-hover:text-brand-teal transition-colors">
+        {name}
       </h3>
-      <p className="text-muted leading-relaxed text-[0.95rem] mb-4">
-        {description}
+      <p className="font-editorial text-sm italic font-light text-text-secondary mb-3">
+        {tagline}
       </p>
-      <span className="inline-flex items-center gap-1.5 text-sm text-blue font-medium">
-        Visit
-        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <path d="M6 3h7v7M13 3L6 10" />
-        </svg>
+      <p className="text-xs text-text-tertiary mb-4">{audience}</p>
+      <span className="text-sm font-medium text-brand-teal group-hover:underline">
+        Try it &rarr;
       </span>
     </a>
   );

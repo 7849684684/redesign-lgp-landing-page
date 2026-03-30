@@ -1,19 +1,15 @@
 interface SectionProps {
   children: React.ReactNode;
   className?: string;
-  dark?: boolean;
   id?: string;
+  surface?: 0 | 1;
 }
 
-export default function Section({ children, className = "", dark = false, id }: SectionProps) {
+export default function Section({ children, className = "", id, surface }: SectionProps) {
+  const bg = surface === 1 ? "bg-surface-1" : "";
   return (
-    <section
-      id={id}
-      className={`px-6 md:px-8 ${dark ? "bg-ink text-cream" : ""} ${className}`}
-    >
-      <div className="mx-auto max-w-5xl">
-        {children}
-      </div>
+    <section id={id} className={`px-6 ${bg} ${className}`}>
+      <div className="mx-auto max-w-[1280px]">{children}</div>
     </section>
   );
 }

@@ -18,7 +18,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const resource = getResourceBySlug(slug);
   if (!resource) return {};
-
   return {
     title: resource.meta.title,
     description: resource.meta.description,
@@ -35,27 +34,25 @@ export default async function ResourceArticle({ params }: Props) {
 
   return (
     <Section>
-      <div className="pt-32 pb-6 md:pt-40 md:pb-8">
+      <div className="pt-12 pb-6 md:pt-16 md:pb-8">
         <Link
           href="/resources"
-          className="text-sm text-muted hover:text-ink transition-colors duration-150 mb-6 inline-block"
+          className="text-sm text-text-tertiary hover:text-text-primary transition-colors mb-6 inline-block"
         >
           &larr; Back to resources
         </Link>
 
         <div className="flex items-center gap-3 mb-4">
-          <span className="text-xs font-mono uppercase tracking-widest text-blue">
-            {resource.meta.category}
-          </span>
-          <span className="text-xs text-muted">{resource.meta.date}</span>
+          <span className="label text-brand-teal">{resource.meta.category}</span>
+          <span className="text-xs text-text-tertiary">{resource.meta.date}</span>
         </div>
 
-        <h1 className="font-display text-3xl md:text-5xl font-bold text-ink leading-tight">
+        <h1 className="font-editorial text-3xl md:text-5xl font-normal text-text-primary leading-tight">
           {resource.meta.title}
         </h1>
 
         {resource.meta.description && (
-          <p className="mt-4 text-lg text-muted max-w-2xl leading-relaxed">
+          <p className="mt-4 text-lg text-text-secondary max-w-2xl leading-relaxed">
             {resource.meta.description}
           </p>
         )}

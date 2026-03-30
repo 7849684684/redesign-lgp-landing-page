@@ -3,7 +3,7 @@ import Link from "next/link";
 interface ButtonProps {
   href: string;
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "sketch";
+  variant?: "amber" | "outline" | "teal";
   external?: boolean;
   className?: string;
 }
@@ -11,15 +11,16 @@ interface ButtonProps {
 export default function Button({
   href,
   children,
-  variant = "primary",
+  variant = "amber",
   external = false,
   className = "",
 }: ButtonProps) {
-  const base = "inline-flex items-center gap-2 px-6 py-3 rounded-sm font-medium text-sm tracking-wide transition-colors duration-150";
+  const base =
+    "inline-flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all duration-150";
   const variants = {
-    primary: "bg-blue text-white hover:bg-blue-hover",
-    secondary: "border border-rule text-ink hover:border-ink hover:bg-surface",
-    sketch: "border-2 border-ink-blue text-ink-blue hover:bg-ink-blue/5",
+    amber: `bg-brand-amber text-white hover:bg-brand-amber-light rounded-[${`var(--radius-sm)`}]`,
+    outline: `border border-surface-2 text-text-primary hover:border-brand-teal hover:text-brand-teal rounded-[${`var(--radius-sm)`}]`,
+    teal: `bg-brand-teal text-white hover:bg-brand-teal-light rounded-[${`var(--radius-sm)`}]`,
   };
 
   const classes = `${base} ${variants[variant]} ${className}`;

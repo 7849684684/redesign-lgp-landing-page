@@ -1,39 +1,30 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Caveat } from "next/font/google";
-import SiteHeader from "@/components/SiteHeader";
+import { Source_Sans_3 } from "next/font/google";
+import EndorserBar from "@/components/EndorserBar";
 import SiteFooter from "@/components/SiteFooter";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const sourceSans = Source_Sans_3({
+  variable: "--font-source-sans",
   subsets: ["latin"],
   display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500"],
-});
-
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "The Long Game Project - Strategy Practice",
+    default: "The Long Game Project - Building Better Thinkers",
     template: "%s | The Long Game Project",
   },
   description:
-    "Strategy practice for teams and leaders who take decisions seriously. Tabletop exercises, advisory, tools and products.",
+    "Strategic thinking is a skill. Don't outsource it. Practice it. We build the environments where better decision makers live.",
+  icons: {
+    icon: "/logos/lgp-icon-teal.svg",
+  },
   openGraph: {
     title: "The Long Game Project",
-    description: "Strategy practice for teams and leaders who take decisions seriously.",
+    description: "Strategic thinking is a skill. Don't outsource it. Practice it.",
     type: "website",
   },
 };
@@ -47,20 +38,14 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,300;1,6..72,400&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${caveat.variable} antialiased`}
-      >
-        <SiteHeader />
+      <body className={`${sourceSans.variable}`}>
+        <EndorserBar />
         <main className="min-h-screen">{children}</main>
         <SiteFooter />
       </body>

@@ -12,20 +12,16 @@ export default function ResourceCard({ title, description, date, category, slug 
   return (
     <Link
       href={`/resources/${slug}`}
-      className="group block border border-rule/60 rounded-sm p-6 transition-colors duration-150 hover:border-ink/30 hover:bg-surface/40"
+      className="group block border border-surface-2 rounded-[var(--radius-md)] p-6 transition-all duration-200 hover:border-brand-teal hover:shadow-sm"
     >
       <div className="flex items-center gap-3 mb-3">
-        <span className="text-xs font-mono uppercase tracking-widest text-blue">
-          {category}
-        </span>
-        <span className="text-xs text-muted">{date}</span>
+        <span className="label text-brand-teal">{category}</span>
+        <span className="text-xs text-text-tertiary">{date}</span>
       </div>
-      <h3 className="font-display text-lg font-semibold text-ink mb-2 group-hover:text-blue transition-colors duration-150">
+      <h3 className="font-editorial text-lg font-normal text-text-primary mb-2 group-hover:text-brand-teal transition-colors">
         {title}
       </h3>
-      <p className="text-sm text-muted leading-relaxed">
-        {description}
-      </p>
+      <p className="text-sm text-text-secondary leading-relaxed">{description}</p>
     </Link>
   );
 }
