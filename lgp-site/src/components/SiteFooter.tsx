@@ -27,7 +27,7 @@ export default function SiteFooter() {
       <div className="mx-auto max-w-[1280px] px-6 pt-16 pb-8">
         {/* Brand */}
         <div className="flex items-center gap-3 mb-2">
-          <Image src="/logos/lgp-icon-teal.svg" alt="" width={28} height={28} className="shrink-0" />
+          <Image src="/logos/lgp-icon-teal-solid.svg" alt="" width={28} height={28} className="shrink-0" />
           <span className="font-editorial text-lg text-text-primary">
             The Long Game Project
           </span>
