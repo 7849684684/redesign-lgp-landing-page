@@ -26,11 +26,14 @@ export default function SiteFooter() {
     <footer className="border-t border-surface-2">
       <div className="mx-auto max-w-[1280px] px-6 pt-16 pb-8">
         {/* Brand */}
-        <div className="flex items-center gap-3 mb-2">
-          <Image src="/logos/lgp-icon-teal-solid.svg" alt="" width={28} height={28} className="shrink-0" />
-          <span className="font-editorial text-lg text-text-primary">
-            The Long Game Project
-          </span>
+        <div className="mb-2">
+          <Image
+            src="/logos/lgp-horizontal-teal-solid.svg"
+            alt="The Long Game Project"
+            width={200}
+            height={40}
+            className="h-10 w-auto"
+          />
         </div>
         <p className="text-sm text-text-tertiary mb-8">
           Strategic thinking is a skill. Practice it.
