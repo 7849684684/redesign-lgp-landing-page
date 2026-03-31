@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
 import Button from "@/components/Button";
+import CrossProductCTA from "@/components/CrossProductCTA";
 
 export const metadata: Metadata = {
   title: "Masterminds",
@@ -10,8 +11,9 @@ export const metadata: Metadata = {
 export default function MastermindPage() {
   return (
     <>
-      <Section>
-        <div className="pt-12 pb-12 md:pt-16 md:pb-16 max-w-3xl">
+      {/* Hero - amber accent dominant per brief */}
+      <Section className="pt-16 pb-16 md:pt-20 md:pb-20">
+        <div className="max-w-3xl">
           <p className="label text-brand-amber mb-4">Peer cohorts</p>
           <h1 className="font-editorial text-4xl md:text-5xl font-normal text-text-primary leading-tight mb-6">
             Masterminds
@@ -24,11 +26,12 @@ export default function MastermindPage() {
         </div>
       </Section>
 
+      {/* How it works */}
       <Section className="py-16 md:py-24 border-t border-surface-2">
         <div className="max-w-3xl">
           <p className="label text-text-tertiary mb-6">How it works</p>
           <div className="grid md:grid-cols-2 gap-8">
-            <div>
+            <div className="border-l-[3px] border-brand-amber pl-5">
               <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
                 Small groups
               </h3>
@@ -37,7 +40,7 @@ export default function MastermindPage() {
                 and perspective. No competitors in the same group.
               </p>
             </div>
-            <div>
+            <div className="border-l-[3px] border-brand-amber pl-5">
               <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
                 Regular cadence
               </h3>
@@ -46,7 +49,7 @@ export default function MastermindPage() {
                 and accountability check-ins. Remote-first, timezone-aware.
               </p>
             </div>
-            <div>
+            <div className="border-l-[3px] border-brand-amber pl-5">
               <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
                 Facilitated challenge
               </h3>
@@ -55,7 +58,7 @@ export default function MastermindPage() {
                 conversation honest, productive, and moving forward.
               </p>
             </div>
-            <div>
+            <div className="border-l-[3px] border-brand-amber pl-5">
               <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
                 Real decisions
               </h3>
@@ -68,32 +71,34 @@ export default function MastermindPage() {
         </div>
       </Section>
 
-      <Section className="py-16 md:py-24 border-t border-surface-2" surface={1}>
+      {/* Who it's for */}
+      <Section className="py-16 md:py-24" surface={1}>
         <div className="max-w-3xl">
           <p className="label text-text-tertiary mb-6">Who it is for</p>
-          <ul className="space-y-3 text-text-secondary leading-relaxed">
+          <ul className="space-y-4 text-text-secondary leading-relaxed">
             <li className="flex gap-3">
-              <span className="text-brand-amber shrink-0">&bull;</span>
+              <span className="text-brand-amber shrink-0 text-lg">&bull;</span>
               Founders and CEOs who make strategic decisions without peers to challenge them
             </li>
             <li className="flex gap-3">
-              <span className="text-brand-amber shrink-0">&bull;</span>
+              <span className="text-brand-amber shrink-0 text-lg">&bull;</span>
               Senior leaders who have outgrown mentorship and need peer-level thinking partners
             </li>
             <li className="flex gap-3">
-              <span className="text-brand-amber shrink-0">&bull;</span>
+              <span className="text-brand-amber shrink-0 text-lg">&bull;</span>
               Strategy leads who want to practice decision-making in a safe environment before real stakes
             </li>
           </ul>
         </div>
       </Section>
 
-      <Section className="py-16 md:py-24 border-t border-surface-2">
+      {/* CTA */}
+      <Section className="py-20 md:py-28 border-t border-surface-2">
         <div className="max-w-xl">
           <h2 className="font-editorial text-3xl font-normal text-text-primary mb-4">
             Applications are open.
           </h2>
-          <p className="text-text-secondary mb-6">
+          <p className="text-text-secondary mb-8">
             Cohorts are curated. Tell us about yourself and we will let you
             know if there is a good fit.
           </p>
@@ -101,6 +106,16 @@ export default function MastermindPage() {
             Apply for a cohort
           </Button>
         </div>
+      </Section>
+
+      {/* Cross-product CTA */}
+      <Section className="pb-20">
+        <CrossProductCTA
+          label="Need something more bespoke?"
+          product="Consulting"
+          description="Full-service tabletop exercise design and facilitation for your leadership team."
+          href="/consulting"
+        />
       </Section>
     </>
   );

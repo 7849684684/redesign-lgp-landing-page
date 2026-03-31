@@ -79,6 +79,12 @@ body {
   --color-accent-strategysoup: #6A8AA0;
 }
 
+/* Focus indicator */
+*:focus-visible {
+  outline: 2px solid var(--color-brand-teal);
+  outline-offset: 2px;
+}
+
 ::selection {
   background: var(--color-brand-teal);
   color: var(--color-surface-0);
@@ -87,6 +93,23 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--color-surface-0); }
 ::-webkit-scrollbar-thumb { background: var(--color-surface-3); border-radius: 3px; }
+
+/* Skip to content */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--color-brand-teal);
+  color: var(--color-surface-0);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.skip-to-content:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
 
 /* Prose for MDX */
 .prose {

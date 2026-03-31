@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
 import Button from "@/components/Button";
+import CrossProductCTA from "@/components/CrossProductCTA";
 
 export const metadata: Metadata = {
   title: "Consulting",
@@ -10,8 +11,9 @@ export const metadata: Metadata = {
 export default function ConsultingPage() {
   return (
     <>
-      <Section>
-        <div className="pt-12 pb-12 md:pt-16 md:pb-16 max-w-3xl">
+      {/* Hero - elevated surface for premium feel */}
+      <Section className="pt-16 pb-16 md:pt-20 md:pb-20" surface={1}>
+        <div className="max-w-3xl">
           <p className="label text-brand-amber mb-4">Bespoke consulting</p>
           <h1 className="font-editorial text-4xl md:text-5xl font-normal text-text-primary leading-tight mb-6">
             Strategy that survives first contact with reality.
@@ -25,7 +27,7 @@ export default function ConsultingPage() {
       </Section>
 
       {/* What we do */}
-      <Section className="py-16 md:py-24 border-t border-surface-2">
+      <Section className="py-16 md:py-24">
         <div className="max-w-3xl">
           <p className="label text-text-tertiary mb-6">What we do</p>
           <div className="grid md:grid-cols-2 gap-12">
@@ -104,46 +106,58 @@ export default function ConsultingPage() {
       </Section>
 
       {/* Social proof */}
-      <Section className="py-16 md:py-24 border-t border-surface-2">
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <div>
-            <p className="text-3xl font-light text-brand-teal tabular-nums">130+</p>
-            <p className="text-sm text-text-tertiary mt-1">Scenarios designed</p>
+      <section className="bg-brand-teal text-white py-12 md:py-16">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <div className="grid md:grid-cols-3 gap-8 mb-10">
+            <div>
+              <p className="text-3xl font-light tabular-nums">130+</p>
+              <p className="text-sm mt-1 opacity-60">Scenarios designed</p>
+            </div>
+            <div>
+              <p className="text-3xl font-light tabular-nums">$3.4B</p>
+              <p className="text-sm mt-1 opacity-60">Client market cap</p>
+            </div>
+            <div>
+              <p className="text-3xl font-light tabular-nums">74.9</p>
+              <p className="text-sm mt-1 opacity-60">NPS score</p>
+            </div>
           </div>
-          <div>
-            <p className="text-3xl font-light text-brand-teal tabular-nums">$3.4B</p>
-            <p className="text-sm text-text-tertiary mt-1">Client market cap</p>
-          </div>
-          <div>
-            <p className="text-3xl font-light text-brand-teal tabular-nums">74.9</p>
-            <p className="text-sm text-text-tertiary mt-1">NPS score</p>
-          </div>
-        </div>
 
-        <blockquote className="max-w-xl border-l-3 border-brand-amber pl-6">
-          <p className="font-editorial text-lg font-light italic text-text-secondary leading-relaxed">
-            &ldquo;This was the first time our leadership team actually
-            stress-tested a strategy before committing resources.&rdquo;
-          </p>
-          <cite className="block mt-3 text-sm text-text-tertiary not-italic">
-            Director, Management Consulting Firm
-          </cite>
-        </blockquote>
-      </Section>
+          <blockquote className="max-w-xl border-l-[3px] border-brand-amber pl-6">
+            <p className="font-editorial text-lg font-light italic leading-relaxed opacity-85">
+              &ldquo;This was the first time our leadership team actually
+              stress-tested a strategy before committing resources.&rdquo;
+            </p>
+            <cite className="block mt-3 text-sm not-italic opacity-50">
+              Director, Management Consulting Firm
+            </cite>
+          </blockquote>
+        </div>
+      </section>
 
       {/* CTA */}
-      <Section className="py-16 md:py-24 border-t border-surface-2" surface={1}>
+      <Section className="py-20 md:py-28">
         <div className="max-w-xl">
           <h2 className="font-editorial text-3xl font-normal text-text-primary mb-4">
             Let&apos;s talk about the decision you are facing.
           </h2>
-          <p className="text-text-secondary mb-6">
+          <p className="text-text-secondary mb-8">
             No pitch. Just a conversation about whether we can help.
           </p>
           <Button href="/contact" variant="teal">
             Book a discovery call
           </Button>
         </div>
+      </Section>
+
+      {/* Cross-product CTA */}
+      <Section className="pb-20">
+        <CrossProductCTA
+          label="Keep practising between engagements"
+          product="Masterminds"
+          description="Monthly peer cohorts for senior leaders. Structured challenge, real decisions, ongoing accountability."
+          href="/mastermind"
+        />
       </Section>
     </>
   );

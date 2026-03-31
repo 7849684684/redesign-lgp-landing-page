@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, } from "next/navigation";
+import { usePathname } from "next/navigation";
+import ThemeToggle from "./ThemeToggle";
 
 const products = [
   { href: "https://shortlist.games", label: "Shortlist" },
@@ -66,24 +68,26 @@ export default function EndorserBar() {
             />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6">
-            {siteLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium transition-colors ${
-                  pathname === link.href || pathname?.startsWith(link.href + "/")
-                    ? "text-brand-teal"
-                    : "text-text-secondary hover:text-text-primary"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="flex items-center gap-2">
+            <nav className="hidden md:flex items-center gap-6 mr-4">
+              {siteLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors ${
+                    pathname === link.href || pathname?.startsWith(link.href + "/")
+                      ? "text-brand-teal"
+                      : "text-text-secondary hover:text-text-primary"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
 
-          {/* Mobile menu button */}
-          <MobileMenu pathname={pathname} />
+            <ThemeToggle />
+            <MobileMenu pathname={pathname} />
+          </div>
         </div>
       </div>
     </header>
@@ -130,5 +134,3 @@ function MobileMenu({ pathname }: { pathname: string | null }) {
     </div>
   );
 }
-
-import { useState } from "react";

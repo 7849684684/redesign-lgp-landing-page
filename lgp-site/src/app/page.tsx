@@ -2,7 +2,7 @@ import Section from "@/components/Section";
 import Button from "@/components/Button";
 import ProductCard from "@/components/ProductCard";
 
-const products = [
+const freeProducts = [
   {
     name: "Shortlist",
     tagline: "Strategy games that teach while you play.",
@@ -27,9 +27,12 @@ const products = [
     accentColor: "#1A3A3A",
     tier: "Free",
   },
+];
+
+const paidProducts = [
   {
     name: "PRISM",
-    tagline: "Reframe problems from every angle.",
+    tagline: "Better questions in your hands.",
     audience: "Facilitators, coaches, consultants",
     href: "https://prism.cards",
     accentColor: "#A0522D",
@@ -43,14 +46,6 @@ const products = [
     accentColor: "#3D4F5F",
     tier: "SaaS",
   },
-  {
-    name: "Masterminds",
-    tagline: "Peer cohorts for strategic leaders.",
-    audience: "Senior leaders, founders, CEOs",
-    href: "/mastermind",
-    accentColor: "#B8860B",
-    tier: "Subscription",
-  },
 ];
 
 const stats = [
@@ -63,18 +58,18 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ── */}
-      <Section className="pt-16 pb-20 md:pt-24 md:pb-32">
+      <Section className="pt-20 pb-24 md:pt-32 md:pb-40">
         <div className="max-w-3xl">
           <h1 className="font-editorial text-4xl md:text-6xl lg:text-[3.8rem] font-light text-text-primary leading-[1.15] tracking-tight">
             Strategic thinking is a skill.
-            <br />
+            <br className="hidden md:block" />
             Don&apos;t outsource it.{" "}
             <span className="text-brand-amber">Practice it.</span>
           </h1>
           <p className="mt-6 text-lg md:text-xl text-text-secondary leading-relaxed max-w-xl">
             We build the environments where better decision makers live.
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-10 flex flex-wrap gap-4">
             <Button href="#ecosystem" variant="amber">
               Explore our tools
             </Button>
@@ -86,12 +81,11 @@ export default function Home() {
       </Section>
 
       {/* ── THE PROBLEM ── */}
-      <Section className="py-16 md:py-24 border-t border-surface-2">
+      <Section className="py-16 md:py-20 border-t border-surface-2">
         <div className="max-w-2xl">
-          <p className="label text-text-tertiary mb-6">The problem</p>
-          <p className="font-editorial text-2xl md:text-3xl font-semibold text-text-primary leading-snug mb-6">
+          <h2 className="font-editorial text-2xl md:text-3xl font-semibold text-text-primary leading-snug mb-6">
             Strategic thinking is atrophying.
-          </p>
+          </h2>
           <div className="space-y-4 text-text-secondary leading-relaxed">
             <p>
               Organisations spend millions on strategy consultants, then wonder
@@ -105,9 +99,8 @@ export default function Home() {
               that will thrive are the ones that treat strategic thinking as a
               muscle - one that needs deliberate, repeated exercise.
             </p>
-            <p>
-              That is what The Long Game Project builds: the tools, environments,
-              and communities where strategic thinkers get sharper.
+            <p className="text-text-primary font-medium">
+              That is what The Long Game Project builds.
             </p>
           </div>
         </div>
@@ -116,10 +109,10 @@ export default function Home() {
       {/* ── PRODUCT ECOSYSTEM ── */}
       <Section
         id="ecosystem"
-        className="py-16 md:py-24 border-t border-surface-2"
+        className="py-20 md:py-32"
         surface={1}
       >
-        <div className="mb-10">
+        <div className="mb-12">
           <p className="label text-text-tertiary mb-3">The ecosystem</p>
           <h2 className="font-editorial text-3xl md:text-4xl font-normal text-text-primary mb-3">
             Start anywhere. Go as deep as you need.
@@ -130,40 +123,91 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {products.map((product) => (
-            <ProductCard key={product.name} {...product} />
-          ))}
+        {/* Free tier - compact, no card borders */}
+        <div className="mb-12">
+          <p className="label text-text-tertiary mb-4">Start free</p>
+          <div className="grid md:grid-cols-3 gap-6 border-t border-surface-2 pt-6">
+            {freeProducts.map((product) => (
+              <ProductCard key={product.name} {...product} size="compact" />
+            ))}
+          </div>
         </div>
-      </Section>
 
-      {/* ── SOCIAL PROOF ── */}
-      <Section className="py-16 md:py-24 border-t border-surface-2">
-        <div className="grid md:grid-cols-3 gap-12 mb-16">
-          {stats.map((stat) => (
-            <div key={stat.label}>
-              <p className="text-4xl md:text-5xl font-light tracking-tight text-brand-teal tabular-nums">
-                {stat.value}
+        {/* Paid tier - featured cards with borders */}
+        <div className="mb-12">
+          <p className="label text-text-tertiary mb-4">Go deeper</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            {paidProducts.map((product) => (
+              <ProductCard key={product.name} {...product} size="featured" />
+            ))}
+          </div>
+        </div>
+
+        {/* Services tier - distinct treatment, no cards */}
+        <div>
+          <p className="label text-text-tertiary mb-4">Work with us</p>
+          <div className="grid md:grid-cols-2 gap-6 border-t border-surface-2 pt-6">
+            <div className="border-l-[3px] border-brand-amber pl-6">
+              <h3 className="font-editorial text-xl text-text-primary mb-1">
+                <a href="/mastermind" className="hover:text-brand-teal transition-colors">
+                  Masterminds
+                </a>
+              </h3>
+              <p className="font-editorial text-sm italic font-light text-text-secondary mb-2">
+                Peer cohorts for strategic leaders.
               </p>
-              <p className="text-sm text-text-tertiary mt-1">{stat.label}</p>
+              <p className="text-xs text-text-tertiary mb-3">Senior leaders, founders, CEOs</p>
+              <a href="/mastermind" className="text-sm font-medium text-brand-teal hover:underline">
+                Learn more &rarr;
+              </a>
             </div>
-          ))}
+            <div className="border-l-[3px] border-brand-teal pl-6">
+              <h3 className="font-editorial text-xl text-text-primary mb-1">
+                <a href="/consulting" className="hover:text-brand-teal transition-colors">
+                  Consulting
+                </a>
+              </h3>
+              <p className="font-editorial text-sm italic font-light text-text-secondary mb-2">
+                Real pressure. Expert facilitation. Your team, tested.
+              </p>
+              <p className="text-xs text-text-tertiary mb-3">Organisations with budget and strategic ambition</p>
+              <a href="/consulting" className="text-sm font-medium text-brand-teal hover:underline">
+                Learn more &rarr;
+              </a>
+            </div>
+          </div>
         </div>
-
-        <blockquote className="max-w-2xl border-l-3 border-brand-amber pl-6">
-          <p className="font-editorial text-xl md:text-2xl font-light italic text-text-secondary leading-relaxed">
-            &ldquo;This was the first time our leadership team actually
-            stress-tested a strategy before committing resources. The exercise
-            changed how we make decisions.&rdquo;
-          </p>
-          <cite className="block mt-4 text-sm text-text-tertiary not-italic">
-            Director, Management Consulting Firm
-          </cite>
-        </blockquote>
       </Section>
+
+      {/* ── SOCIAL PROOF - teal band ── */}
+      <section className="bg-brand-teal text-white py-16 md:py-20">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <div className="grid md:grid-cols-3 gap-12 mb-12">
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <p className="text-4xl md:text-5xl font-light tracking-tight tabular-nums">
+                  {stat.value}
+                </p>
+                <p className="text-sm mt-1 opacity-60">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <blockquote className="max-w-2xl border-l-[3px] border-brand-amber pl-6">
+            <p className="font-editorial text-xl md:text-2xl font-light italic leading-relaxed opacity-85">
+              &ldquo;This was the first time our leadership team actually
+              stress-tested a strategy before committing resources. The exercise
+              changed how we make decisions.&rdquo;
+            </p>
+            <cite className="block mt-4 text-sm not-italic opacity-50">
+              Director, Management Consulting Firm
+            </cite>
+          </blockquote>
+        </div>
+      </section>
 
       {/* ── HOW IT WORKS ── */}
-      <Section className="py-16 md:py-24 border-t border-surface-2" surface={1}>
+      <Section className="py-16 md:py-24">
         <p className="label text-text-tertiary mb-3">How it works</p>
         <h2 className="font-editorial text-3xl md:text-4xl font-normal text-text-primary mb-10">
           A ladder, not a funnel.
@@ -208,13 +252,13 @@ export default function Home() {
       </Section>
 
       {/* ── CONSULTING PREVIEW ── */}
-      <Section className="py-16 md:py-24 border-t border-surface-2">
+      <Section className="py-20 md:py-28 border-t border-surface-2">
         <div className="max-w-2xl">
           <p className="label text-text-tertiary mb-3">Bespoke</p>
           <h2 className="font-editorial text-3xl md:text-4xl font-normal text-text-primary mb-4">
             When the stakes are highest.
           </h2>
-          <p className="text-text-secondary leading-relaxed mb-6">
+          <p className="text-text-secondary leading-relaxed mb-8">
             For organisations facing consequential strategic decisions, our
             consulting practice brings tabletop exercises, structured advisory,
             and honest challenge to the table. Not a slide deck factory - a

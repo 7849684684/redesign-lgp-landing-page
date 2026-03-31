@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
 import Button from "@/components/Button";
+import CrossProductCTA from "@/components/CrossProductCTA";
 
 export const metadata: Metadata = {
   title: "About",
@@ -10,8 +11,8 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <Section>
-        <div className="pt-12 pb-12 md:pt-16 md:pb-16 max-w-3xl">
+      <Section className="pt-16 pb-12 md:pt-20 md:pb-16">
+        <div className="max-w-3xl">
           <h1 className="font-editorial text-4xl md:text-5xl font-normal text-text-primary leading-tight mb-6">
             Building better thinkers.
           </h1>
@@ -22,8 +23,9 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section className="py-16 md:py-24 border-t border-surface-2">
-        <div className="max-w-2xl space-y-6 text-text-secondary leading-relaxed">
+      {/* Narrative - wider reading measure */}
+      <Section className="pb-20 md:pb-28">
+        <div className="max-w-[640px] space-y-5 text-text-secondary leading-[1.8]">
           <p>
             We started this because we kept seeing the same pattern: smart
             people, good intentions, expensive offsites - and nothing changes.
@@ -52,7 +54,7 @@ export default function AboutPage() {
 
       <Section className="py-16 md:py-24 border-t border-surface-2" surface={1}>
         <p className="label text-text-tertiary mb-6">What we believe</p>
-        <div className="grid md:grid-cols-2 gap-8 max-w-3xl">
+        <div className="grid md:grid-cols-2 gap-10 max-w-3xl">
           <div>
             <h3 className="font-editorial text-lg font-semibold text-text-primary mb-2">
               Thinking is the product
@@ -93,12 +95,12 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section className="py-16 md:py-24 border-t border-surface-2">
-        <div className="max-w-xl">
+      <Section className="py-20 md:py-28">
+        <div className="max-w-xl mb-12">
           <h2 className="font-editorial text-3xl font-normal text-text-primary mb-4">
             Want to know more?
           </h2>
-          <p className="text-text-secondary mb-6">
+          <p className="text-text-secondary mb-8">
             We are always happy to talk about strategy, decision-making, and
             why most offsites fail.
           </p>
@@ -106,6 +108,13 @@ export default function AboutPage() {
             Get in touch
           </Button>
         </div>
+
+        <CrossProductCTA
+          label="Explore the ecosystem"
+          product="Our tools"
+          description="From free strategy games to AI simulations - find the right tool for where you are."
+          href="/#ecosystem"
+        />
       </Section>
     </>
   );
