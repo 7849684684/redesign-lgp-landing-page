@@ -61,13 +61,12 @@ export default function Home() {
       <Section className="pt-20 pb-24 md:pt-32 md:pb-40">
         <div className="max-w-3xl">
           <h1 className="font-editorial text-4xl md:text-6xl lg:text-[3.8rem] font-light text-text-primary leading-[1.15] tracking-tight">
-            Strategic thinking is a skill.
-            <br className="hidden md:block" />
-            Don&apos;t outsource it.{" "}
-            <span className="text-brand-amber">Practice it.</span>
+            The best strategies come from the best thinkers.
+            <br className="hidden md:block" />{" "}
+            <span className="text-brand-amber">We build both.</span>
           </h1>
           <p className="mt-6 text-lg md:text-xl text-text-secondary leading-relaxed max-w-xl">
-            We build the environments where better decision makers live.
+            We built the gym for strategic thinking. Your team now does the reps.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Button href="#ecosystem" variant="amber">
@@ -84,23 +83,18 @@ export default function Home() {
       <Section className="py-16 md:py-20 border-t border-surface-2">
         <div className="max-w-2xl">
           <h2 className="font-editorial text-2xl md:text-3xl font-semibold text-text-primary leading-snug mb-6">
-            Strategic thinking is atrophying.
+            Strategy doesn&apos;t fail in the boardroom. It fails in the moment.
           </h2>
           <div className="space-y-4 text-text-secondary leading-relaxed">
             <p>
-              Organisations spend millions on strategy consultants, then wonder
-              why nothing changes. The answer is uncomfortable: you cannot
-              outsource thinking. When someone else does your strategic work,
-              your own capability withers.
-            </p>
-            <p>
-              AI is accelerating this. Every shortcut that removes the need to
-              think deeply is another rep you did not take. The organisations
-              that will thrive are the ones that treat strategic thinking as a
-              muscle - one that needs deliberate, repeated exercise.
+              When you outsource strategic thinking — to a consultant, a
+              framework, an AI — your own capability weakens. But strategy is
+              demanded in the hardest moments, not the calmest ones. The best
+              decision-makers treat it as a skill. One that needs deliberate,
+              repeated practice.
             </p>
             <p className="text-text-primary font-medium">
-              That is what The Long Game Project builds.
+              We build the practice.
             </p>
           </div>
         </div>
@@ -117,10 +111,6 @@ export default function Home() {
           <h2 className="font-editorial text-3xl md:text-4xl font-normal text-text-primary mb-3">
             Start anywhere. Go as deep as you need.
           </h2>
-          <p className="text-text-secondary max-w-xl">
-            Free tools to get started. Products to go deeper. Services for the
-            highest stakes.
-          </p>
         </div>
 
         {/* Free tier - compact, no card borders */}
@@ -241,23 +231,23 @@ export default function Home() {
           {[
             {
               step: "01",
-              title: "Explore",
-              desc: "Try free tools like Shortlist, InsightRPG, and our courses. No commitment.",
+              title: "Play",
+              desc: "Try our free games and courses. See what strategic practice feels like.",
             },
             {
               step: "02",
               title: "Equip",
-              desc: "Get PRISM cards and Strategy Soup to bring strategic practice into your daily work.",
+              desc: "Bring strategy tools into your daily work with PRISM and Strategy Soup.",
             },
             {
               step: "03",
               title: "Connect",
-              desc: "Join a Mastermind cohort of peers who challenge and sharpen your thinking.",
+              desc: "Join a peer cohort that challenges your thinking on real decisions.",
             },
             {
               step: "04",
               title: "Partner",
-              desc: "Engage our consulting team for bespoke strategy work at the highest stakes.",
+              desc: "Bring us in when the stakes demand it.",
             },
           ].map((item) => (
             <div key={item.step}>
@@ -283,10 +273,8 @@ export default function Home() {
             When the stakes are highest.
           </h2>
           <p className="text-text-secondary leading-relaxed mb-8">
-            For organisations facing consequential strategic decisions, our
-            consulting practice brings tabletop exercises, structured advisory,
-            and honest challenge to the table. Not a slide deck factory - a
-            thinking partner.
+            Tabletop exercises, structured advisory, and honest challenge.
+            Not a slide deck factory — a thinking partner.
           </p>
           <Button href="/consulting" variant="teal">
             Learn about consulting
