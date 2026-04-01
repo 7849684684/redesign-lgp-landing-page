@@ -31,7 +31,7 @@ export default function TeamPage() {
               <div className="shrink-0">
                 <div className="w-48 h-48 md:w-56 md:h-56 rounded-[var(--radius-md)] overflow-hidden bg-brand-teal/10 relative">
                   <Image
-                    src="/images/team/dan-epstein.png"
+                    src="/images/team/drdan.png"
                     alt="Dr Dan Epstein"
                     fill
                     className="object-cover object-top"

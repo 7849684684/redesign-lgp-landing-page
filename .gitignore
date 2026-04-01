@@ -113,6 +113,9 @@ desktop.ini
 *.sqlite
 *.sqlite3
 *.db
+# Allow site assets in public directories
+!lgp-site/public/**
+
 .claude/settings.local.json
 .claude/launch.json
 *.db-shm
