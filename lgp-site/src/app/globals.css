@@ -59,8 +59,8 @@ body {
 
 /* Dark mode */
 [data-theme="dark"] {
-  --color-brand-teal: #3A7A7A;
-  --color-brand-teal-light: #4A9A9A;
+  --color-brand-teal: #5AADAD;
+  --color-brand-teal-light: #6EC4C4;
   --color-brand-amber: #D4A017;
   --color-brand-amber-light: #E8B82A;
 
@@ -70,8 +70,8 @@ body {
   --color-surface-3: #3D3935;
 
   --color-text-primary: #F5F5F0;
-  --color-text-secondary: #A8A29E;
-  --color-text-tertiary: #78716C;
+  --color-text-secondary: #C8C3BD;
+  --color-text-tertiary: #9C9690;
 
   --color-accent-shortlist: #6AAF7A;
   --color-accent-insightrpg: #D4780A;

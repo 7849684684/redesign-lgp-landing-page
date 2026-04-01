@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -32,7 +33,7 @@ export default function ContactPage() {
                 solve.
               </p>
               <a
-                href="mailto:hello@longgameproject.org?subject=Discovery%20call%20request"
+                href="mailto:email@longgameproject.org?subject=Discovery%20call%20request"
                 className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium bg-brand-amber text-white hover:bg-brand-amber-light transition-colors rounded-[var(--radius-sm)]"
               >
                 Request a discovery call
@@ -42,10 +43,10 @@ export default function ContactPage() {
             <div>
               <p className="label text-text-tertiary mb-3">Email</p>
               <a
-                href="mailto:hello@longgameproject.org"
+                href="mailto:email@longgameproject.org"
                 className="text-brand-teal hover:text-brand-teal-light transition-colors"
               >
-                hello@longgameproject.org
+                email@longgameproject.org
               </a>
             </div>
 
@@ -64,58 +65,7 @@ export default function ContactPage() {
 
           <div>
             <p className="label text-text-tertiary mb-6">Send a message</p>
-            <form
-              action="mailto:hello@longgameproject.org"
-              method="POST"
-              encType="text/plain"
-              className="space-y-4"
-            >
-              <div>
-                <label htmlFor="name" className="block text-sm text-text-primary mb-1.5">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full px-4 py-2.5 bg-surface-0 border border-surface-2 rounded-[var(--radius-sm)] text-sm text-text-primary focus:outline-none focus:border-brand-teal transition-colors"
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm text-text-primary mb-1.5">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-2.5 bg-surface-0 border border-surface-2 rounded-[var(--radius-sm)] text-sm text-text-primary focus:outline-none focus:border-brand-teal transition-colors"
-                  placeholder="you@company.com"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm text-text-primary mb-1.5">
-                  What are you working on?
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  className="w-full px-4 py-2.5 bg-surface-0 border border-surface-2 rounded-[var(--radius-sm)] text-sm text-text-primary focus:outline-none focus:border-brand-teal transition-colors resize-none"
-                  placeholder="Tell us about the challenge you are facing..."
-                />
-              </div>
-              <button
-                type="submit"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium bg-brand-teal text-white hover:bg-brand-teal-light transition-colors rounded-[var(--radius-sm)]"
-              >
-                Send message
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </Section>

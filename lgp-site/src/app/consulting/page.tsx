@@ -11,17 +11,19 @@ export const metadata: Metadata = {
 export default function ConsultingPage() {
   return (
     <>
-      {/* Hero - elevated surface for premium feel */}
+      {/* Hero */}
       <Section className="pt-16 pb-16 md:pt-20 md:pb-20" surface={1}>
         <div className="max-w-3xl">
           <p className="label text-brand-amber mb-4">Bespoke consulting</p>
           <h1 className="font-editorial text-4xl md:text-5xl font-normal text-text-primary leading-tight mb-6">
-            Strategy that survives first contact with reality.
+            Your strategy looks great on paper.
+            <br className="hidden md:block" />
+            Now let&apos;s see if it survives.
           </h1>
           <p className="text-lg text-text-secondary leading-relaxed max-w-xl">
-            For leadership teams facing consequential decisions, we bring
-            tabletop exercises, structured advisory, and the uncomfortable
-            questions your team has been avoiding.
+            We put leadership teams through tabletop exercises that expose the
+            gaps between your plan and your readiness. Not a workshop. A
+            rehearsal for the decisions that actually matter.
           </p>
         </div>
       </Section>
@@ -36,9 +38,10 @@ export default function ConsultingPage() {
                 Tabletop Exercises
               </h3>
               <p className="text-text-secondary leading-relaxed">
-                Your team works through realistic scenarios - competitive threats,
-                market shifts, resource constraints - in a facilitated,
-                time-pressured environment. Rehearse decisions before they are real.
+                Competitive threats. Market shocks. Resource failures. Your
+                team works through realistic scenarios under time pressure
+                with expert facilitation. You rehearse the hard calls before
+                they become real ones.
               </p>
             </div>
             <div>
@@ -46,9 +49,10 @@ export default function ConsultingPage() {
                 Strategic Advisory
               </h3>
               <p className="text-text-secondary leading-relaxed">
-                Ongoing advisory for founders and leadership teams. Not a retainer
-                that produces monthly decks. A thinking partner who challenges
-                assumptions and helps you decide under uncertainty.
+                A thinking partner, not a slide deck factory. We work
+                alongside founders and leadership teams to challenge
+                assumptions, stress-test options, and make better decisions
+                under genuine uncertainty.
               </p>
             </div>
             <div>
@@ -56,9 +60,10 @@ export default function ConsultingPage() {
                 Executive Coaching
               </h3>
               <p className="text-text-secondary leading-relaxed">
-                One-on-one work with senior leaders on how they frame problems,
-                evaluate options, and make decisions under pressure. Practical
-                capability building, not theoretical frameworks.
+                How you frame problems shapes what solutions you see. We work
+                one-on-one with senior leaders on decision-making under
+                pressure - building practical capability, not handing out
+                frameworks.
               </p>
             </div>
             <div>
@@ -66,9 +71,10 @@ export default function ConsultingPage() {
                 Scenario Design
               </h3>
               <p className="text-text-secondary leading-relaxed">
-                Custom scenario design for your industry and context. We have
-                designed 130+ scenarios across industries from defence to consumer
-                goods.
+                130+ scenarios designed across defence, financial services,
+                tech, consumer goods, and more. Every scenario is built
+                around your specific industry, competitive landscape, and
+                strategic context.
               </p>
             </div>
           </div>
@@ -81,11 +87,11 @@ export default function ConsultingPage() {
           <p className="label text-text-tertiary mb-6">How it works</p>
           <div className="space-y-8">
             {[
-              { step: "01", title: "Discovery call", desc: "30 minutes. You describe the challenge. We assess whether we can help. No pitch." },
-              { step: "02", title: "Scoping", desc: "We define the engagement: objectives, format, timeline, investment. Clear and upfront." },
-              { step: "03", title: "Design", desc: "We design the exercise or advisory programme around your actual strategic context." },
-              { step: "04", title: "Deliver", desc: "We facilitate, challenge, and hold your team accountable to their own strategic commitments." },
-              { step: "05", title: "Debrief", desc: "Structured debrief and action plan. What you decided, why, and what happens next." },
+              { step: "01", title: "Discovery call", desc: "30 minutes. You describe the challenge. We tell you honestly whether we can help. No pitch, no proposal theatre." },
+              { step: "02", title: "Scoping", desc: "Objectives, format, timeline, investment - defined clearly and agreed upfront. No scope creep, no ambiguity." },
+              { step: "03", title: "Design", desc: "We design the exercise or advisory engagement around your actual strategic context - not a template with your logo on it." },
+              { step: "04", title: "Deliver", desc: "We facilitate, provoke, and hold your team accountable to the commitments they make under pressure." },
+              { step: "05", title: "Debrief", desc: "What you decided, why it matters, and what happens Monday morning. A structured action plan, not a summary deck." },
             ].map((item) => (
               <div key={item.step} className="flex gap-6">
                 <p className="text-2xl font-light text-brand-teal tabular-nums shrink-0 w-10">
@@ -123,15 +129,30 @@ export default function ConsultingPage() {
             </div>
           </div>
 
-          <blockquote className="max-w-xl border-l-[3px] border-brand-amber pl-6">
-            <p className="font-editorial text-lg font-light italic leading-relaxed opacity-85">
-              &ldquo;This was the first time our leadership team actually
-              stress-tested a strategy before committing resources.&rdquo;
-            </p>
-            <cite className="block mt-3 text-sm not-italic opacity-50">
-              Director, Management Consulting Firm
-            </cite>
-          </blockquote>
+          <div className="space-y-8">
+            <blockquote className="max-w-xl border-l-[3px] border-brand-amber pl-6">
+              <p className="font-editorial text-lg font-light italic leading-relaxed opacity-85">
+                &ldquo;The value for time of working with The Long Game Project
+                is off the charts. The simulation helped our organisation plan
+                for future risks and decide the most important metrics to
+                track.&rdquo;
+              </p>
+              <cite className="block mt-3 text-sm not-italic opacity-50">
+                Director, Consulting Firm
+              </cite>
+            </blockquote>
+
+            <blockquote className="max-w-xl border-l-[3px] border-brand-amber pl-6">
+              <p className="font-editorial text-lg font-light italic leading-relaxed opacity-85">
+                &ldquo;I was impressed by the level of nuance captured in the
+                game design. If you want an engaging, bespoke exercise tailored
+                to your needs, work with this team.&rdquo;
+              </p>
+              <cite className="block mt-3 text-sm not-italic opacity-50">
+                COO, Research
+              </cite>
+            </blockquote>
+          </div>
         </div>
       </section>
 
@@ -139,10 +160,11 @@ export default function ConsultingPage() {
       <Section className="py-20 md:py-28">
         <div className="max-w-xl">
           <h2 className="font-editorial text-3xl font-normal text-text-primary mb-4">
-            Let&apos;s talk about the decision you are facing.
+            Tell us the decision you are facing.
           </h2>
           <p className="text-text-secondary mb-8">
-            No pitch. Just a conversation about whether we can help.
+            30 minutes, no pitch. We will tell you honestly whether we can
+            help - and if we cannot, we will point you to someone who can.
           </p>
           <Button href="/contact" variant="teal">
             Book a discovery call

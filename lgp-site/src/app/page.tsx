@@ -193,16 +193,40 @@ export default function Home() {
             ))}
           </div>
 
-          <blockquote className="max-w-2xl border-l-[3px] border-brand-amber pl-6">
-            <p className="font-editorial text-xl md:text-2xl font-light italic leading-relaxed opacity-85">
-              &ldquo;This was the first time our leadership team actually
-              stress-tested a strategy before committing resources. The exercise
-              changed how we make decisions.&rdquo;
-            </p>
-            <cite className="block mt-4 text-sm not-italic opacity-50">
-              Director, Management Consulting Firm
-            </cite>
-          </blockquote>
+          <div className="space-y-8">
+            <blockquote className="max-w-2xl border-l-[3px] border-brand-amber pl-6">
+              <p className="font-editorial text-xl md:text-2xl font-light italic leading-relaxed opacity-85">
+                &ldquo;The simulation helped our organisation plan for future
+                risks and decide the most important metrics to track. The
+                value for time is off the charts.&rdquo;
+              </p>
+              <cite className="block mt-4 text-sm not-italic opacity-50">
+                Director, Consulting Firm
+              </cite>
+            </blockquote>
+
+            <blockquote className="max-w-2xl border-l-[3px] border-brand-amber pl-6">
+              <p className="font-editorial text-xl md:text-2xl font-light italic leading-relaxed opacity-85">
+                &ldquo;We left behind our day-to-day and immersed in an
+                eye-opening exercise. It changed the way we think about our
+                business and how we run workshops.&rdquo;
+              </p>
+              <cite className="block mt-4 text-sm not-italic opacity-50">
+                Team Lead, Global CPG
+              </cite>
+            </blockquote>
+
+            <blockquote className="max-w-2xl border-l-[3px] border-brand-amber pl-6">
+              <p className="font-editorial text-xl md:text-2xl font-light italic leading-relaxed opacity-85">
+                &ldquo;I was impressed by the nuance captured in the game
+                design. An engaging, bespoke exercise tailored to our needs,
+                from a customer- and impact-oriented team.&rdquo;
+              </p>
+              <cite className="block mt-4 text-sm not-italic opacity-50">
+                COO, Research
+              </cite>
+            </blockquote>
+          </div>
         </div>
       </section>
 

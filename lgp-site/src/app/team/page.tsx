@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Section from "@/components/Section";
+import Button from "@/components/Button";
 
 export const metadata: Metadata = {
   title: "Team",
@@ -24,25 +26,66 @@ export default function TeamPage() {
       <Section className="pb-24">
         <div className="max-w-3xl">
           <div className="border border-surface-2 rounded-[var(--radius-md)] p-8 md:p-12">
-            <h2 className="font-editorial text-2xl font-normal text-text-primary mb-2">
-              Daniel Eppa
-            </h2>
-            <p className="label text-text-tertiary mb-4">Founder</p>
-            <div className="space-y-4 text-text-secondary leading-relaxed">
-              <p>
-                Daniel founded The Long Game Project after a decade of working
-                with leadership teams and discovering that the problem was rarely
-                the strategy - it was the strategic thinking capability of the
-                people making the decisions.
-              </p>
-              <p>
-                He has designed and facilitated 130+ strategic scenarios across
-                industries from defence to consumer goods, working with
-                organisations representing over $3.4B in combined market
-                capitalisation.
-              </p>
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12">
+              {/* Photo - teal duotone via CSS filter */}
+              <div className="shrink-0">
+                <div className="w-48 h-48 md:w-56 md:h-56 rounded-[var(--radius-md)] overflow-hidden bg-brand-teal/10 relative">
+                  <Image
+                    src="/images/team/dan-epstein.png"
+                    alt="Dr Dan Epstein"
+                    fill
+                    className="object-cover object-top"
+                    style={{
+                      filter: "sepia(1) saturate(3) hue-rotate(130deg) brightness(0.85)",
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <h2 className="font-editorial text-2xl font-normal text-text-primary mb-1">
+                  Dr Dan Epstein
+                </h2>
+                <p className="label text-brand-teal mb-4">
+                  Director, Strategy &amp; Game Design
+                </p>
+                <div className="space-y-4 text-text-secondary leading-relaxed">
+                  <p>
+                    Dan is a medical doctor and academic with a PhD from Monash
+                    University&apos;s faculty of public health. His expertise
+                    spans decision-making, behavioural economics, tabletop game
+                    design, pandemic prevention, forecasting, and philanthropy.
+                  </p>
+                  <p>
+                    His previous lives included academic consulting across public
+                    and private sectors, medical education, amateur forecasting,
+                    and high performance athletics. He has been designing tabletop
+                    games for over a decade and playing Dungeons &amp; Dragons
+                    since he was eleven.
+                  </p>
+                  <p>
+                    At LGP, Dan leads core team strategy and game design -
+                    responsible for the 130+ scenarios designed across industries
+                    from defence to consumer goods.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+      </Section>
+
+      <Section className="pb-20">
+        <div className="max-w-xl">
+          <h2 className="font-editorial text-2xl font-normal text-text-primary mb-4">
+            Work with us
+          </h2>
+          <p className="text-text-secondary mb-6">
+            Interested in joining the team or collaborating on a project?
+          </p>
+          <Button href="/contact" variant="outline">
+            Get in touch
+          </Button>
         </div>
       </Section>
     </>
