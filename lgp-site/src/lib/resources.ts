@@ -10,6 +10,7 @@ export interface ResourceMeta {
   date: string;
   description: string;
   category: string;
+  href?: string;
 }
 
 export function getAllResources(): ResourceMeta[] {
@@ -29,6 +30,7 @@ export function getAllResources(): ResourceMeta[] {
       date: data.date || "",
       description: data.description || "",
       category: data.category || "article",
+      href: data.href || undefined,
     };
   });
 

@@ -6,12 +6,13 @@ interface ResourceCardProps {
   date: string;
   category: string;
   slug: string;
+  href?: string;
 }
 
-export default function ResourceCard({ title, description, date, category, slug }: ResourceCardProps) {
+export default function ResourceCard({ title, description, date, category, slug, href }: ResourceCardProps) {
   return (
     <Link
-      href={`/resources/${slug}`}
+      href={href || `/resources/${slug}`}
       className="group block border border-surface-2 rounded-[var(--radius-md)] p-6 transition-all duration-200 hover:border-brand-teal hover:shadow-sm"
     >
       <div className="flex items-center gap-3 mb-3">
