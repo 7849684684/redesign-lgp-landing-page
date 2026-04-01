@@ -29,9 +29,10 @@ export default function ContactPage() {
               <p className="label text-text-tertiary mb-3">Book a call</p>
               <p className="text-text-secondary leading-relaxed mb-4">
                 The best way to start is a 30-minute discovery call. No
-                preparation needed - just bring the problem you are trying to
+                preparation needed — just bring the problem you are trying to
                 solve.
               </p>
+              {/* TODO: Replace mailto with Calendly or Cal.com booking link */}
               <a
                 href="mailto:email@longgameproject.org?subject=Discovery%20call%20request"
                 className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium bg-brand-amber text-white hover:bg-brand-amber-light transition-colors rounded-[var(--radius-sm)]"

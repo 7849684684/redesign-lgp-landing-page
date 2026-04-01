@@ -17,8 +17,8 @@ export default function TeamPage() {
             Team
           </h1>
           <p className="text-lg text-text-secondary leading-relaxed max-w-xl">
-            The people building the tools, running the cohorts, and challenging
-            the thinking.
+            One principal. Deep partnership. Every engagement is led by the
+            person who designed it.
           </p>
         </div>
       </Section>
@@ -51,22 +51,24 @@ export default function TeamPage() {
                 </p>
                 <div className="space-y-4 text-text-secondary leading-relaxed">
                   <p>
-                    Dan is a medical doctor and academic with a PhD from Monash
-                    University&apos;s faculty of public health. His expertise
-                    spans decision-making, behavioural economics, tabletop game
-                    design, pandemic prevention, forecasting, and philanthropy.
+                    Dan started designing tabletop games at eleven and never
+                    stopped. Along the way he became a medical doctor, earned a
+                    PhD in decision science from Monash University, and spent
+                    years consulting across public and private sectors —
+                    from pandemic preparedness to behavioural economics.
                   </p>
                   <p>
-                    His previous lives included academic consulting across public
-                    and private sectors, medical education, amateur forecasting,
-                    and high performance athletics. He has been designing tabletop
-                    games for over a decade and playing Dungeons &amp; Dragons
-                    since he was eleven.
+                    He built The Long Game Project because he kept seeing the
+                    same problem: smart teams making poor strategic decisions,
+                    not because they lacked information, but because they&apos;d
+                    never practised thinking under pressure. Game design turned
+                    out to be the answer.
                   </p>
                   <p>
-                    At LGP, Dan leads core team strategy and game design -
-                    responsible for the 130+ scenarios designed across industries
-                    from defence to consumer goods.
+                    Dan has personally designed 130+ strategic scenarios across
+                    defence, tech, financial services, and consumer goods. He
+                    leads every engagement — from scoping through facilitation
+                    to debrief.
                   </p>
                 </div>
               </div>

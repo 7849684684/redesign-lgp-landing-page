@@ -114,20 +114,7 @@ export default function ConsultingPage() {
       {/* Social proof */}
       <section className="bg-brand-teal text-white py-12 md:py-16">
         <div className="mx-auto max-w-[1280px] px-6">
-          <div className="grid md:grid-cols-3 gap-8 mb-10">
-            <div>
-              <p className="text-3xl font-light tabular-nums">130+</p>
-              <p className="text-sm mt-1 opacity-60">Scenarios designed</p>
-            </div>
-            <div>
-              <p className="text-3xl font-light tabular-nums">$3.4B</p>
-              <p className="text-sm mt-1 opacity-60">Client market cap</p>
-            </div>
-            <div>
-              <p className="text-3xl font-light tabular-nums">74.9</p>
-              <p className="text-sm mt-1 opacity-60">NPS score</p>
-            </div>
-          </div>
+          <p className="label text-white/50 mb-8">What our clients say</p>
 
           <div className="space-y-8">
             <blockquote className="max-w-xl border-l-[3px] border-brand-amber pl-6">
@@ -138,7 +125,7 @@ export default function ConsultingPage() {
                 track.&rdquo;
               </p>
               <cite className="block mt-3 text-sm not-italic opacity-50">
-                Director, Consulting Firm
+                Director of Strategy, Big Four Consulting
               </cite>
             </blockquote>
 
@@ -149,7 +136,7 @@ export default function ConsultingPage() {
                 to your needs, work with this team.&rdquo;
               </p>
               <cite className="block mt-3 text-sm not-italic opacity-50">
-                COO, Research
+                COO, Applied Research Organisation
               </cite>
             </blockquote>
           </div>
