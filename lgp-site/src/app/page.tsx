@@ -134,7 +134,7 @@ export default function Home() {
                 value for time is off the charts.&rdquo;
               </p>
               <cite className="block mt-4 text-sm not-italic opacity-50">
-                Director of Strategy, Big Four Consulting
+                Director, Consulting Firm
               </cite>
             </blockquote>
 
@@ -145,7 +145,7 @@ export default function Home() {
                 business and how we run workshops.&rdquo;
               </p>
               <cite className="block mt-4 text-sm not-italic opacity-50">
-                Head of Innovation, Global CPG Manufacturer
+                Team Lead, Global CPG
               </cite>
             </blockquote>
           </div>

@@ -125,7 +125,7 @@ export default function ConsultingPage() {
                 track.&rdquo;
               </p>
               <cite className="block mt-3 text-sm not-italic opacity-50">
-                Director of Strategy, Big Four Consulting
+                Director, Consulting Firm
               </cite>
             </blockquote>
 
@@ -136,7 +136,7 @@ export default function ConsultingPage() {
                 to your needs, work with this team.&rdquo;
               </p>
               <cite className="block mt-3 text-sm not-italic opacity-50">
-                COO, Applied Research Organisation
+                COO, Research
               </cite>
             </blockquote>
           </div>
