@@ -1,6 +1,7 @@
 import Section from "@/components/Section";
 import Button from "@/components/Button";
 import ProductCard from "@/components/ProductCard";
+import ClientLogoBar from "@/components/ClientLogoBar";
 
 const freeProducts = [
   {
@@ -101,6 +102,8 @@ export default function Home() {
           decisions — who know that the thinking matters as much as the plan.
         </p>
       </Section>
+
+      <ClientLogoBar />
 
       {/* ── SOCIAL PROOF ── */}
       <section className="bg-brand-teal text-white py-16 md:py-20">
