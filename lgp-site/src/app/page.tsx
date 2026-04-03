@@ -16,7 +16,7 @@ const freeProducts = [
     name: "InsightRPG",
     tagline: "Role-play your way to better decisions.",
     audience: "Teams running tabletop strategy exercises",
-    href: "https://insightrpg.org",
+    href: "/insightrpg",
     accentColor: "#B45309",
     tier: "Free",
   },

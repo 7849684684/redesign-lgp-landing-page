@@ -8,7 +8,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const products = [
   { href: "https://shortlist.games", label: "Shortlist" },
-  { href: "https://insightrpg.org", label: "InsightRPG" },
+  { href: "/insightrpg", label: "InsightRPG" },
   { href: "https://prism.cards", label: "PRISM" },
   { href: "https://strategysoup.com", label: "Strategy Soup" },
   { href: "https://courses.longgameproject.org", label: "Courses" },
