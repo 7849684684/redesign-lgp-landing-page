@@ -16,7 +16,7 @@ export default function MastermindPage() {
         <div className="max-w-3xl">
           <p className="label text-brand-amber mb-4">Peer cohorts</p>
           <h1 className="font-editorial text-4xl md:text-5xl font-normal text-text-primary leading-tight mb-6">
-            Masterminds
+            The room where nobody lets you off easy.
           </h1>
           <p className="text-lg text-text-secondary leading-relaxed max-w-xl">
             Small cohorts of senior leaders who meet regularly to sharpen their
@@ -66,6 +66,39 @@ export default function MastermindPage() {
                 Members bring actual strategic decisions they are facing. The
                 group pressure-tests, challenges, and sharpens the thinking.
               </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Details */}
+      <Section className="py-16 md:py-24 border-t border-surface-2">
+        <div className="max-w-3xl">
+          <p className="label text-text-tertiary mb-6">The details</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+            <div>
+              <p className="font-editorial text-lg font-semibold text-text-primary mb-1">6–8 leaders</p>
+              <p className="text-sm text-text-secondary">Per cohort</p>
+            </div>
+            <div>
+              <p className="font-editorial text-lg font-semibold text-text-primary mb-1">Monthly</p>
+              <p className="text-sm text-text-secondary">90-minute sessions</p>
+            </div>
+            <div>
+              <p className="font-editorial text-lg font-semibold text-text-primary mb-1">6 months</p>
+              <p className="text-sm text-text-secondary">Minimum commitment</p>
+            </div>
+            <div>
+              <p className="font-editorial text-lg font-semibold text-text-primary mb-1">Remote-first</p>
+              <p className="text-sm text-text-secondary">Timezone-aware scheduling</p>
+            </div>
+            <div>
+              <p className="font-editorial text-lg font-semibold text-text-primary mb-1">Curated</p>
+              <p className="text-sm text-text-secondary">No competitors in the same group</p>
+            </div>
+            <div>
+              <p className="font-editorial text-lg font-semibold text-text-primary mb-1">Investment</p>
+              <p className="text-sm text-text-secondary">Disclosed on application</p>
             </div>
           </div>
         </div>

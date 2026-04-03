@@ -33,7 +33,7 @@ export default function SiteFooter() {
           </span>
         </div>
         <p className="text-sm text-text-tertiary mb-8">
-          Strategic thinking is a skill. Practice it.
+          The best strategies come from the best thinkers.
         </p>
 
         {/* Columns */}

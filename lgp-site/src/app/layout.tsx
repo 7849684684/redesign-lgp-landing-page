@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     template: "%s | The Long Game Project",
   },
   description:
-    "Strategic thinking is a skill. Don't outsource it. Practice it. We build the environments where better decision makers live.",
+    "Games, simulations, and peer challenge that make your team sharper — not just your slides.",
   icons: {
     icon: "/logos/lgp-icon-teal.svg",
   },
   openGraph: {
     title: "The Long Game Project",
-    description: "Strategic thinking is a skill. Don't outsource it. Practice it.",
+    description: "Games, simulations, and peer challenge that make your team sharper.",
     type: "website",
   },
 };
