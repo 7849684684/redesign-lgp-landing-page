@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme inline {
+@theme {
   /* Master Brand */
   --color-brand-teal: #1A3A3A;
   --color-brand-teal-light: #2A5454;
