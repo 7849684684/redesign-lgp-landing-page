@@ -56,9 +56,11 @@ export default function Home() {
       <Section className="pt-20 pb-24 md:pt-32 md:pb-40">
         <div className="max-w-3xl">
           <h1 className="font-editorial text-4xl md:text-6xl lg:text-[3.8rem] font-light text-text-primary leading-[1.15] tracking-tight">
-            The best strategies come from the best thinkers.
-            <br className="hidden md:block" />{" "}
-            <span className="text-brand-amber">We build both.</span>
+            Strategic thinking is a skill.
+            <br />
+            Don&apos;t outsource it.
+            <br />
+            <span className="text-brand-amber">Practice it.</span>
           </h1>
           <p className="mt-6 text-lg md:text-xl text-text-secondary leading-relaxed max-w-xl">
             We built the gym for strategic thinking. Your team now does the reps.
