@@ -173,3 +173,35 @@ body {
   letter-spacing: 0.06em;
   font-size: 0.75rem;
 }
+
+/* Blog card separators */
+.blog-card + .blog-card {
+  border-top: 1px solid var(--color-surface-2);
+}
+
+/* Blog text highlights */
+.blog-highlight {
+  background: color-mix(in srgb, var(--color-brand-amber) 20%, transparent);
+  border-radius: 2px;
+  padding: 0.05em 0;
+  position: relative;
+}
+.blog-highlight .highlight-remove {
+  display: none;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-surface-2);
+  color: var(--color-text-secondary);
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+}
+.blog-highlight:hover .highlight-remove {
+  display: block;
+}
