@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/insightrpg/:path*",
-        destination: "https://insightrpg.vercel.app/:path*",
+        destination: "https://insightrpg.longgameproject.org/:path*",
       },
     ];
   },
