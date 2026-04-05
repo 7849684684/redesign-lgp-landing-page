@@ -73,6 +73,15 @@ export default async function BlogArticle({ params }: Props) {
         )}
 
         <p className="mt-3 text-sm text-text-tertiary">{post.meta.author}</p>
+
+        {post.meta.aiAssisted && (
+          <p className="mt-1 text-xs text-text-tertiary">
+            Created with AI assistance.{" "}
+            <Link href="/publishing-integrity" className="underline hover:text-text-secondary transition-colors">
+              Learn about our editorial process
+            </Link>
+          </p>
+        )}
       </div>
 
       {/* Article with scroll progress and text highlighting */}

@@ -17,6 +17,9 @@ export interface BlogPostMeta {
   readingTime: number;
   heroImage?: string;
   href?: string;
+  aiAssisted: boolean;
+  originalDate?: string;
+  tags?: string[];
 }
 
 function calculateReadingTime(content: string): number {
@@ -43,6 +46,9 @@ export function getAllBlogPosts(): BlogPostMeta[] {
       readingTime: calculateReadingTime(content),
       heroImage: data.heroImage || undefined,
       href: data.href || undefined,
+      aiAssisted: data.aiAssisted || false,
+      originalDate: data.originalDate || undefined,
+      tags: data.tags || [],
     };
   });
   // Featured first, then by date descending
@@ -69,6 +75,9 @@ export function getBlogPostBySlug(slug: string) {
       readingTime: calculateReadingTime(content),
       heroImage: data.heroImage || undefined,
       href: data.href || undefined,
+      aiAssisted: data.aiAssisted || false,
+      originalDate: data.originalDate || undefined,
+      tags: data.tags || [],
     },
     content,
   };
