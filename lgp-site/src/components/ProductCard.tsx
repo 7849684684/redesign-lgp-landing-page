@@ -48,7 +48,7 @@ export default function ProductCard({
 
   const classes = `group block transition-all duration-200 hover:border-brand-teal ${
     isCompact
-      ? "py-4"
+      ? "py-4 pl-4 border-l-2 border-surface-2 hover:border-l-brand-teal"
       : "bg-surface-0 border border-surface-2 rounded-md p-6 hover:shadow-sm"
   }`;
 

@@ -53,7 +53,7 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ── */}
-      <Section className="pt-20 pb-24 md:pt-32 md:pb-40">
+      <Section className="pt-24 pb-28 md:pt-36 md:pb-44">
         <div className="max-w-3xl">
           <h1 className="font-editorial text-4xl md:text-6xl lg:text-[3.8rem] font-light text-text-primary leading-[1.15] tracking-tight">
             Strategic thinking is a skill.
@@ -77,7 +77,7 @@ export default function Home() {
       </Section>
 
       {/* ── THE PROBLEM ── */}
-      <Section className="py-16 md:py-20 border-t border-surface-2">
+      <Section className="py-14 md:py-18 border-t border-surface-2">
         <div className="max-w-2xl">
           <h2 className="font-editorial text-2xl md:text-3xl font-semibold text-text-primary leading-snug mb-6">
             Strategy doesn&apos;t fail in the boardroom. It fails in the moment.
@@ -98,7 +98,7 @@ export default function Home() {
       </Section>
 
       {/* ── WHO THIS IS FOR ── */}
-      <Section className="py-12 md:py-16" surface={1}>
+      <Section className="py-10 md:py-14" surface={1}>
         <p className="font-editorial text-xl md:text-2xl text-text-primary leading-relaxed max-w-2xl">
           For founders, senior leaders, and teams making high-stakes strategic
           decisions — who know that the thinking matters as much as the plan.
@@ -108,9 +108,9 @@ export default function Home() {
       <ClientLogoBar />
 
       {/* ── SOCIAL PROOF ── */}
-      <section className="bg-brand-teal text-white py-16 md:py-20">
+      <section className="bg-brand-teal text-white py-20 md:py-24">
         <div className="mx-auto max-w-[1280px] px-6">
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
+          <div className="grid md:grid-cols-3 gap-12 mb-14">
             <div>
               <p className="text-4xl md:text-5xl font-light tracking-tight tabular-nums">
                 130+
@@ -118,10 +118,10 @@ export default function Home() {
               <p className="text-sm mt-1 opacity-60">Scenarios designed</p>
             </div>
             <div>
-              <p className="text-4xl md:text-5xl font-light tracking-tight">
+              <p className="text-2xl md:text-3xl font-light tracking-tight leading-tight">
                 Defence, tech, CPG &amp; finance
               </p>
-              <p className="text-sm mt-1 opacity-60">Industries served</p>
+              <p className="text-sm mt-2 opacity-60">Industries served</p>
             </div>
             <div>
               <p className="text-4xl md:text-5xl font-light tracking-tight tabular-nums">
@@ -158,7 +158,7 @@ export default function Home() {
       </section>
 
       {/* ── SERVICES ── */}
-      <Section id="services" className="py-20 md:py-28">
+      <Section id="services" className="py-24 md:py-32 border-t border-surface-2">
         <div className="mb-16">
           <p className="label text-text-tertiary mb-3">Services</p>
           <h2 className="font-editorial text-3xl md:text-4xl font-normal text-text-primary">
@@ -226,7 +226,7 @@ export default function Home() {
       {/* ── PRODUCT ECOSYSTEM ── */}
       <Section
         id="ecosystem"
-        className="py-20 md:py-28"
+        className="py-24 md:py-32 border-t border-surface-2"
       >
         <div className="mb-12">
           <p className="label text-text-tertiary mb-3">The ecosystem</p>

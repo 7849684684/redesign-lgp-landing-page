@@ -1,3 +1,5 @@
+import Section from "@/components/Section";
+
 const clients = [
   "GitHub",
   "Anthropic",
@@ -16,22 +18,20 @@ const clients = [
 
 export default function ClientLogoBar() {
   return (
-    <section className="border-t border-surface-2 py-10 md:py-12">
-      <div className="mx-auto max-w-[1280px] px-6">
-        <p className="label text-text-tertiary mb-6">
-          Used by people at
-        </p>
-        <div className="flex flex-wrap gap-x-8 gap-y-4 items-center">
-          {clients.map((name) => (
-            <span
-              key={name}
-              className="text-sm md:text-base text-text-secondary/60 font-medium tracking-wide"
-            >
-              {name}
-            </span>
-          ))}
-        </div>
+    <Section className="border-t border-surface-2 py-10 md:py-12">
+      <p className="label text-text-tertiary mb-6">
+        Used by people at
+      </p>
+      <div className="flex flex-wrap gap-x-8 gap-y-4 items-center">
+        {clients.map((name) => (
+          <span
+            key={name}
+            className="text-sm md:text-base text-text-secondary/60 font-medium tracking-wide"
+          >
+            {name}
+          </span>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 }
