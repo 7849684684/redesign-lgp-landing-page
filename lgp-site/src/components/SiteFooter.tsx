@@ -9,6 +9,11 @@ const ecosystemLinks = [
   { href: "https://courses.longgameproject.org", label: "Courses" },
 ];
 
+const legalLinks = [
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms & Conditions" },
+];
+
 const serviceLinks = [
   { href: "/consulting", label: "Consulting" },
   { href: "/mastermind", label: "Masterminds" },
@@ -85,6 +90,19 @@ export default function SiteFooter() {
               ))}
             </ul>
           </div>
+        </div>
+
+        {/* Legal */}
+        <div className="flex items-center gap-4 mb-4">
+          {legalLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-xs text-text-tertiary hover:text-text-primary transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
 
         {/* Copyright */}

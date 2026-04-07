@@ -13,6 +13,7 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://longgameproject.org"),
   title: {
     default: "The Long Game Project - Building Better Thinkers",
     template: "%s | The Long Game Project",
@@ -25,7 +26,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "The Long Game Project",
     description: "Games, simulations, and peer challenge that make your team sharper.",
+    url: "https://longgameproject.org",
+    siteName: "The Long Game Project",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "The Long Game Project",
+    description: "Games, simulations, and peer challenge that make your team sharper.",
   },
 };
 
