@@ -21,7 +21,16 @@ export async function POST(request: NextRequest) {
       // Check both top-level auth and stageData._auth (workaround for current API)
       const hash = engagement?.auth?.passwordHash || engagement?.stageData?._auth?.passwordHash;
       if (!hash) {
-        return NextResponse.json({ error: 'Engagement not found' }, { status: 404 });
+        return NextResponse.json({
+          error: 'Engagement not found',
+          _debug: {
+            hasEngagement: !!engagement,
+            hasAuth: !!engagement?.auth,
+            hasStageData: !!engagement?.stageData,
+            hasStageAuth: !!engagement?.stageData?._auth,
+            keys: engagement ? Object.keys(engagement) : [],
+          },
+        }, { status: 404 });
       }
       isValid = await compare(password, hash);
     } else {
