@@ -28,17 +28,32 @@ export async function GET(
     return NextResponse.json({ error: 'Engagement not found' }, { status: 404 });
   }
 
-  // Strip auth data from the response regardless of session type
-  const { auth: _auth, ...safeData } = data;
+  // Normalise: merge stageData._auth and stageData._portal into top-level fields
+  const publishedDocs = data.publishedDocs || data.stageData?._portal?.publishedDocs || {};
+  const portalUrl = data.portalUrl || data.stageData?._portal?.portalUrl;
 
-  // Client access only returns published deliverables - no internal stage data
+  // Strip auth and internal portal metadata from the response
+  const { auth: _authField, stageData: rawStageData, ...safeData } = data;
+
+  // Remove _auth and _portal from stageData before returning
+  const cleanStageData = rawStageData ? { ...rawStageData } : {};
+  delete cleanStageData._auth;
+  delete cleanStageData._portal;
+
+  // Client access only returns published deliverables
   if (session.type === 'client') {
     return NextResponse.json({
       ...safeData,
-      stageData: undefined,
+      publishedDocs,
+      portalUrl,
     });
   }
 
   // Internal access gets the full engagement record
-  return NextResponse.json(safeData);
+  return NextResponse.json({
+    ...safeData,
+    publishedDocs,
+    portalUrl,
+    stageData: cleanStageData,
+  });
 }

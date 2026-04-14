@@ -30,7 +30,8 @@ export default async function PortalDocPage({
   const engagement = await fetchEngagement(clientKey);
   if (!engagement) redirect('/portal/login');
 
-  const publishedDoc = engagement.publishedDocs?.[template];
+  const allPublished = engagement.publishedDocs || engagement.stageData?._portal?.publishedDocs || {};
+  const publishedDoc = allPublished[template];
   if (!publishedDoc) {
     return (
       <Section className="pt-24 pb-16">

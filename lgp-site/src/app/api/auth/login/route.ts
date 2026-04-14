@@ -18,10 +18,12 @@ export async function POST(request: NextRequest) {
       isValid = await compare(password, hash);
     } else if (type === 'client' && clientKey) {
       const engagement = await fetchEngagement(clientKey);
-      if (!engagement?.auth?.passwordHash) {
+      // Check both top-level auth and stageData._auth (workaround for current API)
+      const hash = engagement?.auth?.passwordHash || engagement?.stageData?._auth?.passwordHash;
+      if (!hash) {
         return NextResponse.json({ error: 'Engagement not found' }, { status: 404 });
       }
-      isValid = await compare(password, engagement.auth.passwordHash);
+      isValid = await compare(password, hash);
     } else {
       return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
     }

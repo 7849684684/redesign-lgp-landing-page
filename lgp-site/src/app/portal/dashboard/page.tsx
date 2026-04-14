@@ -145,15 +145,18 @@ export default async function PortalDashboardPage() {
   const engagement = await fetchEngagement(clientKey);
   if (!engagement) redirect('/portal/login');
 
+  // Normalise: support both top-level and stageData._portal storage
+  const normalisedPublishedDocs = engagement.publishedDocs || engagement.stageData?._portal?.publishedDocs || {};
+
   const {
     clientName,
     title,
     currentStage,
     stageStatus = {},
     surveys = {},
-    publishedDocs = {},
     contact,
   } = engagement;
+  const publishedDocs = normalisedPublishedDocs;
 
   const currentSurveyUrl = surveys[currentStage];
   const publishedDocEntries = Object.entries(publishedDocs) as [string, { publishedAt: string }][];

@@ -48,7 +48,8 @@ export default async function InternalDocPage({
   const engagement: Engagement | null = await fetchEngagement(clientKey);
   if (!engagement) redirect('/internal/pipeline');
 
-  const publishedDoc = engagement.publishedDocs?.[template];
+  const allPublished = engagement.publishedDocs || engagement.stageData?._portal?.publishedDocs || {};
+  const publishedDoc = allPublished[template];
   const stageDataKey = TEMPLATE_STAGE_DATA_KEY[template];
   const stageConfig = stageDataKey ? engagement.stageData?.[stageDataKey] : undefined;
 

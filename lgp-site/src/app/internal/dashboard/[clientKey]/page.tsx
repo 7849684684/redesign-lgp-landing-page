@@ -167,7 +167,8 @@ export default async function InternalDashboardPage({
             <h2 className="label text-text-tertiary mb-4">Documents</h2>
             <div className="space-y-2">
               {TEMPLATES.map(({ slug, label, stage, stageDataKey }) => {
-                const published = engagement.publishedDocs?.[slug];
+                const allPublished = engagement.publishedDocs || engagement.stageData?._portal?.publishedDocs || {};
+                const published = allPublished[slug];
                 const hasStageData = !!engagement.stageData?.[stageDataKey];
                 const docStatus: 'published' | 'draft' | 'none' = published
                   ? 'published'
