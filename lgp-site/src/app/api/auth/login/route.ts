@@ -21,14 +21,26 @@ export async function POST(request: NextRequest) {
       // Check both top-level auth and stageData._auth (workaround for current API)
       const hash = engagement?.auth?.passwordHash || engagement?.stageData?._auth?.passwordHash;
       if (!hash) {
+        // Debug: try a direct fetch to see what's happening
+        const debugUrl = `${process.env.LGP_N8N_BASE_URL || 'https://n8n.eppa.me/webhook'}/lgp-engagement-data?client=${clientKey}&token=${process.env.LGP_N8N_TOKEN || ''}`;
+        let debugFetchResult = 'not attempted';
+        try {
+          const debugRes = await fetch(debugUrl, { cache: 'no-store' });
+          debugFetchResult = `status=${debugRes.status} ok=${debugRes.ok}`;
+          if (debugRes.ok) {
+            const debugData = await debugRes.json();
+            debugFetchResult += ` keys=${Object.keys(debugData).join(',')}`;
+          }
+        } catch (e: unknown) {
+          debugFetchResult = `error: ${e instanceof Error ? e.message : String(e)}`;
+        }
         return NextResponse.json({
           error: 'Engagement not found',
           _debug: {
             hasEngagement: !!engagement,
-            hasAuth: !!engagement?.auth,
-            hasStageData: !!engagement?.stageData,
-            hasStageAuth: !!engagement?.stageData?._auth,
-            keys: engagement ? Object.keys(engagement) : [],
+            envBaseUrl: process.env.LGP_N8N_BASE_URL?.substring(0, 30) || 'not set',
+            envToken: process.env.LGP_N8N_TOKEN ? 'set' : 'not set',
+            debugFetch: debugFetchResult,
           },
         }, { status: 404 });
       }
