@@ -26,11 +26,11 @@ export async function POST(request: NextRequest) {
         let debugFetchResult = 'not attempted';
         try {
           const debugRes = await fetch(debugUrl, { cache: 'no-store' });
-          debugFetchResult = `status=${debugRes.status} ok=${debugRes.ok}`;
-          if (debugRes.ok) {
-            const debugData = await debugRes.json();
-            debugFetchResult += ` keys=${Object.keys(debugData).join(',')}`;
-          }
+          const server = debugRes.headers.get('server') || 'none';
+          const cfRay = debugRes.headers.get('cf-ray') || 'none';
+          const cfMitigated = debugRes.headers.get('cf-mitigated') || 'none';
+          const body = await debugRes.text();
+          debugFetchResult = `status=${debugRes.status} server=${server} cf-ray=${cfRay} cf-mit=${cfMitigated} body=${body.substring(0, 100)}`;
         } catch (e: unknown) {
           debugFetchResult = `error: ${e instanceof Error ? e.message : String(e)}`;
         }
