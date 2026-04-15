@@ -49,13 +49,24 @@ export const COOKIE_CONFIG = {
   path: '/',
 };
 
+// Cloudflare Access service token headers (Zero Trust gateway in front of n8n)
+function cfAccessHeaders(): Record<string, string> {
+  const id = process.env.CF_ACCESS_CLIENT_ID;
+  const secret = process.env.CF_ACCESS_CLIENT_SECRET;
+  if (!id || !secret) return {};
+  return {
+    'CF-Access-Client-Id': id,
+    'CF-Access-Client-Secret': secret,
+  };
+}
+
 // n8n API helper - proxied server-side to keep the token out of the browser
 export async function fetchEngagement(clientKey: string) {
   const baseUrl = process.env.LGP_N8N_BASE_URL || 'https://n8n.eppa.me/webhook';
   const token = process.env.LGP_N8N_TOKEN || '';
   const res = await fetch(
     `${baseUrl}/lgp-engagement-data?client=${encodeURIComponent(clientKey)}&token=${encodeURIComponent(token)}`,
-    { cache: 'no-store' }
+    { cache: 'no-store', headers: cfAccessHeaders() }
   );
   if (!res.ok) return null;
   return res.json();
@@ -66,7 +77,7 @@ export async function fetchAllEngagements() {
   const token = process.env.LGP_N8N_TOKEN || '';
   const res = await fetch(
     `${baseUrl}/lgp-engagement-data?list=true&token=${encodeURIComponent(token)}`,
-    { cache: 'no-store' }
+    { cache: 'no-store', headers: cfAccessHeaders() }
   );
   if (!res.ok) return [];
   const data = await res.json();

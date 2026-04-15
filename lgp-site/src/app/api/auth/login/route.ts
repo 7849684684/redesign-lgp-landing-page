@@ -25,7 +25,10 @@ export async function POST(request: NextRequest) {
         const debugUrl = `${process.env.LGP_N8N_BASE_URL || 'https://n8n.eppa.me/webhook'}/lgp-engagement-data?client=${clientKey}&token=${process.env.LGP_N8N_TOKEN || ''}`;
         let debugFetchResult = 'not attempted';
         try {
-          const debugRes = await fetch(debugUrl, { cache: 'no-store' });
+          const cfHeaders: Record<string, string> = {};
+          if (process.env.CF_ACCESS_CLIENT_ID) cfHeaders['CF-Access-Client-Id'] = process.env.CF_ACCESS_CLIENT_ID;
+          if (process.env.CF_ACCESS_CLIENT_SECRET) cfHeaders['CF-Access-Client-Secret'] = process.env.CF_ACCESS_CLIENT_SECRET;
+          const debugRes = await fetch(debugUrl, { cache: 'no-store', headers: cfHeaders });
           const server = debugRes.headers.get('server') || 'none';
           const cfRay = debugRes.headers.get('cf-ray') || 'none';
           const cfMitigated = debugRes.headers.get('cf-mitigated') || 'none';
