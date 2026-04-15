@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
+import ServicesMenu from "./ServicesMenu";
+import { services } from "@/lib/services";
 
 const products = [
   { href: "https://shortlist.games", label: "Shortlist" },
@@ -16,14 +18,13 @@ const products = [
 
 const siteLinks = [
   { href: "/about", label: "About" },
-  { href: "/consulting", label: "Consulting" },
-  { href: "/mastermind", label: "Masterminds" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 
 export default function EndorserBar() {
   const pathname = usePathname();
+  const servicesActive = pathname?.startsWith("/services") ?? false;
 
   return (
     <header className="sticky top-0 z-50">
@@ -70,19 +71,37 @@ export default function EndorserBar() {
 
           <div className="flex items-center gap-2">
             <nav className="hidden md:flex items-center gap-6 mr-4">
-              {siteLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`text-sm font-medium transition-colors ${
-                    pathname === link.href || pathname?.startsWith(link.href + "/")
-                      ? "text-brand-teal"
-                      : "text-text-secondary hover:text-text-primary"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              <Link
+                href="/about"
+                className={`text-sm font-medium transition-colors ${
+                  pathname === "/about" || pathname?.startsWith("/about/")
+                    ? "text-brand-teal"
+                    : "text-text-secondary hover:text-text-primary"
+                }`}
+              >
+                About
+              </Link>
+              <ServicesMenu active={servicesActive} />
+              <Link
+                href="/blog"
+                className={`text-sm font-medium transition-colors ${
+                  pathname === "/blog" || pathname?.startsWith("/blog/")
+                    ? "text-brand-teal"
+                    : "text-text-secondary hover:text-text-primary"
+                }`}
+              >
+                Blog
+              </Link>
+              <Link
+                href="/contact"
+                className={`text-sm font-medium transition-colors ${
+                  pathname === "/contact"
+                    ? "text-brand-teal"
+                    : "text-text-secondary hover:text-text-primary"
+                }`}
+              >
+                Contact
+              </Link>
             </nav>
 
             <ThemeToggle />
@@ -128,6 +147,37 @@ function MobileMenu({ pathname }: { pathname: string | null }) {
                 {link.label}
               </Link>
             ))}
+
+            <div className="pt-3 mt-1 border-t border-surface-2">
+              <p className="label text-text-tertiary mb-2">Services</p>
+              <div className="flex flex-col gap-2 pl-1">
+                <Link
+                  href="/services"
+                  onClick={() => setOpen(false)}
+                  className={`text-sm py-1 ${
+                    pathname === "/services"
+                      ? "text-brand-teal font-medium"
+                      : "text-text-secondary"
+                  }`}
+                >
+                  All services
+                </Link>
+                {services.map((service) => (
+                  <Link
+                    key={service.slug}
+                    href={service.href}
+                    onClick={() => setOpen(false)}
+                    className={`text-sm py-1 ${
+                      pathname === service.href
+                        ? "text-brand-teal font-medium"
+                        : "text-text-secondary"
+                    }`}
+                  >
+                    {service.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </nav>
         </div>
       )}

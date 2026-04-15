@@ -162,15 +162,15 @@ export default function Home() {
         <div className="mb-16">
           <p className="label text-text-tertiary mb-3">Services</p>
           <h2 className="font-editorial text-3xl md:text-4xl font-normal text-text-primary">
-            Two ways to work with us directly.
+            Five ways to work with us directly.
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 md:gap-16">
           <div>
             <h3 className="font-editorial text-2xl font-semibold text-text-primary mb-3">
-              <a href="/consulting" className="hover:text-brand-teal transition-colors">
-                Consulting
+              <a href="/services/workshops" className="hover:text-brand-teal transition-colors">
+                Workshops
               </a>
             </h3>
             <p className="text-text-secondary leading-relaxed mb-4">
@@ -182,14 +182,14 @@ export default function Home() {
             <p className="text-xs text-text-tertiary mb-4">
               Organisations with strategic ambition and budget to match
             </p>
-            <a href="/consulting" className="text-sm font-medium text-brand-teal hover:underline">
-              Learn about consulting &rarr;
+            <a href="/services/workshops" className="text-sm font-medium text-brand-teal hover:underline">
+              Learn about workshops &rarr;
             </a>
           </div>
 
           <div>
             <h3 className="font-editorial text-2xl font-semibold text-text-primary mb-3">
-              <a href="/mastermind" className="hover:text-brand-teal transition-colors">
+              <a href="/services/masterminds" className="hover:text-brand-teal transition-colors">
                 Masterminds
               </a>
             </h3>
@@ -201,10 +201,22 @@ export default function Home() {
             <p className="text-xs text-text-tertiary mb-4">
               Senior leaders, founders, CEOs
             </p>
-            <a href="/mastermind" className="text-sm font-medium text-brand-teal hover:underline">
+            <a href="/services/masterminds" className="text-sm font-medium text-brand-teal hover:underline">
               Learn about masterminds &rarr;
             </a>
           </div>
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-surface-2">
+          <a
+            href="/services"
+            className="text-sm font-medium text-brand-teal hover:underline"
+          >
+            See all five services &rarr;
+          </a>
+          <p className="mt-1 text-xs text-text-tertiary">
+            Workshops, Masterminds, 1:1 Coaching, Strategy Sprints, Speaking.
+          </p>
         </div>
       </Section>
 

@@ -5,10 +5,11 @@ import CrossProductCTA from "@/components/CrossProductCTA";
 
 export const metadata: Metadata = {
   title: "Masterminds",
-  description: "Peer cohorts for senior leaders who want to sharpen their strategic thinking alongside people who challenge them.",
+  description:
+    "Peer cohorts for senior leaders who want to sharpen their strategic thinking alongside people who challenge them.",
 };
 
-export default function MastermindPage() {
+export default function MastermindsPage() {
   return (
     <>
       {/* Hero - amber accent dominant per brief */}
@@ -145,9 +146,9 @@ export default function MastermindPage() {
       <Section className="pb-20">
         <CrossProductCTA
           label="Need something more bespoke?"
-          product="Consulting"
+          product="Workshops"
           description="Full-service tabletop exercise design and facilitation for your leadership team."
-          href="/consulting"
+          href="/services/workshops"
         />
       </Section>
     </>

@@ -4,17 +4,18 @@ import Button from "@/components/Button";
 import CrossProductCTA from "@/components/CrossProductCTA";
 
 export const metadata: Metadata = {
-  title: "Consulting",
-  description: "Bespoke strategy consulting for organisations facing consequential decisions. Tabletop exercises, advisory, and honest challenge.",
+  title: "Workshops",
+  description:
+    "Tabletop exercises that pressure-test your strategy in a day. Bespoke scenario design, expert facilitation, honest debrief.",
 };
 
-export default function ConsultingPage() {
+export default function WorkshopsPage() {
   return (
     <>
       {/* Hero */}
       <Section className="pt-16 pb-16 md:pt-20 md:pb-20" surface={1}>
         <div className="max-w-3xl">
-          <p className="label text-brand-amber mb-4">Bespoke consulting</p>
+          <p className="label text-brand-amber mb-4">Workshops</p>
           <h1 className="font-editorial text-4xl md:text-5xl font-normal text-text-primary leading-tight mb-6">
             Your strategy looks great on paper.
             <br className="hidden md:block" />
@@ -57,17 +58,6 @@ export default function ConsultingPage() {
             </div>
             <div>
               <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
-                Executive Coaching
-              </h3>
-              <p className="text-text-secondary leading-relaxed">
-                How you frame problems shapes what solutions you see. We work
-                one-on-one with senior leaders on decision-making under
-                pressure - building practical capability, not handing out
-                frameworks.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
                 Scenario Design
               </h3>
               <p className="text-text-secondary leading-relaxed">
@@ -75,6 +65,16 @@ export default function ConsultingPage() {
                 tech, consumer goods, and more. Every scenario is built
                 around your specific industry, competitive landscape, and
                 strategic context.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
+                Honest Debrief
+              </h3>
+              <p className="text-text-secondary leading-relaxed">
+                The exercise is the easy part. The debrief is where the work
+                happens. Structured reflection, named assumptions, agreed
+                next moves &mdash; not a summary deck.
               </p>
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function ConsultingPage() {
             {[
               { step: "01", title: "Discovery call", desc: "30 minutes. You describe the challenge. We tell you honestly whether we can help. No pitch, no proposal theatre." },
               { step: "02", title: "Scoping", desc: "Objectives, format, timeline, investment - defined clearly and agreed upfront. No scope creep, no ambiguity." },
-              { step: "03", title: "Design", desc: "We design the exercise or advisory engagement around your actual strategic context - not a template with your logo on it." },
+              { step: "03", title: "Design", desc: "We design the exercise around your actual strategic context - not a template with your logo on it." },
               { step: "04", title: "Deliver", desc: "We facilitate, provoke, and hold your team accountable to the commitments they make under pressure." },
               { step: "05", title: "Debrief", desc: "What you decided, why it matters, and what happens Monday morning. A structured action plan, not a summary deck." },
             ].map((item) => (
@@ -165,7 +165,7 @@ export default function ConsultingPage() {
           label="Keep practising between engagements"
           product="Masterminds"
           description="Monthly peer cohorts for senior leaders. Structured challenge, real decisions, ongoing accountability."
-          href="/mastermind"
+          href="/services/masterminds"
         />
       </Section>
     </>
