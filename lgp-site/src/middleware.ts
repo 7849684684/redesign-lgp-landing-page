@@ -1,10 +1,9 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
 
-// Fallback only used in development - production requires the env var to be set
 function getSecret(): Uint8Array {
   const secret = process.env.LGP_SESSION_SECRET;
-  if (!secret) return new TextEncoder().encode('dev-secret-not-for-production');
+  if (!secret) throw new Error('LGP_SESSION_SECRET not configured');
   return new TextEncoder().encode(secret);
 }
 
@@ -76,7 +75,7 @@ function addSecurityHeaders(response: NextResponse) {
   headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=()');
   headers.set(
     'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://n8n.eppa.me; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data: https://fonts.gstatic.com; frame-src 'self' https://lgp-dashboard.vercel.app"
+    "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data: https://fonts.gstatic.com; frame-src 'self' https://lgp-dashboard.vercel.app"
   );
 }
 

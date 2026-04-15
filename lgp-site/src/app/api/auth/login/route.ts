@@ -18,34 +18,10 @@ export async function POST(request: NextRequest) {
       isValid = await compare(password, hash);
     } else if (type === 'client' && clientKey) {
       const engagement = await fetchEngagement(clientKey);
-      // Check both top-level auth and stageData._auth (workaround for current API)
+      // Check both top-level auth and stageData._auth (fallback for legacy records).
       const hash = engagement?.auth?.passwordHash || engagement?.stageData?._auth?.passwordHash;
       if (!hash) {
-        // Debug: try a direct fetch to see what's happening
-        const debugUrl = `${process.env.LGP_N8N_BASE_URL || 'https://n8n.eppa.me/webhook'}/lgp-engagement-data?client=${clientKey}&token=${process.env.LGP_N8N_TOKEN || ''}`;
-        let debugFetchResult = 'not attempted';
-        try {
-          const cfHeaders: Record<string, string> = {};
-          if (process.env.CF_ACCESS_CLIENT_ID) cfHeaders['CF-Access-Client-Id'] = process.env.CF_ACCESS_CLIENT_ID;
-          if (process.env.CF_ACCESS_CLIENT_SECRET) cfHeaders['CF-Access-Client-Secret'] = process.env.CF_ACCESS_CLIENT_SECRET;
-          const debugRes = await fetch(debugUrl, { cache: 'no-store', headers: cfHeaders });
-          const server = debugRes.headers.get('server') || 'none';
-          const cfRay = debugRes.headers.get('cf-ray') || 'none';
-          const cfMitigated = debugRes.headers.get('cf-mitigated') || 'none';
-          const body = await debugRes.text();
-          debugFetchResult = `status=${debugRes.status} server=${server} cf-ray=${cfRay} cf-mit=${cfMitigated} body=${body.substring(0, 100)}`;
-        } catch (e: unknown) {
-          debugFetchResult = `error: ${e instanceof Error ? e.message : String(e)}`;
-        }
-        return NextResponse.json({
-          error: 'Engagement not found',
-          _debug: {
-            hasEngagement: !!engagement,
-            envBaseUrl: process.env.LGP_N8N_BASE_URL?.substring(0, 30) || 'not set',
-            envToken: process.env.LGP_N8N_TOKEN ? 'set' : 'not set',
-            debugFetch: debugFetchResult,
-          },
-        }, { status: 404 });
+        return NextResponse.json({ error: 'Engagement not found' }, { status: 404 });
       }
       isValid = await compare(password, hash);
     } else {

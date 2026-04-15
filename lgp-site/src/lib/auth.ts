@@ -1,4 +1,5 @@
 import { SignJWT, jwtVerify } from 'jose';
+import { getEngagement, listEngagements } from './engagement-store';
 
 // Types
 export interface SessionPayload {
@@ -49,37 +50,15 @@ export const COOKIE_CONFIG = {
   path: '/',
 };
 
-// Cloudflare Access service token headers (Zero Trust gateway in front of n8n)
-function cfAccessHeaders(): Record<string, string> {
-  const id = process.env.CF_ACCESS_CLIENT_ID;
-  const secret = process.env.CF_ACCESS_CLIENT_SECRET;
-  if (!id || !secret) return {};
-  return {
-    'CF-Access-Client-Id': id,
-    'CF-Access-Client-Secret': secret,
-  };
+// Engagement data access - now reads from the Upstash Redis push mirror.
+// n8n pushes updates to /api/engagement/sync; these helpers just read.
+// Signatures preserved so route handlers remain unchanged.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function fetchEngagement(clientKey: string): Promise<any> {
+  return getEngagement(clientKey);
 }
 
-// n8n API helper - proxied server-side to keep the token out of the browser
-export async function fetchEngagement(clientKey: string) {
-  const baseUrl = process.env.LGP_N8N_BASE_URL || 'https://n8n.eppa.me/webhook';
-  const token = process.env.LGP_N8N_TOKEN || '';
-  const res = await fetch(
-    `${baseUrl}/lgp-engagement-data?client=${encodeURIComponent(clientKey)}&token=${encodeURIComponent(token)}`,
-    { cache: 'no-store', headers: cfAccessHeaders() }
-  );
-  if (!res.ok) return null;
-  return res.json();
-}
-
-export async function fetchAllEngagements() {
-  const baseUrl = process.env.LGP_N8N_BASE_URL || 'https://n8n.eppa.me/webhook';
-  const token = process.env.LGP_N8N_TOKEN || '';
-  const res = await fetch(
-    `${baseUrl}/lgp-engagement-data?list=true&token=${encodeURIComponent(token)}`,
-    { cache: 'no-store', headers: cfAccessHeaders() }
-  );
-  if (!res.ok) return [];
-  const data = await res.json();
-  return data.engagements || [];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function fetchAllEngagements(): Promise<any[]> {
+  return listEngagements();
 }
