@@ -63,11 +63,11 @@ export default function Home() {
             <span className="text-brand-amber">Practice it.</span>
           </h1>
           <p className="mt-6 text-lg md:text-xl text-text-secondary leading-relaxed max-w-xl">
-            We built the gym for strategic thinking. Your team now does the reps.
+            We design the exercises senior teams use to pressure-test their strategy under the conditions it will actually have to survive.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Button href="#services" variant="amber">
-              What we do
+              See how we work
             </Button>
             <Button href="/contact" variant="outline">
               Talk to us
@@ -84,11 +84,11 @@ export default function Home() {
           </h2>
           <div className="space-y-4 text-text-secondary leading-relaxed">
             <p>
-              When you outsource strategic thinking — to a consultant, a
-              framework, an AI — your own capability weakens. But strategy is
-              demanded in the hardest moments, not the calmest ones. The best
-              decision-makers treat it as a skill. One that needs deliberate,
-              repeated practice.
+              When strategic thinking gets outsourced &mdash; to a consultant,
+              a framework, a model &mdash; the capability inside the building
+              atrophies. And strategy is demanded in the hardest moments, not
+              the calmest ones. The sharpest decision-makers treat it as a
+              skill: one that needs deliberate, repeated practice.
             </p>
             <p className="text-text-primary font-medium">
               We build the practice.
@@ -100,8 +100,9 @@ export default function Home() {
       {/* ── WHO THIS IS FOR ── */}
       <Section className="py-10 md:py-14" surface={1}>
         <p className="font-editorial text-xl md:text-2xl text-text-primary leading-relaxed max-w-2xl">
-          For founders, senior leaders, and teams making high-stakes strategic
-          decisions — who know that the thinking matters as much as the plan.
+          For founders, senior leaders, and teams making decisions whose
+          consequences they will live with &mdash; who know the thinking
+          matters as much as the plan.
         </p>
       </Section>
 
@@ -115,11 +116,11 @@ export default function Home() {
               <p className="text-4xl md:text-5xl font-light tracking-tight tabular-nums">
                 130+
               </p>
-              <p className="text-sm mt-1 opacity-60">Scenarios designed</p>
+              <p className="text-sm mt-1 opacity-60">Bespoke scenarios designed</p>
             </div>
             <div>
               <p className="text-2xl md:text-3xl font-light tracking-tight leading-tight">
-                Defence, tech, CPG &amp; finance
+                Defence, financial services, tech &amp; consumer goods
               </p>
               <p className="text-sm mt-2 opacity-60">Industries served</p>
             </div>
@@ -174,16 +175,15 @@ export default function Home() {
               </a>
             </h3>
             <p className="text-text-secondary leading-relaxed mb-4">
-              Tabletop exercises, structured advisory, and honest challenge for
-              organisations facing consequential strategic decisions. Your team
-              works through realistic scenarios under pressure with expert
-              facilitation.
+              A tabletop exercise puts your leadership team inside the
+              decisions your strategy does not rehearse. One day,
+              partner-facilitated, debriefed into board-ready commitments.
             </p>
             <p className="text-xs text-text-tertiary mb-4">
-              Organisations with strategic ambition and budget to match
+              Organisations with consequential decisions on the table
             </p>
             <a href="/services/workshops" className="text-sm font-medium text-brand-teal hover:underline">
-              Learn about workshops &rarr;
+              Read more &rarr;
             </a>
           </div>
 
@@ -194,15 +194,16 @@ export default function Home() {
               </a>
             </h3>
             <p className="text-text-secondary leading-relaxed mb-4">
-              Small cohorts of senior leaders who meet monthly to sharpen their
-              strategic thinking. Not networking. Not group coaching. Structured
-              peer challenge with real stakes.
+              A curated group of six to eight senior leaders, meeting monthly
+              to pressure-test the decisions they are actually facing. Not
+              networking, not group coaching &mdash; structured peer challenge
+              under partner facilitation.
             </p>
             <p className="text-xs text-text-tertiary mb-4">
-              Senior leaders, founders, CEOs
+              Senior leaders, founders, chief executives
             </p>
             <a href="/services/masterminds" className="text-sm font-medium text-brand-teal hover:underline">
-              Learn about masterminds &rarr;
+              Read more &rarr;
             </a>
           </div>
         </div>
@@ -225,9 +226,10 @@ export default function Home() {
         <div className="max-w-2xl">
           <p className="label text-text-tertiary mb-3">Who&apos;s behind this</p>
           <p className="font-editorial text-xl md:text-2xl text-text-primary leading-relaxed mb-4">
-            Dr Dan Epstein — medical doctor, PhD in decision science, tabletop
-            game designer for over a decade. He&apos;s designed 130+ strategic
-            scenarios across defence, consumer goods, tech, and financial services.
+            Dr Dan Epstein &mdash; physician, PhD in decision science, and
+            tabletop game designer for more than a decade. He has designed
+            130+ bespoke strategic scenarios across defence, financial
+            services, technology, and consumer goods.
           </p>
           <a href="/team" className="text-sm font-medium text-brand-teal hover:underline">
             Meet the team &rarr;
@@ -276,13 +278,14 @@ export default function Home() {
               Tell us the decision you&apos;re facing.
             </h2>
             <p className="text-lg opacity-70 leading-relaxed mb-8">
-              No pitch. Just a conversation about whether we can help.
+              Thirty minutes with a partner, no pitch. If we can help, we will
+              say how. If we cannot, we will point you to someone who can.
             </p>
             <a
               href="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 text-sm font-medium bg-brand-amber text-white hover:bg-brand-amber-light transition-colors rounded-[var(--radius-sm)]"
             >
-              Get in touch
+              Book a discovery call
             </a>
           </div>
         </div>
