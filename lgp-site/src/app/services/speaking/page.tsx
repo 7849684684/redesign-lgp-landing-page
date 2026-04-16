@@ -4,35 +4,35 @@ import ServicePageTemplate from "@/components/ServicePageTemplate";
 export const metadata: Metadata = {
   title: "Speaking",
   description:
-    "Talks that leave people thinking, not clapping. Keynotes and conference sessions on strategy, decision-making, and the long game.",
+    "Keynotes, working sessions, and panels on strategy under uncertainty, decision-making at the top, and the failure modes of conventional planning.",
 };
 
 export default function SpeakingPage() {
   return (
     <ServicePageTemplate
       label="Speaking"
-      title="Talks that leave people thinking, not clapping."
-      subtitle="Keynotes, conference sessions, and leadership offsites on strategy, decision-making under uncertainty, and why most planning is theatre."
+      title="Talks that leave the room thinking, not clapping."
+      subtitle="Keynotes, working sessions, and panels on strategy under uncertainty, decision-making at the top, and the failure modes of conventional planning. Built around your audience and the question the event is really asking — not a deck we give everyone."
       sections={[
         {
           title: "Keynotes",
-          body: "30–60 minute talks built around your audience and your event's central question — not a deck we give everyone.",
+          body: "Thirty to sixty minutes, opening or closing. Built around your event's theme, your audience's role, and the specific provocation worth leaving them with. Rehearsed with your programme team, not read off a shared deck.",
         },
         {
-          title: "Workshop sessions",
-          body: "Working sessions that turn an audience into participants. Best for leadership offsites and executive education.",
+          title: "Working sessions",
+          body: "Ninety minutes to three hours that turn an audience into participants. Best for leadership offsites, executive education, and conferences that want the room to leave with conclusions — not just content.",
         },
         {
-          title: "Panels & moderation",
-          body: "We can chair, provoke, or just keep a panel honest. Useful when the topic deserves better than a soft chair.",
+          title: "Panels and moderation",
+          body: "We will chair, provoke, or keep a panel honest — whichever the topic needs. Useful when the subject deserves better than a soft chair and pre-circulated questions.",
         },
         {
-          title: "Topics we know well",
-          body: "Strategy under uncertainty, scenario thinking, decision-making at the top, why most strategic planning fails, AI and the strategy function.",
+          title: "Topics we speak on often",
+          body: "Strategy under radical uncertainty. Scenario thinking and war-gaming. Decision-making at the board level. The failure modes of strategic planning. The role of AI in the strategy function.",
         },
       ]}
       ctaHeading="Tell us about the event."
-      ctaBody="Audience, theme, date, format. We'll come back within 48 hours with whether we're a fit and a couple of angles we'd take."
+      ctaBody="Audience, theme, date, format. We will come back within 48 hours with whether we are a fit, the angle we would take, and who from the team would be right for the room."
       ctaLabel="Enquire about a talk"
       ctaVariant="teal"
       crossLink={{
@@ -42,7 +42,6 @@ export default function SpeakingPage() {
           "Tabletop exercises that turn an audience into a working leadership team for a day.",
         href: "/services/workshops",
       }}
-      inDevelopment
     />
   );
 }
