@@ -7,7 +7,7 @@ import { services } from "@/lib/services";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Workshops, masterminds, coaching, sprints, and speaking. Five ways The Long Game Project sharpens leaders and the strategies they bet on.",
+    "Workshops, masterminds, coaching, sprints, and keynotes. Five ways The Long Game Project sharpens the decisions senior leaders are already making.",
 };
 
 export default function ServicesPage() {
@@ -15,9 +15,23 @@ export default function ServicesPage() {
     <>
       <Section>
         <PageHeader
-          title="How we work."
-          subtitle="Five formats. One purpose: sharper thinking from the people who make the calls."
+          title="How we engage."
+          subtitle="Five formats, one discipline: rigorously testing the assumptions a strategy is resting on. The format changes with the stakes, the timeline, and the audience — the standard does not."
         />
+      </Section>
+
+      <Section className="pb-12 md:pb-16">
+        <div className="max-w-3xl">
+          <p className="text-text-secondary leading-relaxed">
+            Every engagement begins from the same question: what would have to
+            be true for this decision to be the right one? Over 130 bespoke
+            scenarios &mdash; across defence, financial services, technology,
+            consumer goods, healthcare, and professional services &mdash; have
+            taught us the shapes that question most often takes. The five
+            formats below are those shapes, sized from a single day to a
+            standing advisory retainer.
+          </p>
+        </div>
       </Section>
 
       <Section className="pb-20 md:pb-28">
@@ -40,7 +54,7 @@ export default function ServicesPage() {
                 {service.descriptor}
               </p>
               <span className="text-sm font-medium text-brand-teal">
-                Learn more &rarr;
+                Read more &rarr;
               </span>
             </Link>
           ))}

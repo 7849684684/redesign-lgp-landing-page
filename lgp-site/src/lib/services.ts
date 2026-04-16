@@ -11,37 +11,40 @@ export const services: ServiceItem[] = [
     slug: "workshops",
     href: "/services/workshops",
     label: "Workshops",
-    descriptor: "Tabletop exercises that pressure-test your strategy in a day.",
-    format: "Half/full-day",
+    descriptor:
+      "Tabletop exercises that stress-test a strategy against the shocks your plan does not model.",
+    format: "Half / full day",
   },
   {
     slug: "masterminds",
     href: "/services/masterminds",
     label: "Masterminds",
     descriptor:
-      "A small peer cohort that challenges your thinking for six months.",
-    format: "Cohort",
+      "Curated peer cohorts for leaders who have run out of people inside the building to challenge them.",
+    format: "Six-month cohort",
   },
   {
     slug: "1-1-coaching",
     href: "/services/1-1-coaching",
     label: "1:1 Coaching",
     descriptor:
-      "A sparring partner for the decisions you can't talk about internally.",
-    format: "Ongoing, private",
+      "Confidential counsel for the decisions you cannot yet put in writing.",
+    format: "Private retainer",
   },
   {
     slug: "strategy-sprints",
     href: "/services/strategy-sprints",
     label: "Strategy Sprints",
-    descriptor: "Two weeks. One sharp question. A defensible answer.",
-    format: "Fixed-scope project",
+    descriptor:
+      "Two weeks of partner-led work on one consequential question.",
+    format: "Fixed-scope engagement",
   },
   {
     slug: "speaking",
     href: "/services/speaking",
     label: "Speaking",
-    descriptor: "Talks that leave people thinking, not clapping.",
+    descriptor:
+      "Keynotes and working sessions on strategy under uncertainty.",
     format: "Keynote / event",
   },
 ];
