@@ -6,7 +6,7 @@ import CrossProductCTA from "@/components/CrossProductCTA";
 export const metadata: Metadata = {
   title: "Masterminds",
   description:
-    "Peer cohorts for senior leaders who want to sharpen their strategic thinking alongside people who challenge them.",
+    "Curated six-month peer cohorts for senior leaders who want their most consequential decisions pressure-tested by people operating at their level. Structured, confidential, partner-facilitated.",
 };
 
 export default function MastermindsPage() {
@@ -17,12 +17,12 @@ export default function MastermindsPage() {
         <div className="max-w-3xl">
           <p className="label text-brand-amber mb-4">Peer cohorts</p>
           <h1 className="font-editorial text-4xl md:text-5xl font-normal text-text-primary leading-tight mb-6">
-            The room where nobody lets you off easy.
+            The room where no one lets you off easy.
           </h1>
           <p className="text-lg text-text-secondary leading-relaxed max-w-xl">
-            Small cohorts of senior leaders who meet regularly to sharpen their
-            strategic thinking. Not networking. Not group coaching. Structured
-            peer challenge with real stakes.
+            A curated group of senior leaders who meet monthly to pressure-test
+            real decisions. Not a network. Not group coaching. Structured peer
+            challenge under the quiet discipline of a partner facilitator.
           </p>
         </div>
       </Section>
@@ -34,38 +34,46 @@ export default function MastermindsPage() {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="border-l-[3px] border-brand-amber pl-5">
               <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
-                Small groups
+                Small, curated rooms
               </h3>
               <p className="text-text-secondary leading-relaxed">
-                6-8 senior leaders per cohort. Curated for diversity of industry
-                and perspective. No competitors in the same group.
+                Six to eight senior leaders per cohort, curated for contrast
+                of industry and function. No direct competitors in the same
+                room. You meet people who can see your decisions clearly
+                because they are not living inside them.
               </p>
             </div>
             <div className="border-l-[3px] border-brand-amber pl-5">
               <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
-                Regular cadence
+                A senior cadence
               </h3>
               <p className="text-text-secondary leading-relaxed">
-                Monthly sessions with structured exercises, hot-seat challenges,
-                and accountability check-ins. Remote-first, timezone-aware.
+                Ninety minutes a month, remote-first, scheduled around the
+                senior calendar. Structured hot-seats, accountability
+                check-ins, and a library of challenge prompts drawn from
+                twenty years of strategic practice.
               </p>
             </div>
             <div className="border-l-[3px] border-brand-amber pl-5">
               <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
-                Facilitated challenge
+                Partner-facilitated
               </h3>
               <p className="text-text-secondary leading-relaxed">
-                Every session is facilitated by an LGP strategist who keeps the
-                conversation honest, productive, and moving forward.
+                Every session is facilitated by an LGP partner. The
+                facilitator&apos;s job is to keep the conversation honest,
+                catch the assumptions no one is naming, and make sure each
+                hour produces commitments &mdash; not just insight.
               </p>
             </div>
             <div className="border-l-[3px] border-brand-amber pl-5">
               <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
-                Real decisions
+                Decisions, not topics
               </h3>
               <p className="text-text-secondary leading-relaxed">
-                Members bring actual strategic decisions they are facing. The
-                group pressure-tests, challenges, and sharpens the thinking.
+                Members bring decisions they are actually facing &mdash; a
+                board paper due Friday, a restructure under debate, an
+                acquisition being costed. The group stress-tests the thinking
+                and holds the member to what they said they would do.
               </p>
             </div>
           </div>
@@ -78,7 +86,7 @@ export default function MastermindsPage() {
           <p className="label text-text-tertiary mb-6">The details</p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
             <div>
-              <p className="font-editorial text-lg font-semibold text-text-primary mb-1">6–8 leaders</p>
+              <p className="font-editorial text-lg font-semibold text-text-primary mb-1">6&ndash;8 leaders</p>
               <p className="text-sm text-text-secondary">Per cohort</p>
             </div>
             <div>
@@ -86,7 +94,7 @@ export default function MastermindsPage() {
               <p className="text-sm text-text-secondary">90-minute sessions</p>
             </div>
             <div>
-              <p className="font-editorial text-lg font-semibold text-text-primary mb-1">6 months</p>
+              <p className="font-editorial text-lg font-semibold text-text-primary mb-1">Six months</p>
               <p className="text-sm text-text-secondary">Minimum commitment</p>
             </div>
             <div>
@@ -94,12 +102,12 @@ export default function MastermindsPage() {
               <p className="text-sm text-text-secondary">Timezone-aware scheduling</p>
             </div>
             <div>
-              <p className="font-editorial text-lg font-semibold text-text-primary mb-1">Curated</p>
-              <p className="text-sm text-text-secondary">No competitors in the same group</p>
+              <p className="font-editorial text-lg font-semibold text-text-primary mb-1">By application</p>
+              <p className="text-sm text-text-secondary">Curated for fit, not filled to quota</p>
             </div>
             <div>
               <p className="font-editorial text-lg font-semibold text-text-primary mb-1">Investment</p>
-              <p className="text-sm text-text-secondary">Disclosed on application</p>
+              <p className="text-sm text-text-secondary">Disclosed on brief</p>
             </div>
           </div>
         </div>
@@ -112,15 +120,15 @@ export default function MastermindsPage() {
           <ul className="space-y-4 text-text-secondary leading-relaxed">
             <li className="flex gap-3">
               <span className="text-brand-amber shrink-0 text-lg">&bull;</span>
-              Founders and CEOs who make strategic decisions without peers to challenge them
+              Founders and chief executives whose strategic decisions no longer have peers inside the building.
             </li>
             <li className="flex gap-3">
               <span className="text-brand-amber shrink-0 text-lg">&bull;</span>
-              Senior leaders who have outgrown mentorship and need peer-level thinking partners
+              Senior leaders who have outgrown mentorship and need thinking partners operating at their level.
             </li>
             <li className="flex gap-3">
               <span className="text-brand-amber shrink-0 text-lg">&bull;</span>
-              Strategy leads who want to practice decision-making in a safe environment before real stakes
+              Strategy and transformation leads rehearsing decisions in a lower-stakes room before the real ones arrive.
             </li>
           </ul>
         </div>
@@ -133,8 +141,9 @@ export default function MastermindsPage() {
             Applications are open.
           </h2>
           <p className="text-text-secondary mb-8">
-            Cohorts are curated. Tell us about yourself and we will let you
-            know if there is a good fit.
+            Cohorts are curated by hand. Tell us about your role, the decisions
+            on your desk, and what you would want out of a room like this. We
+            will come back within a week on fit.
           </p>
           <Button href="/contact" variant="amber">
             Apply for a cohort
