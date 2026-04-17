@@ -57,15 +57,11 @@ export default function EndorserBar() {
       {/* Site nav */}
       <div className="bg-surface-0/90 backdrop-blur-sm border-b border-surface-2">
         <div className="mx-auto max-w-[1280px] px-6 flex items-center justify-between h-14">
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/logos/lgp-compact-teal-solid.svg"
-              alt="The Long Game Project"
-              width={160}
-              height={32}
-              className="h-8 w-auto"
-              priority
-            />
+          <Link
+            href="/"
+            className="font-editorial text-lg font-semibold tracking-tight text-text-primary hover:text-brand-teal transition-colors"
+          >
+            The Long Game Project
           </Link>
 
           <div className="flex items-center gap-2">
