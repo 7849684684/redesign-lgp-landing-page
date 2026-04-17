@@ -4,7 +4,6 @@ import { fetchEngagement } from '@/lib/auth';
 import Section from '@/components/Section';
 import Button from '@/components/Button';
 import LogoutButton from '@/components/LogoutButton';
-import Image from 'next/image';
 
 // ----- Static lookup tables -----
 
@@ -165,13 +164,7 @@ export default async function PortalDashboardPage() {
     <div className="min-h-screen bg-surface-0">
       {/* Portal header bar */}
       <header className="border-b border-surface-2 bg-surface-0 sticky top-0 z-10">
-        <div className="mx-auto max-w-[1280px] px-6 py-3 flex items-center justify-between">
-          <Image
-            src="/logos/lgp-icon-teal-solid.svg"
-            alt="The Long Game Project"
-            width={28}
-            height={28}
-          />
+        <div className="mx-auto max-w-[1280px] px-6 py-3 flex items-center justify-end">
           <LogoutButton />
         </div>
       </header>
