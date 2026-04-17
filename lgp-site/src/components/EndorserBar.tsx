@@ -32,10 +32,10 @@ export default function EndorserBar() {
         <div className="mx-auto max-w-[1280px] px-6 flex items-center justify-between h-9">
           <Link
             href="/"
-            className="flex items-center gap-2 font-editorial text-sm text-text-secondary hover:text-text-primary transition-colors"
+            aria-label="The Long Game Project home"
+            className="flex items-center font-editorial text-sm text-text-secondary hover:text-text-primary transition-colors"
           >
             <Image src="/logos/lgp-icon-teal-solid.svg" alt="" width={20} height={20} className="shrink-0" />
-            <span className="hidden sm:inline">The Long Game Project</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-4" aria-label="LGP ecosystem">
