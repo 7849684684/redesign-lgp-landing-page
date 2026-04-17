@@ -4,26 +4,29 @@ import Button from "@/components/Button";
 import CrossProductCTA from "@/components/CrossProductCTA";
 
 export const metadata: Metadata = {
-  title: "Consulting",
-  description: "Bespoke strategy consulting for organisations facing consequential decisions. Tabletop exercises, advisory, and honest challenge.",
+  title: "Workshops",
+  description:
+    "Tabletop exercises that stress-test a leadership team's strategy against the shocks the plan does not model. Bespoke scenario design, partner-led facilitation, a structured debrief into board-ready commitments.",
 };
 
-export default function ConsultingPage() {
+export default function WorkshopsPage() {
   return (
     <>
       {/* Hero */}
       <Section className="pt-16 pb-16 md:pt-20 md:pb-20" surface={1}>
         <div className="max-w-3xl">
-          <p className="label text-brand-amber mb-4">Bespoke consulting</p>
+          <p className="label text-brand-amber mb-4">Workshops</p>
           <h1 className="font-editorial text-4xl md:text-5xl font-normal text-text-primary leading-tight mb-6">
             Your strategy looks great on paper.
             <br className="hidden md:block" />
             Now let&apos;s see if it survives.
           </h1>
           <p className="text-lg text-text-secondary leading-relaxed max-w-xl">
-            We put leadership teams through tabletop exercises that expose the
-            gaps between your plan and your readiness. Not a workshop. A
-            rehearsal for the decisions that actually matter.
+            A tabletop exercise puts your leadership team inside the decisions
+            your strategy does not rehearse. Market shocks, competitive moves,
+            regulatory reversals, operational failures &mdash; compressed into
+            a day, facilitated with the discipline of a boardroom simulation,
+            debriefed into commitments you can hold each other to on Monday.
           </p>
         </div>
       </Section>
@@ -35,46 +38,50 @@ export default function ConsultingPage() {
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
-                Tabletop Exercises
+                Tabletop exercises
               </h3>
               <p className="text-text-secondary leading-relaxed">
-                Competitive threats. Market shocks. Resource failures. Your
-                team works through realistic scenarios under time pressure
-                with expert facilitation. You rehearse the hard calls before
-                they become real ones.
+                Your team faces competitor moves, market dislocation, or
+                operational failure under a live clock. Every scenario is
+                built around your industry&apos;s actual threat surface, not a
+                generic template. You leave with a sharpened view of where
+                the strategy is brittle &mdash; and what you will do about it
+                before the real version arrives.
               </p>
             </div>
             <div>
               <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
-                Strategic Advisory
+                Strategic advisory
               </h3>
               <p className="text-text-secondary leading-relaxed">
-                A thinking partner, not a slide deck factory. We work
-                alongside founders and leadership teams to challenge
-                assumptions, stress-test options, and make better decisions
-                under genuine uncertainty.
+                A retained thinking partner for the questions that do not fit
+                an exercise. We work alongside the CEO and top team between
+                board cycles, pressure-testing the assumptions the rest of
+                the organisation cannot afford to question in the open.
               </p>
             </div>
             <div>
               <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
-                Executive Coaching
+                Bespoke scenario design
               </h3>
               <p className="text-text-secondary leading-relaxed">
-                How you frame problems shapes what solutions you see. We work
-                one-on-one with senior leaders on decision-making under
-                pressure - building practical capability, not handing out
-                frameworks.
+                A library of 130+ scenarios across defence, financial
+                services, technology, consumer goods, healthcare, and
+                professional services. Every engagement is built bespoke on
+                that foundation &mdash; the sharpness of a proven design with
+                the specificity of your board papers.
               </p>
             </div>
             <div>
               <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
-                Scenario Design
+                Honest debrief
               </h3>
               <p className="text-text-secondary leading-relaxed">
-                130+ scenarios designed across defence, financial services,
-                tech, consumer goods, and more. Every scenario is built
-                around your specific industry, competitive landscape, and
-                strategic context.
+                The exercise surfaces the gaps. The debrief closes them.
+                Structured reflection, named assumptions, owners against
+                actions, and a single-page record of what the team agreed
+                under pressure &mdash; because memories fade faster than
+                calendars.
               </p>
             </div>
           </div>
@@ -87,11 +94,31 @@ export default function ConsultingPage() {
           <p className="label text-text-tertiary mb-6">How it works</p>
           <div className="space-y-8">
             {[
-              { step: "01", title: "Discovery call", desc: "30 minutes. You describe the challenge. We tell you honestly whether we can help. No pitch, no proposal theatre." },
-              { step: "02", title: "Scoping", desc: "Objectives, format, timeline, investment - defined clearly and agreed upfront. No scope creep, no ambiguity." },
-              { step: "03", title: "Design", desc: "We design the exercise or advisory engagement around your actual strategic context - not a template with your logo on it." },
-              { step: "04", title: "Deliver", desc: "We facilitate, provoke, and hold your team accountable to the commitments they make under pressure." },
-              { step: "05", title: "Debrief", desc: "What you decided, why it matters, and what happens Monday morning. A structured action plan, not a summary deck." },
+              {
+                step: "01",
+                title: "Discovery",
+                desc: "A 30-minute call with a partner. You describe the decision on the table. We tell you honestly whether a tabletop is the right shape — and if it is not, what is. No pitch, no proposal theatre.",
+              },
+              {
+                step: "02",
+                title: "Scoping",
+                desc: "A one-page brief covering objectives, scenarios, participants, format, and investment. Agreed in writing before any design begins. No scope creep, no ambiguity.",
+              },
+              {
+                step: "03",
+                title: "Design",
+                desc: "Two to four weeks of bespoke scenario design drawing on your industry, competitive context, and the specific question on the table. Built by a partner, reviewed with your sponsor, iterated until it bites.",
+              },
+              {
+                step: "04",
+                title: "Deliver",
+                desc: "One day, on-site or remote. Your team runs the scenario under a live clock. We facilitate, provoke, and hold the room to the commitments it makes under pressure.",
+              },
+              {
+                step: "05",
+                title: "Debrief",
+                desc: "A structured session within 48 hours, followed by a single-page action record. What you decided, why it matters, and what happens on Monday — in the form your board meeting will accept.",
+              },
             ].map((item) => (
               <div key={item.step} className="flex gap-6">
                 <p className="text-2xl font-light text-brand-teal tabular-nums shrink-0 w-10">
@@ -150,8 +177,9 @@ export default function ConsultingPage() {
             Tell us the decision you are facing.
           </h2>
           <p className="text-text-secondary mb-8">
-            30 minutes, no pitch. We will tell you honestly whether we can
-            help - and if we cannot, we will point you to someone who can.
+            Thirty minutes with a partner, no pitch. If we can help, we will
+            say how. If we cannot, we will point you to someone who can. That
+            conversation carries more value than most proposals.
           </p>
           <Button href="/contact" variant="teal">
             Book a discovery call
@@ -164,8 +192,8 @@ export default function ConsultingPage() {
         <CrossProductCTA
           label="Keep practising between engagements"
           product="Masterminds"
-          description="Monthly peer cohorts for senior leaders. Structured challenge, real decisions, ongoing accountability."
-          href="/mastermind"
+          description="Six-month peer cohorts for senior leaders. Structured challenge, real decisions, ongoing accountability between the big exercises."
+          href="/services/masterminds"
         />
       </Section>
     </>
