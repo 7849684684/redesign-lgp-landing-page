@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { services } from "@/lib/services";
 
 const ecosystemLinks = [
   { href: "https://shortlist.games", label: "Shortlist" },
@@ -15,8 +16,8 @@ const legalLinks = [
 ];
 
 const serviceLinks = [
-  { href: "/consulting", label: "Consulting" },
-  { href: "/mastermind", label: "Masterminds" },
+  { href: "/services", label: "All services" },
+  ...services.map((s) => ({ href: s.href, label: s.label })),
 ];
 
 const companyLinks = [

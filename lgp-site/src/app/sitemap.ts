@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllBlogPosts } from "@/lib/blog";
+import { services } from "@/lib/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://longgameproject.org";
@@ -10,8 +11,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/team",
     "/contact",
     "/blog",
-    "/consulting",
-    "/mastermind",
+    "/services",
+    ...services.map((s) => s.href),
     "/publishing-integrity",
     "/privacy",
     "/terms",
