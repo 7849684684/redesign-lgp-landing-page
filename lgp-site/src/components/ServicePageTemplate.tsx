@@ -67,9 +67,9 @@ export default function ServicePageTemplate({
                   key={section.title}
                   className="border-l-[3px] border-brand-amber pl-5"
                 >
-                  <h3 className="font-editorial text-xl font-semibold text-text-primary mb-3">
+                  <h2 className="font-editorial text-xl font-semibold text-text-primary mb-3">
                     {section.title}
-                  </h3>
+                  </h2>
                   <p className="text-text-secondary leading-relaxed">
                     {section.body}
                   </p>

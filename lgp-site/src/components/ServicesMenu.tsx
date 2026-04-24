@@ -27,7 +27,10 @@ export default function ServicesMenu({ active }: ServicesMenuProps) {
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        containerRef.current?.querySelector("button")?.focus();
+      }
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
@@ -75,7 +78,7 @@ export default function ServicesMenu({ active }: ServicesMenuProps) {
             setTimeout(() => focusItem(0), 0);
           }
         }}
-        className={`inline-flex items-center gap-1 text-sm font-medium transition-colors ${
+        className={`inline-flex items-center gap-1 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:outline-none rounded-sm ${
           active
             ? "text-brand-teal"
             : "text-text-secondary hover:text-text-primary"
@@ -113,7 +116,7 @@ export default function ServicesMenu({ active }: ServicesMenuProps) {
                   }}
                   onClick={() => setOpen(false)}
                   onKeyDown={(e) => onItemKeyDown(e, i)}
-                  className="block px-5 py-3 hover:bg-surface-1 focus:bg-surface-1 focus:outline-none transition-colors"
+                  className="block px-5 py-3 hover:bg-surface-1 focus:bg-surface-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-inset transition-colors"
                 >
                   <div className="flex items-baseline justify-between gap-3">
                     <span className="font-editorial text-base text-text-primary">
