@@ -45,7 +45,6 @@ export async function putEngagement(clientKey: string, eng: Engagement): Promise
     access: 'public',
     addRandomSuffix: false,
     contentType: 'application/json',
-    allowOverwrite: true,
   });
 }
 
