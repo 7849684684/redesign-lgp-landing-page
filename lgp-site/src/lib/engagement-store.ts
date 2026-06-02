@@ -1,4 +1,4 @@
-import { Redis } from '@upstash/redis';
+import { put, del, list } from '@vercel/blob';
 
 export interface Engagement {
   clientKey: string;
@@ -20,39 +20,36 @@ export interface Engagement {
   [k: string]: unknown;
 }
 
-const INDEX_KEY = 'eng:index';
-const keyFor = (clientKey: string) => `eng:${clientKey}`;
-
-let _client: Redis | null = null;
-function client(): Redis {
-  if (_client) return _client;
-  const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
-  if (!url || !token) throw new Error('Upstash Redis env vars not configured');
-  _client = new Redis({ url, token });
-  return _client;
-}
+const PREFIX = 'engagements';
+const blobPath = (clientKey: string) => `${PREFIX}/${clientKey}.json`;
 
 export async function getEngagement(clientKey: string): Promise<Engagement | null> {
-  return (await client().get<Engagement>(keyFor(clientKey))) ?? null;
+  const { blobs } = await list({ prefix: blobPath(clientKey), limit: 1 });
+  if (!blobs.length) return null;
+  const res = await fetch(blobs[0].url, { cache: 'no-store' });
+  if (!res.ok) return null;
+  return res.json();
 }
 
 export async function listEngagements(): Promise<Engagement[]> {
-  const keys = await client().smembers(INDEX_KEY);
-  if (!keys.length) return [];
-  const records = await client().mget<Engagement[]>(...keys.map(keyFor));
-  return records.filter((r): r is Engagement => r !== null);
+  const { blobs } = await list({ prefix: `${PREFIX}/` });
+  const results = await Promise.all(
+    blobs.map(b => fetch(b.url, { cache: 'no-store' }).then(r => r.ok ? r.json() : null))
+  );
+  return results.filter((r): r is Engagement => r !== null);
 }
 
 export async function putEngagement(clientKey: string, eng: Engagement): Promise<void> {
   const stamped: Engagement = { ...eng, clientKey, updatedAt: new Date().toISOString() };
-  const c = client();
-  await c.set(keyFor(clientKey), stamped);
-  await c.sadd(INDEX_KEY, clientKey);
+  await put(blobPath(clientKey), JSON.stringify(stamped), {
+    access: 'public',
+    addRandomSuffix: false,
+    contentType: 'application/json',
+    allowOverwrite: true,
+  });
 }
 
 export async function deleteEngagement(clientKey: string): Promise<void> {
-  const c = client();
-  await c.del(keyFor(clientKey));
-  await c.srem(INDEX_KEY, clientKey);
+  const { blobs } = await list({ prefix: blobPath(clientKey), limit: 1 });
+  if (blobs.length) await del(blobs[0].url);
 }
