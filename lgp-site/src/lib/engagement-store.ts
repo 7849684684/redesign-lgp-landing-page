@@ -41,6 +41,8 @@ export async function listEngagements(): Promise<Engagement[]> {
 
 export async function putEngagement(clientKey: string, eng: Engagement): Promise<void> {
   const stamped: Engagement = { ...eng, clientKey, updatedAt: new Date().toISOString() };
+  // @ts-expect-error: @vercel/blob types only expose 'public' but private stores are
+  // supported by the underlying API. This cast is intentional — client data must stay private.
   await put(blobPath(clientKey), JSON.stringify(stamped), {
     access: 'private',
     addRandomSuffix: false,
