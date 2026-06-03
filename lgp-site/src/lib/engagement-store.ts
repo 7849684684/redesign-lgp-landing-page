@@ -23,10 +23,20 @@ export interface Engagement {
 const PREFIX = 'engagements';
 const blobPath = (clientKey: string) => `${PREFIX}/${clientKey}.json`;
 
+// Private blobs require the BLOB_READ_WRITE_TOKEN in the Authorization header when fetching.
+// downloadUrl (and url) for private blobs are not publicly accessible.
+function blobFetch(url: string): Promise<Response> {
+  const token = process.env.BLOB_READ_WRITE_TOKEN ?? '';
+  return fetch(url, {
+    cache: 'no-store',
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  });
+}
+
 export async function getEngagement(clientKey: string): Promise<Engagement | null> {
   const { blobs } = await list({ prefix: blobPath(clientKey), limit: 1 });
   if (!blobs.length) return null;
-  const res = await fetch(blobs[0].downloadUrl, { cache: 'no-store' });
+  const res = await blobFetch(blobs[0].url);
   if (!res.ok) return null;
   return res.json();
 }
@@ -34,7 +44,7 @@ export async function getEngagement(clientKey: string): Promise<Engagement | nul
 export async function listEngagements(): Promise<Engagement[]> {
   const { blobs } = await list({ prefix: `${PREFIX}/` });
   const results = await Promise.all(
-    blobs.map(b => fetch(b.downloadUrl, { cache: 'no-store' }).then(r => r.ok ? r.json() : null))
+    blobs.map(b => blobFetch(b.url).then(r => r.ok ? r.json() : null))
   );
   return results.filter((r): r is Engagement => r !== null);
 }
