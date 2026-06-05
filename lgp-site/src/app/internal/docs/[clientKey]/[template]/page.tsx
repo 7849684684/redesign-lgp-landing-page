@@ -74,39 +74,13 @@ export default async function InternalDocPage({
   }
 
   return (
-    <>
-      {/* Breadcrumb bar */}
-      <Section className="pt-4 pb-4 border-b border-surface-2">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 min-w-0">
-            <Button
-              href="/internal/pipeline"
-              variant="outline"
-              className="!px-3 !py-1.5 text-xs shrink-0"
-            >
-              Pipeline
-            </Button>
-            <span className="text-text-tertiary text-sm">/</span>
-            <Button
-              href={`/internal/dashboard/${clientKey}`}
-              variant="outline"
-              className="!px-3 !py-1.5 text-xs shrink-0"
-            >
-              {engagement.clientName}
-            </Button>
-            <span className="text-text-tertiary text-sm">/</span>
-            <h1 className="font-editorial text-base text-text-primary truncate">{label}</h1>
-            {isDraft && (
-              <span className="text-xs px-2 py-0.5 rounded-sm bg-amber-500/10 text-amber-600 font-medium shrink-0">
-                Draft
-              </span>
-            )}
-          </div>
-        </div>
-      </Section>
-
-      {/* Document iframe */}
-      <DocViewer template={template} config={config as Record<string, unknown>} />
-    </>
+    <DocViewer
+      template={template}
+      config={config as Record<string, unknown>}
+      label={label}
+      meta={isDraft ? 'Draft' : undefined}
+      backHref={`/internal/dashboard/${clientKey}`}
+      backLabel={engagement.clientName}
+    />
   );
 }

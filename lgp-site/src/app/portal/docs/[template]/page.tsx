@@ -59,19 +59,13 @@ export default async function PortalDocPage({
   });
 
   return (
-    <>
-      <Section className="pt-6 pb-4 border-b border-surface-2">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Button href="/portal/dashboard" variant="outline" className="!px-3 !py-1.5 text-xs">
-              &larr; Dashboard
-            </Button>
-            <h1 className="font-editorial text-lg text-text-primary">{label}</h1>
-          </div>
-          <span className="text-xs text-text-tertiary">Published {publishedDate}</span>
-        </div>
-      </Section>
-      <DocViewer template={template} config={config} />
-    </>
+    <DocViewer
+      template={template}
+      config={config}
+      label={label}
+      meta={`Published ${publishedDate}`}
+      backHref="/portal/dashboard"
+      backLabel="Dashboard"
+    />
   );
 }
