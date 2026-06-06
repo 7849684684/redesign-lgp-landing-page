@@ -737,3 +737,4 @@ desktop.ini
 *.tmp
 ~$*
 .~lock.*
+!lgp-site/public/**
